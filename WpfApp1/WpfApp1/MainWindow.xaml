@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="tom" HorizontalAlignment="Left" Margin="446,163,0,0" VerticalAlignment="Top" Height="90" Width="227"/>
+        <Calendar HorizontalAlignment="Left" Margin="56,0,0,0" VerticalAlignment="Center" Height="244" Width="344"/>
 
     </Grid>
 </Window>
