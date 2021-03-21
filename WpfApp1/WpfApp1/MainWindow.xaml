@@ -19,6 +19,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Center" Margin="349,289,0,0" VerticalAlignment="Top" Height="83" Width="168"/>
 
     </Grid>
 </Window>
