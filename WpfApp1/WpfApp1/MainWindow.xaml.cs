@@ -23,6 +23,9 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            MyFlightModel fm = new MyFlightModel();
+            fm.connect("127.0.0.1", 5400);
+            fm.start();
         }
     }
 }
