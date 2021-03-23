@@ -41,7 +41,7 @@ namespace WpfApp1
 
             if (netStream.CanWrite)
             {
-                Byte[] sendBytes = Encoding.ASCII.GetBytes(command);
+                Byte[] sendBytes = Encoding.ASCII.GetBytes(command + "\r\n");
                 netStream.Write(sendBytes, 0, sendBytes.Length);
                 netStream.Flush();
             }
