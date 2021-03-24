@@ -8,12 +8,14 @@ namespace WpfApp1
 {
     class MyTelnetClient : ITelnetClient
     {
+        Boolean is_connected = false;
         private TcpClient tcpClient;
         private NetworkStream netStream;
 
         private IPAddress[] IPAddresses;
         public void connect(string ip, int port)
         {
+            is_connected = true;
             tcpClient = new TcpClient(AddressFamily.InterNetwork);
             IPAddresses = Dns.GetHostAddresses(ip);
        
@@ -28,8 +30,12 @@ namespace WpfApp1
 
         public void disconnect()
         {
-            if(tcpClient.Connected)
+            if (is_connected)
+            {
+                is_connected = false;
                 tcpClient.Close();
+            }
+                
         }
 
         public string read()

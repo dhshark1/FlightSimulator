@@ -45,7 +45,7 @@ namespace WpfApp1
         {
             new Thread(delegate() {
                 
-                    using (var reader = new StreamReader(@csvPath))
+                    using (var reader = new StreamReader(csvPath))
                     {
                         while (!reader.EndOfStream && !stop)
                         {
