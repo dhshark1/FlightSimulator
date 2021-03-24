@@ -26,6 +26,7 @@ namespace WpfApp1
             MyFlightModel fm = new MyFlightModel();
             fm.connect("127.0.0.1", 5400);
             fm.start();
+            //tom check
         }
     }
 }
