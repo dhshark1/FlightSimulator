@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-namespace FlightSimulator
+namespace WpfApp1
 {
-    public class ViewModel: INotifyPropertyChanged
+    internal class ViewModel: INotifyPropertyChanged
     {
-        FlightModel _model;
-        public ViewModel(FlightModel model)
+        private IFlightModel _model;        
+        public ViewModel(IFlightModel model)
         {
             _model = model;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -26,7 +26,7 @@ namespace FlightSimulator
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        public void sendCSVPath(string csvPath)
+        public void start()
         {
             _model.connect("127.0.0.1", 5400);
             _model.start();
@@ -35,6 +35,7 @@ namespace FlightSimulator
         {
             _model.disconnect();
         }
+        /*
         public double Altmeter
         {
             get
@@ -124,6 +125,14 @@ namespace FlightSimulator
             get
             {
                 return _model.yaw;
+            }
+        }
+        */
+        public string VM_CsvPath
+        {
+            set
+            {
+                _model.CsvPath = value;
             }
         }
     }

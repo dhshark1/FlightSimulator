@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 
 using Microsoft.Win32; // FileDialog 
 
-namespace OpenDialogBox
+namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        // private ViewModel vm;
+       private ViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
-            // vm = new ViewModel();
+            vm = new ViewModel(new MyFlightModel());
         }
         /*
          * This method opens the path to the CSV file using a dialog box
@@ -50,8 +50,14 @@ namespace OpenDialogBox
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // vm.sendCSVPath(FilePathBox.Text);
-            Console.WriteLine("Done");
+            vm.disconnect();
+            vm.VM_CsvPath = FilePathBox.Text;
+            vm.start();
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            vm.start();
         }
     }
 }

@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-namespace FlightSimulator
+namespace WpfApp1
 {
     interface IViewModel
     {
 
+        public string VM_CsvPath
+        {
+            get;
+            set;
+        }
     }
 }

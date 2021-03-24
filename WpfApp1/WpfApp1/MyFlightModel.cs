@@ -11,37 +11,53 @@ namespace WpfApp1
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private MyTelnetClient tc;
-        private volatile Boolean stop;
+        private volatile Boolean stop, play = true;
+        private string csvPath;
+        public MyFlightModel()
+        {
+            tc = new MyTelnetClient();
+        }
+        public string CsvPath
+        {
+            get
+            {
+                return csvPath;
+            } 
+            set
+            {
+                csvPath = value;
+            }
+        }
 
         public void connect(string ip, int port)
         {
-            stop = false;
-            tc = new MyTelnetClient();
+            stop = false; 
             tc.connect(ip, port);
         }
 
         public void disconnect()
         {
-            throw new NotImplementedException();
+            stop = true;
+            tc.disconnect();
         }
 
         public void start()
         {
             new Thread(delegate() {
-                while (!stop)
-                {
-                    using (var reader = new StreamReader(@"C:\Users\maiky\Source\Repos\FlightSimulator\WpfApp1\WpfApp1\reg_flight.csv"))
+                
+                    using (var reader = new StreamReader(@csvPath))
                     {
-                        
-                        while (!reader.EndOfStream)
+                        while (!reader.EndOfStream && !stop)
                         {
-                            var line = reader.ReadLine();
-                            tc.write(line);
-                            Thread.Sleep(100);
+                            if (play)
+                            {
+                                var line = reader.ReadLine();
+                                tc.write(line);
+                                Thread.Sleep(100);
+                            }
                         }
                     }
-                }
-                    }).Start();
+            }).Start();
         }
     }
 }

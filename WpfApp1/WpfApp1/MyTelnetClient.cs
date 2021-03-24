@@ -28,7 +28,8 @@ namespace WpfApp1
 
         public void disconnect()
         {
-            throw new NotImplementedException();
+            if(tcpClient.Connected)
+                tcpClient.Close();
         }
 
         public string read()
