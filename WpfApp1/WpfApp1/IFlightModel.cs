@@ -17,5 +17,20 @@ namespace WpfApp1
             get;
             set;
         }
+        public Boolean Play
+        {
+            get;
+            set;
+        }
+        public string PlaySpeed
+        {
+            get;
+            set;
+        }
+        public string Time
+        {
+            get;
+            set;
+        }
     }
 }

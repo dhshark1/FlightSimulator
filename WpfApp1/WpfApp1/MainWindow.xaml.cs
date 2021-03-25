@@ -26,7 +26,10 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            
             vm = new ViewModel(new MyFlightModel());
+            this.Slider.DataContext = this;
+            this.DataContext = vm;
         }
         /*
          * This method opens the path to the CSV file using a dialog box
@@ -42,7 +45,7 @@ namespace WpfApp1
             Nullable<bool> fDiaOK = fDia.ShowDialog();
             if (fDiaOK == true) // File Dialog opened safely
             {
-                FilePathBox.Text = fDia.FileNames[0] + ";";
+                FilePathBox.Text = fDia.FileNames[0];
                 // Turn upload button visible once a path was created.
                 UploadFileBox.Visibility = Visibility.Visible;
             }
@@ -55,9 +58,25 @@ namespace WpfApp1
             vm.start();
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            vm.start();
+            vm.VM_Play = true;
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.VM_Play = false;
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Hello World");
+        }
+
+        private void BackwardsButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.VM_PlaySpeed = "2";
+            // TBC
         }
     }
 }

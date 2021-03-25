@@ -10,6 +10,29 @@
         <TextBox x:Name="FilePathBox" HorizontalAlignment="Left" Height="30" Margin="144,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
         <Button x:Name="OpenFileDialog" Content="Open CSV File" HorizontalAlignment="Left" Height="30" Margin="10,43,0,0" VerticalAlignment="Top" Width="129" Click="OpenFileDialog_Click" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="20"/>
         <Button x:Name="UploadFileBox" Content="Upload File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="659,43,0,0" Height="30" FontFamily="Tw Cen MT" FontSize="20" Click="Button_Click" Visibility="Hidden"/>
-        <Button x:Name="Start" Content="Start" HorizontalAlignment="Left" Margin="65,282,0,0" VerticalAlignment="Top" Height="59" Width="74" Click="Start_Click"/>
+        <Canvas Margin="24,284,78,98" RenderTransformOrigin="0.072,0.5" Background="White">
+            <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="1" Canvas.Left="56" Click="PlayButton_Click" Background="White">
+                <Button.Content>
+                    <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+                </Button.Content>
+            </Button>
+            <Button x:Name="PauseButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="110" Click="PauseButton_Click">
+                <Image Source="Pause.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            </Button>
+            <Button x:Name="FastForward" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="220">
+                <Image Source="FastForward.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            </Button>
+            <Button x:Name="StopButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="165" Click="StopButton_Click">
+                <Image Source="Stop.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            </Button>
+            <Button x:Name="BackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="2" Click="BackwardsButton_Click">
+                <Image  Source="Backwards.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            </Button>
+            <TextBlock FontSize="24" Canvas.Left="292" Canvas.Top="7" Text="Play Speed" TextWrapping="Wrap" Height="49" Width="123"/>
+            <TextBox x:Name="pSTextBox" Canvas.Left="420" Canvas.Top="14" Text="{Binding VM_PlaySpeed,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
+            <TextBlock x:Name="timeTextBlock" Canvas.Left="575" Canvas.Top="10" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
+        </Canvas>
+        <Slider x:Name="Slider" Value="{Binding timeTextBlock}" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="716" Height="25"/>
+
     </Grid>
 </Window>

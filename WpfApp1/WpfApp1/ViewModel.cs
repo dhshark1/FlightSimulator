@@ -128,12 +128,44 @@ namespace WpfApp1
             }
         }
         */
+
+        public string VM_Time
+        {
+            get
+            {
+                return _model.Time;
+            }
+        }
         public string VM_CsvPath
         {
             set
             {
                 _model.CsvPath = value;
             }
+        }
+        public Boolean VM_Play
+        {
+            get
+            {
+                return _model.Play;
+            }
+            set
+            {
+                _model.Play = value;
+            }
+        }
+
+        public string VM_PlaySpeed
+        {
+            get
+            {
+                return _model.PlaySpeed;
+            }
+            set
+            {
+                _model.PlaySpeed = value;
+            }
+
         }
     }
 }
