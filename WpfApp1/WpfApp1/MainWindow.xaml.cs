@@ -28,7 +28,7 @@ namespace WpfApp1
             InitializeComponent();
             
             vm = new ViewModel(new MyFlightModel());
-            this.Slider.DataContext = this;
+            //this.Slider.DataContext = this;
             this.DataContext = vm;
         }
         /*
@@ -78,5 +78,6 @@ namespace WpfApp1
             vm.VM_PlaySpeed = "2";
             // TBC
         }
+
     }
 }

@@ -14,7 +14,21 @@ namespace WpfApp1
         private volatile Boolean stop, play = false;
         private volatile string csvPath;
         private volatile int currentLine;
+        private volatile int numOfLines;
         private volatile string playSpeed;
+
+        public int NumOfLines
+        {
+            get
+            {
+                return numOfLines;
+            }
+            set
+            {
+                numOfLines = value;
+                NotifyPropertyChanged("NumOfLines");
+            }
+        }
 
 
         public void NotifyPropertyChanged(string propName)
@@ -47,13 +61,15 @@ namespace WpfApp1
                 currentLine = value; 
                 NotifyPropertyChanged("Time");
                 NotifyPropertyChanged("CurrentLine");
+                NotifyPropertyChanged("LineRatio");
             }
         }
         public MyFlightModel()
         {
             tc = new MyTelnetClient();
             PlaySpeed = "1";
-
+            CurrentLine = 0;
+            NumOfLines = 1;
         }
         public Boolean Play
         {
@@ -101,12 +117,24 @@ namespace WpfApp1
             {
             }
         }
+        public float LineRatio
+        {
+            get
+            {
+                return ((float) CurrentLine) / NumOfLines;
+            }
+            set
+            {
+                CurrentLine = Convert.ToInt32(value * ((float) NumOfLines));
+                NotifyPropertyChanged("CurrentLine");
+                NotifyPropertyChanged("LineRatio");
+            }
+        }
         public void start()
         {
             new Thread(delegate() {
 
                 var list = new List<string>();
-                int resultSize, i = 0;
                 using (var reader = new StreamReader(csvPath))
                 {
                     //Reading the file into a list then reading it to an array
@@ -116,18 +144,18 @@ namespace WpfApp1
                     {
                         list.Add(tmpLine);
                     }
-                    resultSize = list.Count;
+                    numOfLines = list.Count;
                 }
                 string[] result = list.ToArray();
 
-                while (i<resultSize && !stop)
+                while (CurrentLine<numOfLines && !stop)
                         {
                             if ((PlaySpeed!="") && Play && (float.Parse(PlaySpeed)>0))
                             {
                                 //var line = reader.ReadLine();
-                                tc.write(result[i]);
-                                ++i;
-                                CurrentLine = i;
+                                tc.write(result[CurrentLine]);
+                                ++CurrentLine;
+                                //CurrentLine = i;
                                 Thread.Sleep(Convert.ToInt32(100 * (1/float.Parse(PlaySpeed))));
                             }
                         }

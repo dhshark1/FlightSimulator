@@ -32,7 +32,7 @@
             <TextBox x:Name="pSTextBox" Canvas.Left="420" Canvas.Top="14" Text="{Binding VM_PlaySpeed,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
             <TextBlock x:Name="timeTextBlock" Canvas.Left="575" Canvas.Top="10" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
         </Canvas>
-        <Slider x:Name="Slider" Value="{Binding timeTextBlock}" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="716" Height="25"/>
+        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="716" Height="25"/>
 
     </Grid>
 </Window>

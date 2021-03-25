@@ -167,5 +167,41 @@ namespace WpfApp1
             }
 
         }
+
+        public int VM_CurrentLine
+        {
+            get
+            {
+                return _model.CurrentLine;
+            }
+            set
+            {
+                _model.CurrentLine = value;
+            }
+        }
+
+        public int VM_NumOfLines
+        {
+            get
+            {
+                return _model.NumOfLines;
+            }
+            set
+            {
+                _model.NumOfLines = value;
+            }
+        }
+
+        public float VM_LineRatio
+        {
+            get
+            {
+                return _model.LineRatio;
+            }
+            set
+            {
+                _model.LineRatio = value;
+            }
+        }
     }
 }

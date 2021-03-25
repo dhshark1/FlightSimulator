@@ -32,5 +32,20 @@ namespace WpfApp1
             get;
             set;
         }
+        public int CurrentLine
+        {
+            get;
+            set;
+        }
+        public int NumOfLines
+        {
+            get;
+            set;
+        }
+        public float LineRatio
+        {
+            get;
+            set;
+        }
     }
 }
