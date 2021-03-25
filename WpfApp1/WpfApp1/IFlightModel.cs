@@ -47,5 +47,10 @@ namespace WpfApp1
             get;
             set;
         }
+        public int ProgressDirection
+        {
+            get;
+            set;
+        }
     }
 }

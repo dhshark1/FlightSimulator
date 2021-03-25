@@ -16,7 +16,21 @@ namespace WpfApp1
         private volatile int currentLine;
         private volatile int numOfLines;
         private volatile string playSpeed;
+        private volatile int progressDirection;
 
+
+        public int ProgressDirection
+        {
+            get
+            {
+                return progressDirection;
+            }
+            set
+            {
+                progressDirection = value;
+                NotifyPropertyChanged("ProgressDirection");
+            }
+        }
         public int NumOfLines
         {
             get
@@ -46,8 +60,8 @@ namespace WpfApp1
             }
             set
             {
-                NotifyPropertyChanged("PlaySpeed");
                 playSpeed = value;
+                NotifyPropertyChanged("PlaySpeed");
             }
         }
         public int CurrentLine
@@ -70,6 +84,8 @@ namespace WpfApp1
             PlaySpeed = "1";
             CurrentLine = 0;
             NumOfLines = 1;
+            ProgressDirection = 1;
+            CsvPath = "";
         }
         public Boolean Play
         {
@@ -80,6 +96,7 @@ namespace WpfApp1
             set
             {
                 play = value;
+                NotifyPropertyChanged("Play");
             }
         }
         public string CsvPath
@@ -91,6 +108,7 @@ namespace WpfApp1
             set
             {
                 csvPath = value;
+                NotifyPropertyChanged("CsvPath");
             }
         }
 
@@ -150,18 +168,24 @@ namespace WpfApp1
 
                 while (CurrentLine<numOfLines && !stop)
                         {
-                            if ((PlaySpeed!="") && Play && (float.Parse(PlaySpeed)>0))
-                            {
-                                //var line = reader.ReadLine();
-                                tc.write(result[CurrentLine]);
-                                ++CurrentLine;
-                                //CurrentLine = i;
-                                Thread.Sleep(Convert.ToInt32(100 * (1/float.Parse(PlaySpeed))));
-                            }
+                    if ((CurrentLine >= 0) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
+                    {
+                        //var line = reader.ReadLine();
+                        tc.write(result[CurrentLine]);
+                        if ((ProgressDirection==1) || (CurrentLine > 0))
+                        {
+                            CurrentLine += ProgressDirection;
+                        }
+                        Thread.Sleep(Convert.ToInt32(100 * (1 / float.Parse(PlaySpeed))));
+                    }
+                    else
+                    {
+                        Thread.Sleep(100);
+                    }
                         }
             }).Start();
         }
     }
 }
 
-//TOM AND RON
+//TOM AND RON 25.3 21:57

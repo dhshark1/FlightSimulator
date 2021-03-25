@@ -60,7 +60,12 @@ namespace WpfApp1
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            vm.VM_Play = true;
+            if (vm.VM_CsvPath != "")
+            {
+                vm.VM_ProgressDirection = 1;
+                vm.VM_Play = true;
+                vm.VM_PlaySpeed = "1";
+            }
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
@@ -70,14 +75,33 @@ namespace WpfApp1
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Hello World");
+            vm.VM_Play = false;
+            vm.VM_CurrentLine = 0;
+            vm.VM_PlaySpeed = "1";
         }
 
-        private void BackwardsButton_Click(object sender, RoutedEventArgs e)
+        /*private void BackwardsButton_Click(object sender, RoutedEventArgs e)
         {
-            vm.VM_PlaySpeed = "2";
+            
             // TBC
+        }*/
+
+        private void FastForwardButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (vm.VM_Play)
+            {
+                vm.VM_ProgressDirection = 1;
+                vm.VM_PlaySpeed = "2";
+            }
         }
 
+        private void FastBackwardsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (vm.VM_Play)
+            {
+                vm.VM_ProgressDirection = -1;
+                vm.VM_PlaySpeed = "2";
+            }
+        }
     }
 }

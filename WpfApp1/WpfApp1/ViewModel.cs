@@ -138,6 +138,10 @@ namespace WpfApp1
         }
         public string VM_CsvPath
         {
+            get
+            {
+                return _model.CsvPath;
+            }
             set
             {
                 _model.CsvPath = value;
@@ -201,6 +205,18 @@ namespace WpfApp1
             set
             {
                 _model.LineRatio = value;
+            }
+        }
+
+        public int VM_ProgressDirection
+        {
+            get
+            {
+                return _model.ProgressDirection;
+            }
+            set
+            {
+                _model.ProgressDirection = value;
             }
         }
     }

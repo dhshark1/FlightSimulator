@@ -19,13 +19,13 @@
             <Button x:Name="PauseButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="110" Click="PauseButton_Click">
                 <Image Source="Pause.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="FastForward" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="220">
+            <Button x:Name="FastForwardButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="220" Click="FastForwardButton_Click">
                 <Image Source="FastForward.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
             <Button x:Name="StopButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="165" Click="StopButton_Click">
                 <Image Source="Stop.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="BackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="2" Click="BackwardsButton_Click">
+            <Button x:Name="FastBackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="1" Canvas.Left="2" Click="FastBackwardsButton_Click">
                 <Image  Source="Backwards.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
             <TextBlock FontSize="24" Canvas.Left="292" Canvas.Top="7" Text="Play Speed" TextWrapping="Wrap" Height="49" Width="123"/>
