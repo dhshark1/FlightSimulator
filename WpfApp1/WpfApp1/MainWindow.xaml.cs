@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using LiveCharts;//chart
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;//chart
 using Microsoft.Win32; // FileDialog 
 
 namespace WpfApp1
@@ -23,11 +26,21 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
        private ViewModel vm;
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             vm = new ViewModel(new MyFlightModel());
+            
+            this.DataContext = vm;
+
+
+           
+            //WpfPlot1.Plot.AddScatter(dataX, dataY);
         }
+
         /*
          * This method opens the path to the CSV file using a dialog box
          */
@@ -42,16 +55,17 @@ namespace WpfApp1
             Nullable<bool> fDiaOK = fDia.ShowDialog();
             if (fDiaOK == true) // File Dialog opened safely
             {
-                FilePathBox.Text = fDia.FileNames[0] + ";";
+                FilePathBox.Text = fDia.FileNames[0];
                 // Turn upload button visible once a path was created.
                 UploadFileBox.Visibility = Visibility.Visible;
             }
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.disconnect();
-            vm.VM_CsvPath = FilePathBox.Text;
+            vm.vm_CsvPath = FilePathBox.Text;
             vm.start();
         }
 
@@ -59,5 +73,7 @@ namespace WpfApp1
         {
             vm.start();
         }
+
+        
     }
 }

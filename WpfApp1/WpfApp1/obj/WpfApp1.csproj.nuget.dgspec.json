@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maiky\\Source\\Repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maiky\\Source\\Repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maiky\\Source\\Repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
         "projectName": "WpfApp1",
-        "projectPath": "C:\\Users\\maiky\\Source\\Repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectPath": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
         "packagesPath": "C:\\Users\\maiky\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maiky\\Source\\Repos\\FlightSimulator\\WpfApp1\\WpfApp1\\obj\\",
+        "outputPath": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\maiky\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,36 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "LightningChartUltimateWPF8": {
+              "target": "Package",
+              "version": "[8.5.1.1, )"
+            },
+            "LiveCharts.Wpf": {
+              "target": "Package",
+              "version": "[0.9.7, )"
+            },
+            "MvvmChartWpfFX": {
+              "target": "Package",
+              "version": "[0.5.5, )"
+            },
+            "ScottPlot.Avalonia": {
+              "target": "Package",
+              "version": "[4.0.48, )"
+            },
+            "ScottPlot.WPF": {
+              "target": "Package",
+              "version": "[4.0.48, )"
+            },
+            "Sparrow.Chart.Wpf": {
+              "target": "Package",
+              "version": "[13.1.0.118, )"
+            },
+            "Syncfusion.SfChart.WPF": {
+              "target": "Package",
+              "version": "[18.4.0.49, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

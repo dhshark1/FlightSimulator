@@ -1,15 +1,101 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:Controls="clr-namespace:WpfApp1.controls"
+        
+        
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="WpfApp1.MainWindow"
+        
+        
+        Title="MainWindow" Height="800" Width="1020">
+
     <Grid>
-        <TextBox x:Name="FilePathBox" HorizontalAlignment="Left" Height="30" Margin="144,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
+
+        <Controls:chartLive Margin="102,354,621,79"/>
+        <Controls:theJoystick Margin="512,130,290,430"/>
+
+
+
+        <TextBox x:Name="FilePathBox" HorizontalAlignment="Left" Height="30" Margin="144,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
         <Button x:Name="OpenFileDialog" Content="Open CSV File" HorizontalAlignment="Left" Height="30" Margin="10,43,0,0" VerticalAlignment="Top" Width="129" Click="OpenFileDialog_Click" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="20"/>
         <Button x:Name="UploadFileBox" Content="Upload File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="659,43,0,0" Height="30" FontFamily="Tw Cen MT" FontSize="20" Click="Button_Click" Visibility="Hidden"/>
-        <Button x:Name="Start" Content="Start" HorizontalAlignment="Left" Margin="65,282,0,0" VerticalAlignment="Top" Height="59" Width="74" Click="Start_Click"/>
+        <ListBox x:Name = "listbox" Height="219" Width="158" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="755,36,107,179">
+        
+            
+            
+            <ListBoxItem Content="aileron"/>
+            <ListBoxItem Content="elevator"/>
+            <ListBoxItem Content="rudder"/>
+            <ListBoxItem Content="flaps"/>
+            <ListBoxItem Content="slats"/>
+            <ListBoxItem Content="speedbrake"/>
+            <ListBoxItem Content="throttle"/>
+            <ListBoxItem Content="throttle"/>
+            <ListBoxItem Content="engine-pump"/>
+            <ListBoxItem Content="engine-pump"/>
+            <ListBoxItem Content="electric-pump"/>
+            <ListBoxItem Content="electric-pump"/>
+            <ListBoxItem Content="external-power"/>
+            <ListBoxItem Content="APU-generator"/>
+            <ListBoxItem Content="latitude-deg"/>
+            <ListBoxItem Content="longitude-deg"/>
+            <ListBoxItem Content="altitude-ft"/>
+            <ListBoxItem Content="roll-deg"/>
+            <ListBoxItem Content="pitch-deg"/>
+            <ListBoxItem Content="heading-deg"/>
+            <ListBoxItem Content="slide-slip-deg"/>
+            <ListBoxItem Content="airspeed-kt"/>
+            <ListBoxItem Content="glideslope"/>
+            <ListBoxItem Content="vertical-speed-fps"/>
+            <ListBoxItem Content="airspeed-indicator_indicated-speed-kt"/>
+            <ListBoxItem Content="altimeter_indicated-altitude-ft"/>
+            <ListBoxItem Content="altimeter_pressure-alt-ft"/>
+            <ListBoxItem Content="attitude-indicator_indicated-pitch-deg"/>
+            <ListBoxItem Content="attitude-indicator_indicated-roll-deg"/>
+            <ListBoxItem Content="attitude-indicator_internal-pitch-deg"/>
+            <ListBoxItem Content="attitude-indicator_internal-roll-deg"/>
+            <ListBoxItem Content="encoder_indicated-altitude-ft"/>
+            <ListBoxItem Content="encoder_pressure-alt-ft"/>
+            <ListBoxItem Content="gps_indicated-altitude-ft"/>
+            <ListBoxItem Content="gps_indicated-ground-speed-kt"/>
+            <ListBoxItem Content="gps_indicated-vertical-speed"/>
+            <ListBoxItem Content="indicated-heading-deg"/>
+            <ListBoxItem Content="magnetic-compass_indicated-heading-deg"/>
+            <ListBoxItem Content="slip-skid-ball_indicated-slip-skid"/>
+            <ListBoxItem Content="turn-indicator_indicated-turn-rate"/>
+            <ListBoxItem Content="vertical-speed-indicator_indicated-speed-fpm"/>
+            <ListBoxItem Content="engine_rpm"/>
+        </ListBox>
+
+
+        <StackPanel  Orientation="Horizontal" Margin="794,23,119,609">
+            <StackPanel Height="154" >
+                <Label Content="Altitude" FontWeight="Bold" Background="DarkGray"/>
+                <Label Content="Airspeed" FontWeight="Bold" Background="DarkGray"/>
+                <Label Content="heading-degrees" FontWeight="Bold" Background="DarkGray"/>
+                <Label Content="Roll" FontWeight="Bold" Background="DarkGray"/>
+                <Label Content="Pitch" FontWeight="Bold" Background="DarkGray"/>
+                <Label Content="Yaw" FontWeight="Bold" Background="DarkGray"/>
+            </StackPanel>
+
+            <StackPanel Width="100" >
+                <TextBlock  x:Name="Altitude" Text="{Binding vm_Altmeter, Mode=OneWay, StringFormat=N2}" Background="Gray" Height="26"/>
+                <TextBlock  x:Name="airspeed" Text="{Binding vm_Airspeed, StringFormat=N2}" Background="Gray" Height="26"/>
+                <TextBlock  x:Name="reg_heading_deg" Text="{Binding vm_Registered_heading_degrees, Mode=OneWay, StringFormat=N2}" Background="Gray" Height="26"/>
+                <TextBlock  x:Name="Roll" Text="{Binding vm_Roll, Mode=OneWay, StringFormat=N2}" Background="Gray" Height="26"/>
+                <TextBlock  x:Name="Pitch" Text="{Binding vm_Pitch, Mode=OneWay, StringFormat=N2}" Background="Gray" Height="26"/>
+                <TextBlock  x:Name="Yaw" Text="{Binding vm_Yaw, Mode=OneWay, StringFormat=N2}" Background="Gray" Height="25"/>
+            </StackPanel>
+
+        </StackPanel>
+        <Slider Value="{Binding vm_Rudder, Mode=OneWay}" Width="120" Margin="554,333,346,410" Maximum="1" Minimum="-1"/>
+        <Slider Value="{Binding vm_Throttle0, Mode=OneWay}"  Orientation="Vertical" Height
+                 ="120" Margin="494,211,490,453" Maximum="1.1" Minimum="-0.1"/>
+        
+        
+
     </Grid>
 </Window>

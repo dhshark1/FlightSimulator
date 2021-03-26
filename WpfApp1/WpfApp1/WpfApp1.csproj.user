@@ -7,6 +7,20 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="controls\chartLive.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="controls\theJoystick.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="controls\chartLive.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="controls\theJoystick.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

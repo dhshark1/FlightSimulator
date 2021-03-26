@@ -12,4 +12,11 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgSyncfusion_SfChart_WPF Condition=" '$(PkgSyncfusion_SfChart_WPF)' == '' ">C:\Users\maiky\.nuget\packages\syncfusion.sfchart.wpf\18.4.0.49</PkgSyncfusion_SfChart_WPF>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\maiky\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgScottPlot_WPF Condition=" '$(PkgScottPlot_WPF)' == '' ">C:\Users\maiky\.nuget\packages\scottplot.wpf\4.0.48</PkgScottPlot_WPF>
+    <PkgAvalonia Condition=" '$(PkgAvalonia)' == '' ">C:\Users\maiky\.nuget\packages\avalonia\0.9.11</PkgAvalonia>
+    <PkgLiveCharts_Wpf Condition=" '$(PkgLiveCharts_Wpf)' == '' ">C:\Users\maiky\.nuget\packages\livecharts.wpf\0.9.7</PkgLiveCharts_Wpf>
+  </PropertyGroup>
 </Project>
