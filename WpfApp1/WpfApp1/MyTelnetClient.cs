@@ -11,6 +11,7 @@ namespace WpfApp1
         Boolean is_connected = false;
         private TcpClient tcpClient;
         private NetworkStream netStream;
+        private int buffer_size = 65536;
 
         private IPAddress[] IPAddresses;
         public void connect(string ip, int port)
@@ -38,20 +39,30 @@ namespace WpfApp1
                 
         }
 
+        /* public string read()
+         {
+             throw new NotImplementedException();
+         }*/
         public string read()
         {
-            throw new NotImplementedException();
+            string response = null;
+            if (netStream.CanWrite)
+            {
+                byte[] readBytes = new byte[buffer_size];
+                int bytesRead = netStream.Read(readBytes, 0, buffer_size);
+                response = Encoding.ASCII.GetString(readBytes, 0, bytesRead);
+            }
+            return response;
         }
 
         public void write(string command)
         {
-
-            if (netStream.CanWrite)
-            {
-                Byte[] sendBytes = Encoding.ASCII.GetBytes(command + "\r\n");
-                netStream.Write(sendBytes, 0, sendBytes.Length);
-                netStream.Flush();
-            }
+                if (netStream.CanWrite)
+                {
+                    Byte[] sendBytes = Encoding.ASCII.GetBytes(command + "\r\n");
+                    netStream.Write(sendBytes, 0, sendBytes.Length);
+                    netStream.Flush();
+                }
         }
     }
 }

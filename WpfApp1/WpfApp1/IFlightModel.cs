@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using LiveCharts;//chart
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace WpfApp1
 {
@@ -51,6 +54,65 @@ namespace WpfApp1
         {
             get;
             set;
+        }
+        public ChartValues<float> Atributes_atIndex
+        {
+            get;
+        }
+        public short Atributes_index
+        {
+            get;
+            set;
+        }
+        public float Aileron
+        {
+            get;
+            set;
+        }
+        public float Throttle0
+        {
+            get;
+            set;
+        }
+        public float Rudder
+        {
+            get;
+            set;
+        }
+        public float Elevator
+        {
+            get;
+            set;
+        }
+        public float Altmeter
+        {
+            set;
+            get;
+        }
+        public float Airspeed
+        {
+            set;
+            get;
+        }
+        /*public float RegisteredAltmeter
+        {
+            set; get;
+        }*/
+        public float Pitch
+        {
+            set; get;
+        }
+        public float Roll
+        {
+            set; get;
+        }
+        public float Yaw
+        {
+            set; get;
+        }
+        public float Registered_heading_degrees
+        {
+            set; get;
         }
     }
 }

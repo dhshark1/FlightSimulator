@@ -3,14 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:Controls="clr-namespace:WpfApp1.controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="800">
     <Grid>
+        <Controls:chartLive Margin="149,92,546,487"/>
+        <Controls:chartLive Margin="254,92,366,407"/>
+        <Controls:chartLive Margin="149,197,546,392"/>
+
+
+        <Controls:atributes Margin="4,92,661,392"/>
+        <Controls:controlPanel Margin="10,343,586,183"/>
+
+        <Grid Margin="504,296,78,167">
+            <Controls:theJoystick Margin="50,50,58,60" />
+            <Slider Value="{Binding VM_Rudder, Mode=OneWay}" Maximum="1" Minimum="-1" Margin="28,185,36,10" />
+            <Slider Value="{Binding VM_Throttle0, Mode=OneWay}" Height="150" Orientation="Vertical"  Maximum="1.1" Minimum="-0.1" Margin="10,30,184,40" />
+        </Grid>
+
         <TextBox x:Name="FilePathBox" HorizontalAlignment="Left" Height="30" Margin="144,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
         <Button x:Name="OpenFileDialog" Content="Open CSV File" HorizontalAlignment="Left" Height="30" Margin="10,43,0,0" VerticalAlignment="Top" Width="129" Click="OpenFileDialog_Click" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="20"/>
         <Button x:Name="UploadFileBox" Content="Upload File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="659,43,0,0" Height="30" FontFamily="Tw Cen MT" FontSize="20" Click="Button_Click" Visibility="Hidden"/>
-        <Canvas Margin="24,284,78,98" RenderTransformOrigin="0.072,0.5" Background="White">
+        <Canvas Margin="10,551,108,78" RenderTransformOrigin="0.072,0.5" Background="White">
             <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="1" Canvas.Left="56" Click="PlayButton_Click" Background="White">
                 <Button.Content>
                     <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
@@ -32,7 +48,7 @@
             <TextBox x:Name="pSTextBox" Canvas.Left="420" Canvas.Top="14" Text="{Binding VM_PlaySpeed,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
             <TextBlock x:Name="timeTextBlock" Canvas.Left="575" Canvas.Top="10" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
         </Canvas>
-        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="716" Height="25"/>
+        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" Margin="10,626,0,0" VerticalAlignment="Top" Width="712" Height="26"/>
 
     </Grid>
 </Window>

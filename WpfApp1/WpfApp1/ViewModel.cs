@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using LiveCharts;//chart
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 namespace WpfApp1
 {
     internal class ViewModel: INotifyPropertyChanged
@@ -29,6 +32,7 @@ namespace WpfApp1
         public void start()
         {
             _model.connect("127.0.0.1", 5400);
+            _model.connect("127.0.0.1", 5402);
             _model.start();
         }
         public void disconnect()
@@ -219,5 +223,114 @@ namespace WpfApp1
                 _model.ProgressDirection = value;
             }
         }
+        //maiky
+        public ChartValues<float> VM_Atributes_atIndex
+        {
+            get
+            {
+                return _model.Atributes_atIndex;
+            }
+        }
+        public short VM_Atributes_index
+        {
+            get
+            {
+                return _model.Atributes_index;
+            }
+            set
+            {
+                _model.Atributes_index = value;
+            }
+        }
+        //
+        public float VM_Aileron
+        {
+            get
+            {
+                float temp = _model.Aileron * 100;
+                if (temp > 35)
+                    return 35;
+                if (temp < -35)
+                    return -35;
+                return _model.Aileron * 100;
+            }
+            /*set
+            {
+                _model.Aileron = value;
+            }*/
+        }
+        public float VM_Throttle0
+        {
+            get
+            {
+                return _model.Throttle0;
+            }
+        }
+        public float VM_Rudder
+        {
+            get
+            {
+                return _model.Rudder;
+            }
+            /*set
+            {
+                _model.Aileron = value;
+            }*/
+        }
+        public float VM_Elevator
+        {
+            get
+            {
+                float temp = _model.Elevator * 100;
+                if (temp > 35)
+                    return 35;
+                if (temp < -35)
+                    return -35;
+                return _model.Elevator * 100;
+            }
+        }
+        public float VM_Altmeter
+        {
+            get
+            {
+                return _model.Altmeter;
+            }
+        }
+        public float VM_Airspeed
+        {
+            get
+            {
+                return _model.Airspeed;
+            }
+        }
+        public float VM_Pitch
+        {
+            get
+            {
+                return _model.Pitch;
+            }
+        }
+        public float VM_Roll
+        {
+            get
+            {
+                return _model.Roll;
+            }
+        }
+        public float VM_Yaw
+        {
+            get
+            {
+                return _model.Yaw;
+            }
+        }
+        public float VM_Registered_heading_degrees
+        {
+            get
+            {
+                return _model.Registered_heading_degrees;
+            }
+        }
+        //
     }
 }
