@@ -10,6 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts;//chart
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace WpfApp1.controls
 {
@@ -18,9 +21,27 @@ namespace WpfApp1.controls
     /// </summary>
     public partial class chartLive : UserControl
     {
+        /*private ViewModel vm;
+        private ChartValues<float>[] V_atributes = new ChartValues<float>[42];
+        internal ViewModel vm_chart
+        {
+            set
+            {
+                vm = value;
+            }
+        }
+        public ChartValues<float>[] V_Atributes
+        {
+            get
+            {
+                return vm.VM_Atributes_atIndex;
+            }
+        }*/
+
         public chartLive()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -20,7 +20,7 @@ namespace WpfApp1.controls
     {
         public theJoystick()
         {
-            InitializeComponent();
+                InitializeComponent();
         }
     }
 }

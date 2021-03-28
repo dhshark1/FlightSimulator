@@ -9,9 +9,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800">
     <Grid>
-        <Controls:chartLive Margin="149,92,546,487"/>
-        <Controls:chartLive Margin="254,92,366,407"/>
-        <Controls:chartLive Margin="149,197,546,392"/>
+        
+        <Controls:chartLive Margin="254,92,146,388"/>
+
 
 
         <Controls:atributes Margin="4,92,661,392"/>

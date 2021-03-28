@@ -22,13 +22,15 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-       private ViewModel vm;
+       internal ViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
             
             vm = new ViewModel(new MyFlightModel());
             //this.Slider.DataContext = this;
+            /*this.atributes_live_chart.DataContext = this.atributes_live_chart;
+            this.atributes_live_chart.vm_chart = vm;*/
             this.DataContext = vm;
         }
         /*

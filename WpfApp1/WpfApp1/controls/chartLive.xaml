@@ -8,12 +8,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <wpf:CartesianChart>
-            <wpf:CartesianChart.Series>
-                <wpf:LineSeries Values="{Binding VM_Atributes_atIndex}"/>
-                <wpf:LineSeries Values="1,4,3,1,4,2.5,1,2,3,5" 
-                                    PointGeometry="{x:Null}" StrokeThickness="3"/>
-            </wpf:CartesianChart.Series>
-        </wpf:CartesianChart>
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="aileron" HorizontalContentAlignment="Center"/>
+        <wpf:CartesianChart DisableAnimations="True" Hoverable="False" DataTooltip="{x:Null}" Grid.Row="1" >
+                <wpf:CartesianChart.Series>
+                    <wpf:LineSeries Values="{Binding VM_Atributes_atIndex}" AutomationProperties.Name="atribute_live" Title="aileron"/>
+                    <!--<wpf:LineSeries Values="1,4,3,1,4,2.5,1,2,3,5" 
+                                    PointGeometry="{x:Null}" StrokeThickness="3"/>-->
+                </wpf:CartesianChart.Series>
+            </wpf:CartesianChart>
     </Grid>
 </UserControl>

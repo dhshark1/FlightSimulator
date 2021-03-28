@@ -21,6 +21,7 @@ namespace WpfApp1
         private volatile int numOfLines;
         private volatile string playSpeed;
         private volatile int progressDirection;
+        private volatile int Num_of_Atributes = 42;
 
         private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
@@ -28,15 +29,18 @@ namespace WpfApp1
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index=0;
+        private volatile bool atributes_are_ready = false, start_to_read = false;
 
-        //public volatile List<float>[] atributes = new List<float>[42];
-        public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
+        public volatile List<float>[] atributes = new List<float>[42];
+        //public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
+        public volatile ChartValues<float> display_atribute = new ChartValues<float>();
 
         public ChartValues<float> Atributes_atIndex
         {
             get
             {
-                return atributes[atributes_index];
+                //display_atribute = atributes[atributes_index];
+                return display_atribute;
             }
 
         }
@@ -252,8 +256,8 @@ namespace WpfApp1
             NumOfLines = 1;
             ProgressDirection = 1;
             CsvPath = "";
-            atributes[0] = new ChartValues<float>();
-            atributes[0].Add(0);
+            //atributes[0] = new ChartValues<float>();
+            //atributes[0].Add(0);
         }
         public Boolean Play
         {
@@ -276,6 +280,7 @@ namespace WpfApp1
             set
             {
                 csvPath = value;
+                atributes_are_ready = false;
                 NotifyPropertyChanged("CsvPath");
             }
         }
@@ -319,16 +324,21 @@ namespace WpfApp1
                 NotifyPropertyChanged("LineRatio");
             }
         }
-
+        /*private void notifyHelper()
+        {
+            NotifyPropertyChanged("Atributes_atIndex");
+        }*/
         //
         private void getAndSaveFG_attribute()
         {
             string input, input_digits_and_dot = "";
             int first, second, i = 0;
             float converted_input;
-            while (!stop)
+            NotifyPropertyChanged("Atributes_atIndex");
+            new Thread(display_atribute_update).Start();
+            while (currentLine < numOfLines && !stop)
             {
-                if (Play)
+                if (Play && start_to_read)
                 {
                     i = 0;
                     foreach (string msg in get_msgs)
@@ -369,11 +379,12 @@ namespace WpfApp1
                         i++;
                     }
                     //add check if currentLine
+                    
                     Aileron = atributes[0][currentLine];
                     Rudder = atributes[2][currentLine];
                     Throttle0 = atributes[6][currentLine];
                     Elevator = atributes[1][currentLine];
-                    Thread.Sleep(100);
+                    Thread.Sleep(1000);
                 }
             }
         }
@@ -382,19 +393,80 @@ namespace WpfApp1
             Regex CSVParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
             String[] Fields = CSVParser.Split(line);
 
-            for (int i = 0; i < 42; i++)
+            for (int i = 0; i < Num_of_Atributes; i++)
             {
                 /*first = line.IndexOf(',', first) + 1;
                 second = line.IndexOf(',', first + 1) - 1;
                 input_digits_and_dot = line.Substring(first, second - first + 1);
                 converted_input = float.Parse(input_digits_and_dot);*/
-                atributes[i].Add(float.Parse(Fields[i]));
+                atributes[i].Add(float.Parse(Fields[i]));      
             }
+            
+            
         }
         //
+       private void display_atribute_update()
+        {
+            int[] display_lines=new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
+            IEnumerator<float>[] atributes_IEnumerator = new IEnumerator<float>[Num_of_Atributes];
+            IEnumerator<float> iEnum;
+            int local_current_line, display_lines_temp,range=0,gap=0;
+            float[] temporalCv;
+            for (int j = 0; j < Num_of_Atributes; j++)
+                atributes_IEnumerator[j] = atributes[j].GetEnumerator();
+            while (currentLine < numOfLines && !stop)
+            {
+                local_current_line = currentLine;
+                iEnum = atributes_IEnumerator[atributes_index];
+                display_lines_temp = display_lines[atributes_index];
+                //ChartValues<float> temp = atributes[atributes_index];
+                if (display_lines_temp < local_current_line - 80)
+                {
+                    /*for (; (display_lines_temp < local_current_line) && (iEnum.MoveNext()); display_lines[atributes_index]++)
+                    {
+                        display_lines_temp++;
+                        display_atribute.Add(iEnum.Current);
+                        
+                        //Thread.Sleep(50);
+                    }*/
+                    /* range = local_current_line - display_lines_temp;
+                     temporalCv = new float[range];
 
+                     for (var i = 0; i < range && (iEnum.MoveNext()); i++)
+                     {
+                         display_lines_temp++;
+                         temporalCv[i] = iEnum.Current;
+                     }
+                     display_lines[atributes_index] = display_lines_temp;
+                     display_atribute.AddRange(temporalCv);*/
+                    range = local_current_line - display_lines_temp;
+                    temporalCv = new float[range];
+                    //atributes[j].CopyTo()
+                    for (var i = 0; i < range && (iEnum.MoveNext()); i++)
+                    {
+                        display_lines_temp++;
+                        temporalCv[i] = iEnum.Current;
+                    }
+                    display_lines[atributes_index] = display_lines_temp;
+                    display_atribute.AddRange(temporalCv);
+                }
+                    
+                if (display_lines[atributes_index] > local_current_line)
+                {
+                    atributes_IEnumerator[atributes_index].Reset();
+                    display_lines[atributes_index] = 0;
+                    display_atribute = new ChartValues<float>();
+                    for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
+                    {
+                        display_atribute.Add(atributes_IEnumerator[atributes_index].Current);
+                    }
+                }
+                Thread.Sleep(500);
+            }
+        }
         public void start()
         {
+            
             new Thread(delegate() {
 
                 var list = new List<string>();
@@ -412,14 +484,16 @@ namespace WpfApp1
                 string[] result = list.ToArray();
 
                 //
-                for (int j = 0; j < 42; j++)
-                    atributes[j] = new ChartValues<float>();
+                /* for (int j = 0; j < Num_of_Atributes; j++)
+                     atributes[j] = new ChartValues<float>();*/
+                for (int j = 0; j < Num_of_Atributes; j++)
+                    atributes[j] = new List<float>();
                 for (int k = 0; k < numOfLines; k++)
                 {
                     line_to_atributes_arr(result[k], k);
                 }
                 //
-
+                new Thread(getAndSaveFG_attribute).Start();
                 while (CurrentLine<numOfLines && !stop)
                         {
                     if ((CurrentLine >= 0) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
@@ -430,6 +504,7 @@ namespace WpfApp1
                         {
                             CurrentLine += ProgressDirection;
                         }
+                        start_to_read = true;
                         Thread.Sleep(Convert.ToInt32(100 * (1 / float.Parse(PlaySpeed))));
                     }
                     else
@@ -438,7 +513,8 @@ namespace WpfApp1
                     }
                         }
             }).Start();
-            new Thread(getAndSaveFG_attribute).Start();
+            //
+           
         }
     }
 }
