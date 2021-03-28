@@ -7,7 +7,10 @@ using System.ComponentModel;
 using LiveCharts;//chart
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using OxyPlot;
+using OxyPlot.Series;
 namespace WpfApp1
+
 {
     internal class ViewModel: INotifyPropertyChanged
     {
@@ -19,6 +22,8 @@ namespace WpfApp1
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
+            this.MyModel = new PlotModel { Title = "Example 1" };
+            this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -331,6 +336,8 @@ namespace WpfApp1
                 return _model.Registered_heading_degrees;
             }
         }
-        //
+        //plot
+        public PlotModel MyModel { get; set; }
+        //plot
     }
 }

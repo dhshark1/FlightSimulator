@@ -7,10 +7,11 @@
         xmlns:Controls="clr-namespace:WpfApp1.controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="800">
+        Title="MainWindow" Height="700" Width="1600">
     <Grid>
 
-        <Controls:chartLive Margin="254,92,146,388"/>
+        <Controls:chartLive Margin="254,92,816,388"/>
+        <Controls:oxyplot x:Name="plot" Margin="784,43,78,388" />
 
         <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="140" Margin="10,111,0,388">
             <ListBoxItem Content="aileron" Width="86"/>
@@ -59,9 +60,9 @@
 
         <!--
         <Controls:atributes Margin="4,92,661,392"/>-->
-        <Controls:controlPanel Margin="10,343,586,183"/>
+        <Controls:controlPanel Margin="10,342,1386,184"/>
 
-        <Grid Margin="504,296,78,167">
+        <Grid Margin="1020,342,78,167">
             <Controls:theJoystick Margin="50,50,58,60" />
             <Slider Value="{Binding VM_Rudder, Mode=OneWay}" Maximum="1" Minimum="-1" Margin="28,185,36,10" />
             <Slider Value="{Binding VM_Throttle0, Mode=OneWay}" Height="150" Orientation="Vertical"  Maximum="1.1" Minimum="-0.1" Margin="10,30,184,40" />

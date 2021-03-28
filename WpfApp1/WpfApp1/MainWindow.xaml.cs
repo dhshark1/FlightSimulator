@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OxyPlot;
+using OxyPlot.Series;
 
 using Microsoft.Win32; // FileDialog 
 
@@ -32,7 +34,11 @@ namespace WpfApp1
             /*this.atributes_live_chart.DataContext = this.atributes_live_chart;
             this.atributes_live_chart.vm_chart = vm;*/
             this.DataContext = vm;
+            
+            
+
         }
+        
         /*
          * This method opens the path to the CSV file using a dialog box
          */
