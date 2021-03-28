@@ -105,5 +105,7 @@ namespace WpfApp1
                 vm.VM_PlaySpeed = "2";
             }
         }
+
+        
     }
 }

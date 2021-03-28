@@ -1,13 +1,10 @@
-﻿using System;
+﻿using LiveCharts;//chart
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Threading;
 using System.IO;
-using LiveCharts;//chart
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace WpfApp1
 {
@@ -28,7 +25,7 @@ namespace WpfApp1
         private volatile float altmeter = 0, airspeed = 0, registeredHeading_degrees = 0;
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
-        private short atributes_index=0;
+        private short atributes_index = 0;
         private volatile bool atributes_are_ready = false, start_to_read = false;
 
         public volatile List<float>[] atributes = new List<float>[42];
@@ -241,7 +238,9 @@ namespace WpfApp1
             }
             set
             {
-                currentLine = value; 
+                if (value >= currentLine)
+                    currentLine = numOfLines - 1;
+                currentLine = value;
                 NotifyPropertyChanged("Time");
                 NotifyPropertyChanged("CurrentLine");
                 NotifyPropertyChanged("LineRatio");
@@ -252,7 +251,7 @@ namespace WpfApp1
             tc = new MyTelnetClient();
             tc_reader = new MyTelnetClient();
             PlaySpeed = "1";
-            CurrentLine = 0;
+            CurrentLine = -1;
             NumOfLines = 1;
             ProgressDirection = 1;
             CsvPath = "";
@@ -299,12 +298,12 @@ namespace WpfApp1
             stop = true;
             tc.disconnect();
         }
-        public string Time 
+        public string Time
         {
             get
             {
-                int x = (CurrentLine/10) % 60;
-                int y = (CurrentLine/10) / 60;
+                int x = (CurrentLine / 10) % 60;
+                int y = (CurrentLine / 10) / 60;
                 return (y.ToString() + ":" + x.ToString());
             }
             set
@@ -315,11 +314,11 @@ namespace WpfApp1
         {
             get
             {
-                return ((float) CurrentLine) / NumOfLines;
+                return ((float)CurrentLine) / NumOfLines;
             }
             set
             {
-                CurrentLine = Convert.ToInt32(value * ((float) NumOfLines));
+                CurrentLine = Convert.ToInt32(value * ((float)NumOfLines));
                 NotifyPropertyChanged("CurrentLine");
                 NotifyPropertyChanged("LineRatio");
             }
@@ -335,7 +334,7 @@ namespace WpfApp1
             int first, second, i = 0;
             float converted_input;
             NotifyPropertyChanged("Atributes_atIndex");
-            new Thread(display_atribute_update).Start();
+            //new Thread(display_atribute_update).Start();
             while (currentLine < numOfLines && !stop)
             {
                 if (Play && start_to_read)
@@ -379,7 +378,7 @@ namespace WpfApp1
                         i++;
                     }
                     //add check if currentLine
-                    
+
                     Aileron = atributes[0][currentLine];
                     Rudder = atributes[2][currentLine];
                     Throttle0 = atributes[6][currentLine];
@@ -399,18 +398,20 @@ namespace WpfApp1
                 second = line.IndexOf(',', first + 1) - 1;
                 input_digits_and_dot = line.Substring(first, second - first + 1);
                 converted_input = float.Parse(input_digits_and_dot);*/
-                atributes[i].Add(float.Parse(Fields[i]));      
+                atributes[i].Add(float.Parse(Fields[i]));
             }
-            
-            
+            // atributes_are_ready = true;
+
+
         }
-        //
-       private void display_atribute_update()
+        //VERSION WITHOU IENUMERATOR
+        private void display_atribute_update()
         {
-            int[] display_lines=new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
+            int[] display_lines = new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
             IEnumerator<float>[] atributes_IEnumerator = new IEnumerator<float>[Num_of_Atributes];
             IEnumerator<float> iEnum;
-            int local_current_line, display_lines_temp,range=0,gap=0;
+
+            int local_current_line, display_lines_temp, range = 0, gap = 0;
             float[] temporalCv;
             for (int j = 0; j < Num_of_Atributes; j++)
                 atributes_IEnumerator[j] = atributes[j].GetEnumerator();
@@ -439,23 +440,22 @@ namespace WpfApp1
                      }
                      display_lines[atributes_index] = display_lines_temp;
                      display_atribute.AddRange(temporalCv);*/
+                    //display_atribute.Clear();// לשקול להחזיר אתזה!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     range = local_current_line - display_lines_temp;
                     temporalCv = new float[range];
-                    //atributes[j].CopyTo()
-                    for (var i = 0; i < range && (iEnum.MoveNext()); i++)
-                    {
-                        display_lines_temp++;
-                        temporalCv[i] = iEnum.Current;
-                    }
+
+                    atributes[atributes_index].CopyTo(display_lines_temp, temporalCv, 0, range);
+                    display_lines_temp += range;
                     display_lines[atributes_index] = display_lines_temp;
                     display_atribute.AddRange(temporalCv);
                 }
-                    
+
                 if (display_lines[atributes_index] > local_current_line)
                 {
                     atributes_IEnumerator[atributes_index].Reset();
                     display_lines[atributes_index] = 0;
                     display_atribute = new ChartValues<float>();
+                    NotifyPropertyChanged("Atributes_atIndex");
                     for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
                     {
                         display_atribute.Add(atributes_IEnumerator[atributes_index].Current);
@@ -464,16 +464,77 @@ namespace WpfApp1
                 Thread.Sleep(500);
             }
         }
+        /*private void display_atribute_update()
+         {
+             int[] display_lines=new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
+             IEnumerator<float>[] atributes_IEnumerator = new IEnumerator<float>[Num_of_Atributes];
+             IEnumerator<float> iEnum;
+             int local_current_line, display_lines_temp,range=0,gap=0;
+             float[] temporalCv;
+             for (int j = 0; j < Num_of_Atributes; j++)
+                 atributes_IEnumerator[j] = atributes[j].GetEnumerator();
+             while (currentLine < numOfLines && !stop)
+             {
+                 local_current_line = currentLine;
+                 iEnum = atributes_IEnumerator[atributes_index];
+                 display_lines_temp = display_lines[atributes_index];
+                 //ChartValues<float> temp = atributes[atributes_index];
+                 if (display_lines_temp < local_current_line - 80)
+                 {
+                     *//*for (; (display_lines_temp < local_current_line) && (iEnum.MoveNext()); display_lines[atributes_index]++)
+                     {
+                         display_lines_temp++;
+                         display_atribute.Add(iEnum.Current);
+
+                         //Thread.Sleep(50);
+                     }*/
+        /* range = local_current_line - display_lines_temp;
+         temporalCv = new float[range];
+
+         for (var i = 0; i < range && (iEnum.MoveNext()); i++)
+         {
+             display_lines_temp++;
+             temporalCv[i] = iEnum.Current;
+         }
+         display_lines[atributes_index] = display_lines_temp;
+         display_atribute.AddRange(temporalCv);*//*
+        range = local_current_line - display_lines_temp;
+        temporalCv = new float[range];
+        //atributes[j].CopyTo()
+        for (var i = 0; i < range && (iEnum.MoveNext()); i++)
+        {
+            display_lines_temp++;
+            temporalCv[i] = iEnum.Current;
+        }
+        display_lines[atributes_index] = display_lines_temp;
+        display_atribute.AddRange(temporalCv);
+    }
+
+    if (display_lines[atributes_index] > local_current_line)
+    {
+        atributes_IEnumerator[atributes_index].Reset();
+        display_lines[atributes_index] = 0;
+        display_atribute = new ChartValues<float>();
+        NotifyPropertyChanged("Atributes_atIndex");
+        for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
+        {
+            display_atribute.Add(atributes_IEnumerator[atributes_index].Current);
+        }
+    }
+    Thread.Sleep(500);
+}
+}*/
         public void start()
         {
-            
-            new Thread(delegate() {
+
+            new Thread(delegate ()
+            {
 
                 var list = new List<string>();
                 using (var reader = new StreamReader(csvPath))
                 {
                     //Reading the file into a list then reading it to an array
-                    
+
                     string tmpLine;
                     while ((tmpLine = reader.ReadLine()) != null)
                     {
@@ -492,15 +553,16 @@ namespace WpfApp1
                 {
                     line_to_atributes_arr(result[k], k);
                 }
+                atributes_are_ready = true;
                 //
-                new Thread(getAndSaveFG_attribute).Start();
-                while (CurrentLine<numOfLines && !stop)
-                        {
+                // new Thread(getAndSaveFG_attribute).Start();
+                while (CurrentLine < numOfLines && !stop)
+                {
                     if ((CurrentLine >= 0) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
                     {
                         //var line = reader.ReadLine();
                         tc.write(result[CurrentLine]);
-                        if ((ProgressDirection==1) || (CurrentLine > 0))
+                        if ((ProgressDirection == 1) || (CurrentLine > 0))
                         {
                             CurrentLine += ProgressDirection;
                         }
@@ -511,10 +573,15 @@ namespace WpfApp1
                     {
                         Thread.Sleep(100);
                     }
-                        }
+                }
             }).Start();
-            //
-           
+            while (!atributes_are_ready)
+            {
+
+            }
+            new Thread(getAndSaveFG_attribute).Start();
+            new Thread(display_atribute_update).Start();
+
         }
     }
 }

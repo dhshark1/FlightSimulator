@@ -21,6 +21,9 @@ namespace WpfApp1.controls
         public atributes()
         {
             InitializeComponent();
+            
         }
+
+        
     }
 }

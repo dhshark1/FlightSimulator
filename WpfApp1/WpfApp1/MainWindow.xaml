@@ -9,12 +9,56 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800">
     <Grid>
-        
+
         <Controls:chartLive Margin="254,92,146,388"/>
 
+        <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="140" Margin="10,111,0,388">
+            <ListBoxItem Content="aileron" Width="86"/>
+            <ListBoxItem Content="elevator" Width="86" />
+            <ListBoxItem Content="rudder" Width="86" />
+            <ListBoxItem Content="flaps" Width="86" />
+            <ListBoxItem Content="slats" Width="86"/>
+            <ListBoxItem Content="speedbrake" Width="86"/>
+            <ListBoxItem Content="throttle" Width="86"/>
+            <ListBoxItem Content="throttle" Width="86"/>
+            <ListBoxItem Content="engine-pump" Width="86"/>
+            <ListBoxItem Content="engine-pump" Width="86"/>
+            <ListBoxItem Content="electric-pump" Width="86"/>
+            <ListBoxItem Content="electric-pump" Width="86"/>
+            <ListBoxItem Content="external-power" Width="86"/>
+            <ListBoxItem Content="APU-generator" Width="86"/>
+            <ListBoxItem Content="latitude-deg" Width="86"/>
+            <ListBoxItem Content="longitude-deg" Width="86"/>
+            <ListBoxItem Content="altitude-ft" Width="86"/>
+            <ListBoxItem Content="roll-deg" Width="86"/>
+            <ListBoxItem Content="pitch-deg" Width="86"/>
+            <ListBoxItem Content="heading-deg" Width="86"/>
+            <ListBoxItem Content="slide-slip-deg" Width="86"/>
+            <ListBoxItem Content="airspeed-kt" Width="86"/>
+            <ListBoxItem Content="glideslope" Width="86"/>
+            <ListBoxItem Content="vertical-speed-fps" Width="86"/>
+            <ListBoxItem Content="airspeed-indicator_indicated-speed-kt" Width="86"/>
+            <ListBoxItem Content="altimeter_indicated-altitude-ft" Width="86"/>
+            <ListBoxItem Content="altimeter_pressure-alt-ft" Width="86"/>
+            <ListBoxItem Content="attitude-indicator_indicated-pitch-deg" Width="86"/>
+            <ListBoxItem Content="attitude-indicator_indicated-roll-deg" Width="86"/>
+            <ListBoxItem Content="attitude-indicator_internal-pitch-deg" Width="86"/>
+            <ListBoxItem Content="attitude-indicator_internal-roll-deg" Width="86"/>
+            <ListBoxItem Content="encoder_indicated-altitude-ft" Width="86"/>
+            <ListBoxItem Content="encoder_pressure-alt-ft" Width="86"/>
+            <ListBoxItem Content="gps_indicated-altitude-ft" Width="86"/>
+            <ListBoxItem Content="gps_indicated-ground-speed-kt"/>
+            <ListBoxItem Content="gps_indicated-vertical-speed"/>
+            <ListBoxItem Content="indicated-heading-deg"/>
+            <ListBoxItem Content="magnetic-compass_indicated-heading-deg"/>
+            <ListBoxItem Content="slip-skid-ball_indicated-slip-skid"/>
+            <ListBoxItem Content="turn-indicator_indicated-turn-rate"/>
+            <ListBoxItem Content="vertical-speed-indicator_indicated-speed-fpm"/>
+            <ListBoxItem Content="engine_rpm"/>
+        </ListBox>
 
-
-        <Controls:atributes Margin="4,92,661,392"/>
+        <!--
+        <Controls:atributes Margin="4,92,661,392"/>-->
         <Controls:controlPanel Margin="10,343,586,183"/>
 
         <Grid Margin="504,296,78,167">
