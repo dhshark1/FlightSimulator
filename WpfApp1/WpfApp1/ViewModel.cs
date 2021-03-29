@@ -12,9 +12,9 @@ using OxyPlot.Series;
 namespace WpfApp1
 
 {
-    internal class ViewModel: INotifyPropertyChanged
+    internal class ViewModel : INotifyPropertyChanged
     {
-        private IFlightModel _model;        
+        private IFlightModel _model;
         public ViewModel(IFlightModel model)
         {
             _model = model;
@@ -22,10 +22,28 @@ namespace WpfApp1
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
-            this.MyModel = new PlotModel { Title = "Example 1" };
-            this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "cos(x)"));
+
+        }
+        public string VM_PlotTitle
+        {
+            get
+            {
+                return _model.PlotTitle;
+            }
+            set
+            {
+
+            }
         }
 
+        public IList<DataPoint> VM_PlotPoints
+        {
+            get
+            {
+                return new List<DataPoint>(_model.PlotPoints); 
+            }
+
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -336,8 +354,5 @@ namespace WpfApp1
                 return _model.Registered_heading_degrees;
             }
         }
-        //plot
-        public PlotModel MyModel { get; set; }
-        //plot
     }
 }

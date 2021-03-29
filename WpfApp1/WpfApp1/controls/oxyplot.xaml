@@ -8,6 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <oxy:PlotView Model="{Binding MyModel}"/>
+        <oxy:Plot Title="{Binding Title}">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
     </Grid>
 </UserControl>

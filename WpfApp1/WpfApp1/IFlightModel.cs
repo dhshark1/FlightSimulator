@@ -5,7 +5,8 @@ using System.Text;
 using LiveCharts;//chart
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-
+using OxyPlot;
+using OxyPlot.Series;
 namespace WpfApp1
 {
     internal interface IFlightModel : INotifyPropertyChanged
@@ -15,6 +16,18 @@ namespace WpfApp1
         void connect(string ip, int port);
         void disconnect();
         void start();
+
+        //Plot
+        public string PlotTitle
+        {
+            get; set;
+        }
+        public IList<DataPoint> PlotPoints
+        {
+            get;
+        }
+        //
+
         public string CsvPath
         {
             get;
