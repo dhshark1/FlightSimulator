@@ -280,6 +280,8 @@ namespace WpfApp1
         {
             get
             {
+                if (currentLine >= numOfLines)
+                    return numOfLines - 1;
                 return currentLine;
             }
             set
@@ -454,10 +456,10 @@ namespace WpfApp1
                     }
                     //add check if currentLine
 
-                    Aileron = Convert.ToSingle(atributes[0][CurrentLine].Y);
-                    Rudder = Convert.ToSingle(atributes[2][CurrentLine].Y);
-                    Throttle0 = Convert.ToSingle(atributes[6][CurrentLine].Y);
-                    Elevator = Convert.ToSingle(atributes[1][CurrentLine].Y);
+                    Aileron = Convert.ToSingle(attribute["aileron"][CurrentLine].Y);
+                    Rudder = Convert.ToSingle(attribute["rudder"][CurrentLine].Y);
+                    Throttle0 = Convert.ToSingle(attribute["throttle"][CurrentLine].Y);
+                    Elevator = Convert.ToSingle(attribute["elevator"][CurrentLine].Y);
                     Thread.Sleep(1000);
                 }
             }
@@ -470,7 +472,7 @@ namespace WpfApp1
             int size = xmlNameList.Count();
             for (int i = 0; i < size; i++)
             {
-                attribute[xmlNameList[i]].Add(new DataPoint(i, float.Parse(Fields[i])));
+                attribute[xmlNameList[i]].Add(new DataPoint(index, float.Parse(Fields[i])));
                // atributes[i].Add(new DataPoint(index, float.Parse(Fields[i])));
             }
             // atributes_are_ready = true;
@@ -506,10 +508,10 @@ namespace WpfApp1
                         //display_atribute.Clear();// לשקול להחזיר אתזה!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         range = local_current_line - display_lines_temp;
                         temporalCv = new DataPoint[range];
-
-                        atributes[atributes_index].CopyTo(display_lines_temp, temporalCv, 0, range);
+                        
+                        attribute["aileron"].CopyTo(display_lines_temp, temporalCv, 0, range);
                         display_lines_temp += range;
-                        display_lines[atributes_index] = display_lines_temp;
+                        //display_lines[atributes_index] = display_lines_temp;
                         plotPoints.AddRange(temporalCv);
                         NotifyPropertyChanged("PlotPoints");
 
@@ -519,7 +521,7 @@ namespace WpfApp1
                         display_lines[atributes_index] = display_lines_temp;*/
                     }
 
-                    if (display_lines[atributes_index] > local_current_line)
+                    if (display_lines_temp > local_current_line)
                     {
                         //atributes_IEnumerator = attribute.GetEnumerator();
                         //atributes_IEnumerator[atributes_index].Reset();

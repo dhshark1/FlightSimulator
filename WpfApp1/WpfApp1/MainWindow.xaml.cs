@@ -36,7 +36,7 @@ namespace WpfApp1
             //this.Slider.DataContext = this;
             /*this.atributes_live_chart.DataContext = this.atributes_live_chart;
             this.atributes_live_chart.vm_chart = vm;*/
-            this.plot.DataContext = new VM2(fm);
+            this.plot.DataContext = vm;
             this.DataContext = vm;
             
             vm_FD = new VM_FileDialog(fm);
