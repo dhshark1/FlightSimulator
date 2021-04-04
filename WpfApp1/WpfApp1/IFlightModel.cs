@@ -33,6 +33,16 @@ namespace WpfApp1
             get;
             set;
         }
+        public string XmlPath
+        {
+            get;
+            set;
+        }
+        public List<string> XmlNameList
+        {
+            get;
+            set;
+        }
         public Boolean Play
         {
             get;

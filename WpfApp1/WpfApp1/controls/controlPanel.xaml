@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.controls"
-             mc:Ignorable="d" Width="204" Height="158">
+             mc:Ignorable="d" Width="202" Height="158">
     <StackPanel  Orientation="Horizontal"  Grid.ColumnSpan="2" >
         <StackPanel>
             <Label Content="Altitude" FontWeight="Bold" Background="DarkGray"/>

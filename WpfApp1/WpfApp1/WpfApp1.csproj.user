@@ -13,6 +13,9 @@
     <Compile Update="controls\controlPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="controls\FilesDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="controls\oxyplot.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="controls\controlPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="controls\FilesDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="controls\oxyplot.xaml">

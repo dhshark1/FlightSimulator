@@ -18,6 +18,7 @@ namespace WpfApp1.controls
     /// </summary>
     public partial class atributes : UserControl
     {
+        internal VM_Attributes vm;
         public atributes()
         {
             InitializeComponent();

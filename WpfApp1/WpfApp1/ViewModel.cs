@@ -24,6 +24,7 @@ namespace WpfApp1
             };
 
         }
+       
         public string VM_PlotTitle
         {
             get
@@ -52,16 +53,7 @@ namespace WpfApp1
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        public void start()
-        {
-            _model.connect("127.0.0.1", 5400);
-            _model.connect("127.0.0.1", 5402);
-            _model.start();
-        }
-        public void disconnect()
-        {
-            _model.disconnect();
-        }
+       
         /*
         public double Altmeter
         {
@@ -163,17 +155,7 @@ namespace WpfApp1
                 return _model.Time;
             }
         }
-        public string VM_CsvPath
-        {
-            get
-            {
-                return _model.CsvPath;
-            }
-            set
-            {
-                _model.CsvPath = value;
-            }
-        }
+       
         public Boolean VM_Play
         {
             get

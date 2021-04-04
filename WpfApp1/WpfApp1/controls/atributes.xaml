@@ -7,7 +7,8 @@
              mc:Ignorable="d" Height="200" Width="140
              ">
 
-    <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="140">
+    <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding VM_XmlNameList}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="140">
+        <!--
         <ListBoxItem Content="aileron"/>
         <ListBoxItem Content="elevator"/>
         <ListBoxItem Content="rudder"/>
@@ -50,6 +51,7 @@
         <ListBoxItem Content="turn-indicator_indicated-turn-rate"/>
         <ListBoxItem Content="vertical-speed-indicator_indicated-speed-fpm"/>
         <ListBoxItem Content="engine_rpm"/>
+        -->
     </ListBox>
 
 </UserControl>

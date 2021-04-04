@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 D:\Users\tomma\Studies\SecondYearSemesterD\Projects\repos\FlightSimulator\WpfApp1\WpfApp1\App.xaml
-6-1349254217
+7-1714626100
 
-1490438013
-19463170273
-controls\atributes.xaml;controls\chartLive.xaml;controls\controlPanel.xaml;controls\sliders.xaml;controls\theJoystick.xaml;MainWindow.xaml;
+18-412560062
+196-1946947194
+controls\atributes.xaml;controls\chartLive.xaml;controls\controlPanel.xaml;controls\FilesDialog.xaml;controls\oxyplot.xaml;controls\theJoystick.xaml;MainWindow.xaml;
 
 True
 

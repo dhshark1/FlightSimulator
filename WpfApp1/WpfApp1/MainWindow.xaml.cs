@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OxyPlot;
 using OxyPlot.Series;
-
+using WpfApp1.controls;
 using Microsoft.Win32; // FileDialog 
 
 namespace WpfApp1
@@ -24,52 +24,37 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-       internal ViewModel vm;
+        internal ViewModel vm;
+        internal VM_FileDialog vm_FD;
+        internal VM_Attributes vm_A;
+        internal MyFlightModel fm;
         public MainWindow()
         {
             InitializeComponent();
-            
-            vm = new ViewModel(new MyFlightModel());
+            fm = new MyFlightModel();
+            vm = new ViewModel(fm);
             //this.Slider.DataContext = this;
             /*this.atributes_live_chart.DataContext = this.atributes_live_chart;
             this.atributes_live_chart.vm_chart = vm;*/
-            this.plot.DataContext = vm;
+            this.plot.DataContext = new VM2(fm);
             this.DataContext = vm;
             
-            
+            vm_FD = new VM_FileDialog(fm);
+            this.FilesDialog.vm = vm_FD;
+            this.FilesDialog.DataContext = vm_FD;
+
+            vm_A = new VM_Attributes(fm);
+            this.Attributes.vm = vm_A;
+            this.Attributes.DataContext = vm_A;
+
 
         }
         
-        /*
-         * This method opens the path to the CSV file using a dialog box
-         */
-        private void OpenFileDialog_Click(object sender, RoutedEventArgs e)
-        {   
-            // Creating File Dialog object to interact with the files on the system
-            OpenFileDialog fDia = new OpenFileDialog();
-            fDia.Multiselect = false;
-            // Filtering for the relevent extenstions 
-            fDia.Filter = "CSV Files|*.csv| Excel Files|*.xlsx";
- 
-            Nullable<bool> fDiaOK = fDia.ShowDialog();
-            if (fDiaOK == true) // File Dialog opened safely
-            {
-                FilePathBox.Text = fDia.FileNames[0];
-                // Turn upload button visible once a path was created.
-                UploadFileBox.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            vm.disconnect();
-            vm.VM_CsvPath = FilePathBox.Text;
-            vm.start();
-        }
+       
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            if (vm.VM_CsvPath != "")
+            if (vm_FD.VM_CsvPath != "")
             {
                 vm.VM_ProgressDirection = 1;
                 vm.VM_Play = true;

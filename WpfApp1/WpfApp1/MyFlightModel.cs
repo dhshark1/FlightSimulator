@@ -6,7 +6,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using OxyPlot;
+using System.Xml.Linq;
 using OxyPlot.Series;
+using System.Linq;
 
 namespace WpfApp1
 {
@@ -16,12 +18,13 @@ namespace WpfApp1
         private static Mutex mutex_atributes_index = new Mutex();
         private MyTelnetClient tc;
         private volatile Boolean stop, play = false;
-        private volatile string csvPath;
+        private volatile string csvPath, xmlPath;
         private volatile int currentLine;
         private volatile int numOfLines;
         private volatile string playSpeed;
         private volatile int progressDirection;
         private volatile int Num_of_Atributes = 42;
+        private volatile int display_lines_temp = 0;
 
         private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
@@ -30,8 +33,10 @@ namespace WpfApp1
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index = 0;
         private volatile bool atributes_are_ready = false, start_to_read = false;
-
+        private volatile List<string> xmlNameList;
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
+        public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
+
         //public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
         public volatile ChartValues<float> display_atribute = new ChartValues<float>();
 
@@ -47,6 +52,20 @@ namespace WpfApp1
         //plot
         volatile string plotTitle = "";
         volatile List<DataPoint> plotPoints = new List<DataPoint>();
+
+        private void buildNameListFromXML()
+        {
+            XElement xe = XElement.Load(XmlPath);
+            xmlNameList = (xe.Descendants("output").Descendants("name").Select(name => (string)name)).ToList();
+            foreach(string name in xmlNameList)
+            {
+                if(attribute.ContainsKey(name))
+                    attribute.Add(name + "1", new List<DataPoint>());
+                else
+                    attribute.Add(name, new List<DataPoint>());
+            }
+        }
+
         public string PlotTitle
         {
             get
@@ -282,6 +301,7 @@ namespace WpfApp1
             NumOfLines = 1;
             ProgressDirection = 1;
             CsvPath = "";
+            //attribute 
             //atributes[0] = new ChartValues<float>();
             //atributes[0].Add(0);
         }
@@ -311,6 +331,33 @@ namespace WpfApp1
             }
         }
 
+        public List<string> XmlNameList
+        {
+            get
+            {
+                return xmlNameList;
+            }
+            set
+            {
+                xmlNameList = value;
+                NotifyPropertyChanged("XmlNameList");
+            }
+        }
+        
+        public string XmlPath
+        {
+            get
+            {
+                return xmlPath;
+            }
+            set
+            {
+                xmlPath = value;
+                buildNameListFromXML();
+                NotifyPropertyChanged("XmlNameList");
+                NotifyPropertyChanged("XmlPath");
+            }
+        }
         public void connect(string ip, int port)
         {
             stop = false;
@@ -362,6 +409,7 @@ namespace WpfApp1
             float converted_input;
             NotifyPropertyChanged("Atributes_atIndex");
             //new Thread(display_atribute_update).Start();
+            
             while (currentLine < numOfLines && !stop)
             {
                 if (Play && start_to_read)
@@ -419,13 +467,11 @@ namespace WpfApp1
             Regex CSVParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
             String[] Fields = CSVParser.Split(line);
 
-            for (int i = 0; i < Num_of_Atributes; i++)
+            int size = xmlNameList.Count();
+            for (int i = 0; i < size; i++)
             {
-                /*first = line.IndexOf(',', first) + 1;
-                second = line.IndexOf(',', first + 1) - 1;
-                input_digits_and_dot = line.Substring(first, second - first + 1);
-                converted_input = float.Parse(input_digits_and_dot);*/
-                atributes[i].Add(new DataPoint(index, float.Parse(Fields[i])));
+                attribute[xmlNameList[i]].Add(new DataPoint(i, float.Parse(Fields[i])));
+               // atributes[i].Add(new DataPoint(index, float.Parse(Fields[i])));
             }
             // atributes_are_ready = true;
 
@@ -435,51 +481,63 @@ namespace WpfApp1
         private void display_atribute_update()
         {
             int[] display_lines = new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
-            IEnumerator<DataPoint>[] atributes_IEnumerator = new IEnumerator<DataPoint>[Num_of_Atributes];
+            IEnumerator<DataPoint> atributes_IEnumerator;
             IEnumerator<DataPoint> iEnum;
 
-            int local_current_line, display_lines_temp, range = 0, gap = 0;
+            int local_current_line = 0, range = 0, gap = 0;
             DataPoint[] temporalCv;
-            for (int j = 0; j < Num_of_Atributes; j++)
-                atributes_IEnumerator[j] = atributes[j].GetEnumerator();
+            /*for (int j = 0; j < Num_of_Atributes; j++)
+                atributes_IEnumerator[j] = atributes[j].GetEnumerator();*/
+            while (currentLine < 1)
+            {
+                Thread.Sleep(200);
+            }
             while (currentLine < numOfLines && !stop)
             {
-                //!!!!need to lock this critical code with mutex!!!!!!!!!!!!!!!!!!1
                 local_current_line = currentLine;
-                iEnum = atributes_IEnumerator[atributes_index];
-                display_lines_temp = display_lines[atributes_index];
+                //iEnum = atributes_IEnumerator[atributes_index];
+                //display_lines_temp = display_lines[atributes_index];
                 //ChartValues<float> temp = atributes[atributes_index];
-                if (display_lines_temp < local_current_line)
+                if(Play && start_to_read)
                 {
-                    
-                    //display_atribute.Clear();// לשקול להחזיר אתזה!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    range = local_current_line - display_lines_temp;
-                    temporalCv = new DataPoint[range];
-
-                    atributes[atributes_index].CopyTo(display_lines_temp, temporalCv, 0, range);
-                    display_lines_temp += range;
-                    display_lines[atributes_index] = display_lines_temp;
-                    plotPoints.AddRange(temporalCv);
-                    NotifyPropertyChanged("PlotPoints"); 
-
-                    /*
-                    plotPoints.InsertRange(display_lines_temp, atributes[atributes_index]);
-                    display_lines_temp += range;
-                    display_lines[atributes_index] = display_lines_temp;*/
-                }
-
-                if (display_lines[atributes_index] > local_current_line)
-                {
-                    atributes_IEnumerator[atributes_index].Reset();
-                    display_lines[atributes_index] = 0;
-                    plotPoints = new List<DataPoint>();
-                    NotifyPropertyChanged("Atributes_atIndex");
-                    for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
+                    if (display_lines_temp < local_current_line)
                     {
-                        plotPoints.Add(atributes_IEnumerator[atributes_index].Current);
+
+                        //display_atribute.Clear();// לשקול להחזיר אתזה!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        range = local_current_line - display_lines_temp;
+                        temporalCv = new DataPoint[range];
+
+                        atributes[atributes_index].CopyTo(display_lines_temp, temporalCv, 0, range);
+                        display_lines_temp += range;
+                        display_lines[atributes_index] = display_lines_temp;
+                        plotPoints.AddRange(temporalCv);
+                        NotifyPropertyChanged("PlotPoints");
+
+                        /*
+                        plotPoints.InsertRange(display_lines_temp, atributes[atributes_index]);
+                        display_lines_temp += range;
+                        display_lines[atributes_index] = display_lines_temp;*/
                     }
+
+                    if (display_lines[atributes_index] > local_current_line)
+                    {
+                        //atributes_IEnumerator = attribute.GetEnumerator();
+                        //atributes_IEnumerator[atributes_index].Reset();
+                        display_lines_temp = 0;
+                        plotPoints = new List<DataPoint>();
+                        for (; display_lines_temp < local_current_line; display_lines_temp++)
+                        {
+                            plotPoints.Add(attribute["aileron"][display_lines_temp]);
+                        }
+                        NotifyPropertyChanged("Atributes_atIndex");
+                        /*for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
+                        {
+                            plotPoints.Add(atributes_IEnumerator.Current);
+                        }*/
+                    }
+                    Thread.Sleep(500);
                 }
-                Thread.Sleep(500);
+               
             }
         }
         /*private void display_atribute_update()
@@ -594,10 +652,10 @@ namespace WpfApp1
                     }
                 }
             }).Start();
-            while (!atributes_are_ready)
+            /*while (!start_to_read)
             {
-
-            }
+                Thread.Sleep(100);
+            }*/
             new Thread(getAndSaveFG_attribute).Start();
             new Thread(display_atribute_update).Start();
 

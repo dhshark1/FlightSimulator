@@ -18,9 +18,27 @@ namespace WpfApp1.controls
     /// </summary>
     public partial class oxyplot : UserControl
     {
+        //internal VM2 vm2;
         public oxyplot()
         {
             InitializeComponent();
+            //this.DataContext = vm2;
+            /*Button b2 = new Button();
+            b2.Content = "b2";
+            b2.Name = "b332";
+            b2.Click += new RoutedEventHandler(sendMe);*/
+            //b2.ActualHeight = b1.ActualHeight;
+            //b
+            //stack.Children.Add(b2);
         }
+
+        /*private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.b1.Content = "nezer";
+        }
+        private void sendMe(object sender, RoutedEventArgs e)
+        {
+            this.b1.Content = ((Button)sender).Name;
+        }*/
     }
 }
