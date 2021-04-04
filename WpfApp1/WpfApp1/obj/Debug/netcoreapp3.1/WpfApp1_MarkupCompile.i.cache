@@ -1,19 +1,19 @@
 ﻿WpfApp1
-
+1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
+D:\Users\tomma\Studies\SecondYearSemesterD\Projects\repos\FlightSimulator\WpfApp1\WpfApp1\obj\Debug\netcoreapp3.1\
 WpfApp1
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\App.xaml
-6-1766025745
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+D:\Users\tomma\Studies\SecondYearSemesterD\Projects\repos\FlightSimulator\WpfApp1\WpfApp1\App.xaml
+61224987196
 
-15-928814049
-1961591008776
+16-1166301342
+196-1946947194
 controls\atributes.xaml;controls\chartLive.xaml;controls\controlPanel.xaml;controls\oxyplot.xaml;controls\theJoystick.xaml;MainWindow.xaml;
 
 True

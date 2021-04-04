@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
+    "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
+    "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
         "projectName": "WpfApp1",
-        "projectPath": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
-        "packagesPath": "C:\\Users\\maiky\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maiky\\source\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\obj\\",
+        "projectPath": "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+        "packagesPath": "C:\\Users\\tomma\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maiky\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "LiveCharts.Wpf": {
               "target": "Package",
@@ -65,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
