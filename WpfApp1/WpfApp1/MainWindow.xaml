@@ -10,7 +10,7 @@
     <Grid>
 
         
-        <Controls:oxyplot x:Name="plot" Margin="282,111,580,320" />
+        <Controls:oxyplot x:Name="plot" Margin="282,111,625,320" />
 
         <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="140" Margin="10,111,0,388">
             <ListBoxItem Content="aileron" Width="86"/>

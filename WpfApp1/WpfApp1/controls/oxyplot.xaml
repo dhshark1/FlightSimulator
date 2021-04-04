@@ -7,8 +7,10 @@
              xmlns:local="clr-namespace:WpfApp1.controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000">
-    <Grid>        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+    <Grid>        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -22,7 +24,7 @@
                 <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
             </oxy:Plot.Series>
         </oxy:Plot>
-        <oxy:Plot Title="{Binding Title}" Grid.Column="2">
+        <oxy:Plot Title="{Binding Title}" Grid.Row="1" Grid.ColumnSpan="2">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
             </oxy:Plot.Series>
