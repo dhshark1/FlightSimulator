@@ -12,7 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Label Content="aileron" HorizontalContentAlignment="Center"/>
         <wpf:CartesianChart DisableAnimations="True" Hoverable="False" DataTooltip="{x:Null}" Grid.Row="1" >
                 <wpf:CartesianChart.Series>

@@ -3,15 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:Controls="clr-namespace:WpfApp1.controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1600">
     <Grid>
 
-        <Controls:chartLive Margin="254,92,816,388"/>
-        <Controls:oxyplot x:Name="plot" Margin="784,43,78,388" />
+        
+        <Controls:oxyplot x:Name="plot" Margin="282,111,580,320" />
 
         <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="140" Margin="10,111,0,388">
             <ListBoxItem Content="aileron" Width="86"/>
@@ -62,7 +61,7 @@
         <Controls:atributes Margin="4,92,661,392"/>-->
         <Controls:controlPanel Margin="10,342,1386,184"/>
 
-        <Grid Margin="1020,342,78,167">
+        <Grid Margin="1020,342,78,105">
             <Controls:theJoystick Margin="50,50,58,60" />
             <Slider Value="{Binding VM_Rudder, Mode=OneWay}" Maximum="1" Minimum="-1" Margin="28,185,36,10" />
             <Slider Value="{Binding VM_Throttle0, Mode=OneWay}" Height="150" Orientation="Vertical"  Maximum="1.1" Minimum="-0.1" Margin="10,30,184,40" />
