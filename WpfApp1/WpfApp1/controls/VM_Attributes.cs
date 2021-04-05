@@ -48,7 +48,7 @@ namespace WpfApp1.controls
             }
         }
 
-        public List<ListBoxItem> VM_ListBoxxmlNameList
+      /*  public List<ListBoxItem> VM_ListBoxxmlNameList
         {
             get
             {
@@ -58,7 +58,7 @@ namespace WpfApp1.controls
             {
                 _model.ListBoxxmlNameList = value;
             }
-        }
+        }*/
 
 
 

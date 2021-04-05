@@ -44,11 +44,11 @@ namespace WpfApp1
             get;
             set;
         }
-        public List<ListBoxItem> ListBoxxmlNameList
+        /*public List<ListBoxItem> ListBoxxmlNameList
         {
             get;
             set;
-        }
+        }*/
         public List<string> XmlNameList
         {
             get;
@@ -89,10 +89,10 @@ namespace WpfApp1
             get;
             set;
         }
-        public ChartValues<float> Atributes_atIndex
+        /*public ChartValues<float> Atributes_atIndex
         {
             get;
-        }
+        }*/
         public short Atributes_index
         {
             get;

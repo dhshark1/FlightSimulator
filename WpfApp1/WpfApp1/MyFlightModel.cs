@@ -34,16 +34,17 @@ namespace WpfApp1
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index = 0;
-        private volatile bool atributes_are_ready = false, start_to_read = false;
+        private volatile bool start_to_read = false;
+        /*private volatile bool atributes_are_ready = false;*/
         private volatile List<string> xmlNameList;
-        private volatile List<ListBoxItem> listBoxxmlNameList;
+        /*private volatile List<ListBoxItem> listBoxxmlNameList;*/
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
 
         //public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
-        public volatile ChartValues<float> display_atribute = new ChartValues<float>();
+        //public volatile ChartValues<float> display_atribute = new ChartValues<float>();
 
-        public ChartValues<float> Atributes_atIndex
+/*        public ChartValues<float> Atributes_atIndex
         {
             get
             {
@@ -51,7 +52,7 @@ namespace WpfApp1
                 return display_atribute;
             }
 
-        }
+        }*/
         //plot
         volatile string plotTitle = "";
         volatile List<DataPoint> plotPoints = new List<DataPoint>();
@@ -77,7 +78,7 @@ namespace WpfApp1
                 xmlNameList.Add(pair.Key);
             }
         }
-        public List<ListBoxItem> ListBoxxmlNameList
+       /* public List<ListBoxItem> ListBoxxmlNameList
         {
             get
             {
@@ -88,7 +89,7 @@ namespace WpfApp1
                 listBoxxmlNameList = value;
                 NotifyPropertyChanged("ListBoxxmlNameList");
             }
-        }
+        }*/
         public string Current_attribute
         {
             get
@@ -344,7 +345,7 @@ namespace WpfApp1
             NumOfLines = 1;
             ProgressDirection = 1;
             CsvPath = "";
-            listBoxxmlNameList = new List<ListBoxItem>();
+            //listBoxxmlNameList = new List<ListBoxItem>();
             xmlNameList = new List<string>();
             //attribute 
             //atributes[0] = new ChartValues<float>();
@@ -371,7 +372,7 @@ namespace WpfApp1
             set
             {
                 csvPath = value;
-                atributes_are_ready = false;
+                /*atributes_are_ready = false;*/
                 NotifyPropertyChanged("CsvPath");
             }
         }
@@ -671,13 +672,13 @@ namespace WpfApp1
                 //
                 /* for (int j = 0; j < Num_of_Atributes; j++)
                      atributes[j] = new ChartValues<float>();*/
-                for (int j = 0; j < Num_of_Atributes; j++)
-                    atributes[j] = new List<DataPoint>();
+                /*for (int j = 0; j < Num_of_Atributes; j++)
+                    atributes[j] = new List<DataPoint>();*/
                 for (int k = 0; k < numOfLines; k++)
                 {
                     line_to_atributes_arr(result[k], k);
                 }
-                atributes_are_ready = true;
+                //atributes_are_ready = true;
                 //
                 // new Thread(getAndSaveFG_attribute).Start();
                 while (CurrentLine <= numOfLines - 1 && !stop)

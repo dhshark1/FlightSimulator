@@ -229,13 +229,13 @@ namespace WpfApp1
             }
         }
         //maiky
-        public ChartValues<float> VM_Atributes_atIndex
+        /*public ChartValues<float> VM_Atributes_atIndex
         {
             get
             {
                 return _model.Atributes_atIndex;
             }
-        }
+        }*/
         public short VM_Atributes_index
         {
             get
