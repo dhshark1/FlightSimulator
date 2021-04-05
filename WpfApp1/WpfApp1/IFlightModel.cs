@@ -7,6 +7,7 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using OxyPlot;
 using OxyPlot.Series;
+using System.Windows.Controls;
 namespace WpfApp1
 {
     internal interface IFlightModel : INotifyPropertyChanged
@@ -27,6 +28,11 @@ namespace WpfApp1
             get;
         }
         //
+        public string Current_attribute
+        {
+            get;
+            set;
+        }
 
         public string CsvPath
         {
@@ -34,6 +40,11 @@ namespace WpfApp1
             set;
         }
         public string XmlPath
+        {
+            get;
+            set;
+        }
+        public List<ListBoxItem> ListBoxxmlNameList
         {
             get;
             set;

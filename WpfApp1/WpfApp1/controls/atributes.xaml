@@ -6,52 +6,15 @@
              xmlns:local="clr-namespace:WpfApp1.controls"
              mc:Ignorable="d" Height="200" Width="140
              ">
+    
 
-    <ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ItemsSource="{Binding VM_XmlNameList}" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="140">
-        <!--
-        <ListBoxItem Content="aileron"/>
-        <ListBoxItem Content="elevator"/>
-        <ListBoxItem Content="rudder"/>
-        <ListBoxItem Content="flaps"/>
-        <ListBoxItem Content="slats"/>
-        <ListBoxItem Content="speedbrake"/>
-        <ListBoxItem Content="throttle"/>
-        <ListBoxItem Content="throttle"/>
-        <ListBoxItem Content="engine-pump"/>
-        <ListBoxItem Content="engine-pump"/>
-        <ListBoxItem Content="electric-pump"/>
-        <ListBoxItem Content="electric-pump"/>
-        <ListBoxItem Content="external-power"/>
-        <ListBoxItem Content="APU-generator"/>
-        <ListBoxItem Content="latitude-deg"/>
-        <ListBoxItem Content="longitude-deg"/>
-        <ListBoxItem Content="altitude-ft"/>
-        <ListBoxItem Content="roll-deg"/>
-        <ListBoxItem Content="pitch-deg"/>
-        <ListBoxItem Content="heading-deg"/>
-        <ListBoxItem Content="slide-slip-deg"/>
-        <ListBoxItem Content="airspeed-kt"/>
-        <ListBoxItem Content="glideslope"/>
-        <ListBoxItem Content="vertical-speed-fps"/>
-        <ListBoxItem Content="airspeed-indicator_indicated-speed-kt"/>
-        <ListBoxItem Content="altimeter_indicated-altitude-ft"/>
-        <ListBoxItem Content="altimeter_pressure-alt-ft"/>
-        <ListBoxItem Content="attitude-indicator_indicated-pitch-deg"/>
-        <ListBoxItem Content="attitude-indicator_indicated-roll-deg"/>
-        <ListBoxItem Content="attitude-indicator_internal-pitch-deg"/>
-        <ListBoxItem Content="attitude-indicator_internal-roll-deg"/>
-        <ListBoxItem Content="encoder_indicated-altitude-ft"/>
-        <ListBoxItem Content="encoder_pressure-alt-ft"/>
-        <ListBoxItem Content="gps_indicated-altitude-ft"/>
-        <ListBoxItem Content="gps_indicated-ground-speed-kt"/>
-        <ListBoxItem Content="gps_indicated-vertical-speed"/>
-        <ListBoxItem Content="indicated-heading-deg"/>
-        <ListBoxItem Content="magnetic-compass_indicated-heading-deg"/>
-        <ListBoxItem Content="slip-skid-ball_indicated-slip-skid"/>
-        <ListBoxItem Content="turn-indicator_indicated-turn-rate"/>
-        <ListBoxItem Content="vertical-speed-indicator_indicated-speed-fpm"/>
-        <ListBoxItem Content="engine_rpm"/>
-        -->
-    </ListBox>
+    <!--<ListBox x:Name = "listbox" BorderThickness="7" BorderBrush="DarkGray" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" Width="140" SelectionMode="Single">
+        
+    </ListBox>-->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="stack">
+
+        </StackPanel>
+    </ScrollViewer>
 
 </UserControl>

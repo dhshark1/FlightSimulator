@@ -16,6 +16,7 @@ using OxyPlot;
 using OxyPlot.Series;
 using WpfApp1.controls;
 using Microsoft.Win32; // FileDialog 
+using System.ComponentModel;
 
 namespace WpfApp1
 {
@@ -46,6 +47,18 @@ namespace WpfApp1
             vm_A = new VM_Attributes(fm);
             this.Attributes.vm = vm_A;
             this.Attributes.DataContext = vm_A;
+
+            vm_A.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if(e.PropertyName.Equals("VM_XmlNameList"))
+                {
+                    //this.Attributes.listbox.ItemsSource;
+                    this.Attributes.addEventHendler2Attributes();
+                }
+            };
+
+
+
 
 
         }

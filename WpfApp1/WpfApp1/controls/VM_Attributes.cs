@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Controls;
 
 namespace WpfApp1.controls
 {
@@ -35,7 +36,29 @@ namespace WpfApp1.controls
                 _model.XmlNameList = value;
             }
         }
+        public string VM_Current_attribute
+        {
+            get
+            {
+                return _model.Current_attribute;
+            }
+            set
+            {
+                _model.Current_attribute = value;
+            }
+        }
 
+        public List<ListBoxItem> VM_ListBoxxmlNameList
+        {
+            get
+            {
+                return _model.ListBoxxmlNameList;
+            }
+            set
+            {
+                _model.ListBoxxmlNameList = value;
+            }
+        }
 
 
 

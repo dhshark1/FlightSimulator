@@ -9,6 +9,7 @@ using OxyPlot;
 using System.Xml.Linq;
 using OxyPlot.Series;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace WpfApp1
 {
@@ -25,6 +26,7 @@ namespace WpfApp1
         private volatile int progressDirection;
         private volatile int Num_of_Atributes = 42;
         private volatile int display_lines_temp = 0;
+        private volatile string current_attribute = "aileron";
 
         private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
@@ -34,6 +36,7 @@ namespace WpfApp1
         private short atributes_index = 0;
         private volatile bool atributes_are_ready = false, start_to_read = false;
         private volatile List<string> xmlNameList;
+        private volatile List<ListBoxItem> listBoxxmlNameList;
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
 
@@ -55,17 +58,52 @@ namespace WpfApp1
 
         private void buildNameListFromXML()
         {
+            List<string> temp;
             XElement xe = XElement.Load(XmlPath);
-            xmlNameList = (xe.Descendants("output").Descendants("name").Select(name => (string)name)).ToList();
-            foreach(string name in xmlNameList)
+            temp = (xe.Descendants("output").Descendants("name").Select(name => (string)name)).ToList();
+            foreach(string name in temp)
             {
-                if(attribute.ContainsKey(name))
+                if (attribute.ContainsKey(name))
+                { 
                     attribute.Add(name + "1", new List<DataPoint>());
+                }
                 else
+                { 
                     attribute.Add(name, new List<DataPoint>());
+                }
+            }
+            foreach(var pair in attribute)
+            {
+                xmlNameList.Add(pair.Key);
             }
         }
-
+        public List<ListBoxItem> ListBoxxmlNameList
+        {
+            get
+            {
+                return listBoxxmlNameList;
+            }
+            set
+            {
+                listBoxxmlNameList = value;
+                NotifyPropertyChanged("ListBoxxmlNameList");
+            }
+        }
+        public string Current_attribute
+        {
+            get
+            {
+                return current_attribute;
+            }
+            set
+            {
+                current_attribute = value;
+                display_lines_temp = 0;
+                //plotPoints.Clear();
+                plotPoints = new List<DataPoint>();
+                NotifyPropertyChanged("Current_attribute");
+            }
+        }
         public string PlotTitle
         {
             get
@@ -287,8 +325,11 @@ namespace WpfApp1
             set
             {
                 if (value >= numOfLines)
+                {
                     currentLine = numOfLines - 1;
-                currentLine = value;
+                }
+                else
+                    currentLine = value;
                 NotifyPropertyChanged("Time");
                 NotifyPropertyChanged("CurrentLine");
                 NotifyPropertyChanged("LineRatio");
@@ -303,6 +344,8 @@ namespace WpfApp1
             NumOfLines = 1;
             ProgressDirection = 1;
             CsvPath = "";
+            listBoxxmlNameList = new List<ListBoxItem>();
+            xmlNameList = new List<string>();
             //attribute 
             //atributes[0] = new ChartValues<float>();
             //atributes[0].Add(0);
@@ -357,6 +400,9 @@ namespace WpfApp1
                 xmlPath = value;
                 buildNameListFromXML();
                 NotifyPropertyChanged("XmlNameList");
+                //NotifyPropertyChanged("XmlNameList");
+               // NotifyPropertyChanged("ListBoxxmlNameList");
+                //NotifyPropertyChanged("ListBoxxmlNameList");
                 NotifyPropertyChanged("XmlPath");
             }
         }
@@ -509,7 +555,7 @@ namespace WpfApp1
                         range = local_current_line - display_lines_temp;
                         temporalCv = new DataPoint[range];
                         
-                        attribute["aileron"].CopyTo(display_lines_temp, temporalCv, 0, range);
+                        attribute[Current_attribute].CopyTo(display_lines_temp, temporalCv, 0, range);
                         display_lines_temp += range;
                         //display_lines[atributes_index] = display_lines_temp;
                         plotPoints.AddRange(temporalCv);
@@ -529,9 +575,9 @@ namespace WpfApp1
                         plotPoints = new List<DataPoint>();
                         for (; display_lines_temp < local_current_line; display_lines_temp++)
                         {
-                            plotPoints.Add(attribute["aileron"][display_lines_temp]);
+                            plotPoints.Add(attribute[Current_attribute][display_lines_temp]);
                         }
-                        NotifyPropertyChanged("Atributes_atIndex");
+                        NotifyPropertyChanged("PlotPoints");
                         /*for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
                         {
                             plotPoints.Add(atributes_IEnumerator.Current);
@@ -634,7 +680,7 @@ namespace WpfApp1
                 atributes_are_ready = true;
                 //
                 // new Thread(getAndSaveFG_attribute).Start();
-                while (CurrentLine < numOfLines - 1 && !stop)
+                while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
                     {
