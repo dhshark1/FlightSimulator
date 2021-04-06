@@ -453,55 +453,45 @@ namespace WpfApp1
         //
         private void getAndSaveFG_attribute()
         {
-            string input, input_digits_and_dot = "";
+            /*string input, input_digits_and_dot = "";
             int first, second, i = 0;
-            float converted_input;
+            float converted_input;*/
             NotifyPropertyChanged("Atributes_atIndex");
+
+
             //new Thread(display_atribute_update).Start();
-            
+            // List of strings binded from the XAML directly to the attributes in the model
+            string[] bindedPropertiesAttributes = { "altimeter_indicated-altitude-ft", "airspeed-kt", "heading-deg", "roll-deg", "pitch-deg", "side-slip-deg" };
             while (currentLine < numOfLines && !stop)
             {
                 if (Play && start_to_read)
                 {
-                    i = 0;
-                    foreach (string msg in get_msgs)
+                   // foreach attribute in bindedPropertiesAttributes update the View Model that a change was made
+                   for(int j = 0; j < 6; j++)
                     {
-                        tc_reader.write(msg);
-                        input = tc_reader.read();
-                        first = input.IndexOf('\'', 0) + 1;
-                        second = input.IndexOf('\'', first + 1) - 1;
-                        if (first != -1 && second != -1)
+                        switch (j)
                         {
-                            input_digits_and_dot = input.Substring(first, second - first + 1);
-                            converted_input = float.Parse(input_digits_and_dot);
-                            Console.WriteLine(converted_input);
-                            switch (i)
-                            {
-                                case 0:
-                                    Altmeter = converted_input;
-                                    break;
-                                case 1:
-                                    Airspeed = converted_input;
-                                    break;
-                                case 2:
-                                    Registered_heading_degrees = converted_input;
-                                    break;
-                                case 3:
-                                    Roll = converted_input;
-                                    break;
-                                case 4:
-                                    Pitch = converted_input;
-                                    break;
-                                case 5:
-                                    Yaw = converted_input;
-                                    break;
-                                default:
-                                    break;
-                            }
+                            case 0:
+                                Altmeter = Convert.ToSingle(attribute[bindedPropertiesAttributes[0]][currentLine].Y);
+                                break;
+                            case 1:
+                                Airspeed = Convert.ToSingle(attribute[bindedPropertiesAttributes[1]][currentLine].Y);
+                                break;
+                            case 2:
+                                Registered_heading_degrees = Convert.ToSingle(attribute[bindedPropertiesAttributes[2]][currentLine].Y);
+                                break;
+                            case 3:
+                                Roll = Convert.ToSingle(attribute[bindedPropertiesAttributes[3]][currentLine].Y);
+                                break;
+                            case 4:
+                                Pitch = Convert.ToSingle(attribute[bindedPropertiesAttributes[4]][currentLine].Y);
+                                break;
+                            case 5:
+                                Yaw = Convert.ToSingle(attribute[bindedPropertiesAttributes[5]][currentLine].Y);
+                                break;
+
                         }
-                        i++;
                     }
-                    //add check if currentLine
 
                     Aileron = Convert.ToSingle(attribute["aileron"][CurrentLine].Y);
                     Rudder = Convert.ToSingle(attribute["rudder"][CurrentLine].Y);
@@ -713,3 +703,45 @@ namespace WpfApp1
 }
 
 //TOM AND RON AND MAIKY AND DANY 26.3 18:41
+
+
+
+/*i = 0;
+               foreach (string msg in get_msgs)
+               {
+                   tc_reader.write(msg);
+                   input = tc_reader.read();
+                   first = input.IndexOf('\'', 0) + 1;
+                   second = input.IndexOf('\'', first + 1) - 1;
+                   if (first != -1 && second != -1)
+                   {
+                       input_digits_and_dot = input.Substring(first, second - first + 1);
+                       converted_input = float.Parse(input_digits_and_dot);
+                       Console.WriteLine(converted_input);
+                       switch (i)
+                       {
+                           case 0:
+                               Altmeter = converted_input;
+                               break;
+                           case 1:
+                               Airspeed = converted_input;
+                               break;
+                           case 2:
+                               Registered_heading_degrees = converted_input;
+                               break;
+                           case 3:
+                               Roll = converted_input;
+                               break;
+                           case 4:
+                               Pitch = converted_input;
+                               break;
+                           case 5:
+                               Yaw = converted_input;
+                               break;
+                           default:
+                               break;
+                       }
+                   }
+                   i++;
+               }*/
+//add check if currentLine

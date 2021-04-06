@@ -63,7 +63,7 @@
         <Controls:controlPanel RenderTransformOrigin="-0.02,0.861" Margin="746,29,52,497"/>
         <Controls:FilesDialog x:Name="FilesDialog" Margin="0,10,207,525"/>
 
-      <Controls:theJoystick Margin="520,379,277,139" />
+        <Controls:theJoystick Margin="520,379,277,139" />
 
 
             <Canvas RenderTransformOrigin="0.072,0.5" Background="White" Margin="54,572,240,58">
