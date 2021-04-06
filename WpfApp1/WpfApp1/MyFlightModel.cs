@@ -40,22 +40,26 @@ namespace WpfApp1
         /*private volatile List<ListBoxItem> listBoxxmlNameList;*/
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
+        public volatile Dictionary<String, String> attribute_correlated = new Dictionary<string, String>();
 
         //public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
         //public volatile ChartValues<float> display_atribute = new ChartValues<float>();
 
-/*        public ChartValues<float> Atributes_atIndex
-        {
-            get
-            {
-                //display_atribute = atributes[atributes_index];
-                return display_atribute;
-            }
+        /*        public ChartValues<float> Atributes_atIndex
+                {
+                    get
+                    {
+                        //display_atribute = atributes[atributes_index];
+                        return display_atribute;
+                    }
 
-        }*/
+                }*/
         //plot
         volatile string plotTitle = "";
         volatile List<DataPoint> plotPoints = new List<DataPoint>();
+
+        volatile string plotTitle_correlated = "";
+        volatile List<DataPoint> plotPoints_correlated = new List<DataPoint>();
 
         private void buildNameListFromXML()
         {
@@ -78,18 +82,7 @@ namespace WpfApp1
                 xmlNameList.Add(pair.Key);
             }
         }
-       /* public List<ListBoxItem> ListBoxxmlNameList
-        {
-            get
-            {
-                return listBoxxmlNameList;
-            }
-            set
-            {
-                listBoxxmlNameList = value;
-                NotifyPropertyChanged("ListBoxxmlNameList");
-            }
-        }*/
+      
         public string Current_attribute
         {
             get
@@ -123,6 +116,27 @@ namespace WpfApp1
             {
                 return plotPoints;
                
+            }
+        }
+        public string PlotTitle_correlated
+        {
+            get
+            {
+                return plotTitle_correlated;
+
+            }
+            set
+            {
+                plotTitle_correlated = value;
+                NotifyPropertyChanged("PlotTitle_correlated");
+            }
+        }
+        public IList<DataPoint> PlotPoints_correlated
+        {
+            get
+            {
+                return plotPoints_correlated;
+
             }
         }
         //
@@ -400,6 +414,18 @@ namespace WpfApp1
             {
                 xmlPath = value;
                 buildNameListFromXML();
+                //new csv
+                /*using (var w = new StreamWriter(path))
+                {
+                    for ( *//* your loop *//*)
+                    {
+                        var first = yourFnToGetFirst();
+                        var second = yourFnToGetSecond();
+                        var line = string.Format("{0},{1}", first, second);
+                        w.WriteLine(line);
+                        w.Flush();
+                    }
+                }*/
                 NotifyPropertyChanged("XmlNameList");
                 //NotifyPropertyChanged("XmlNameList");
                // NotifyPropertyChanged("ListBoxxmlNameList");
@@ -519,14 +545,8 @@ namespace WpfApp1
         //VERSION WITHOU IENUMERATOR
         private void display_atribute_update()
         {
-            int[] display_lines = new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
-            IEnumerator<DataPoint> atributes_IEnumerator;
-            IEnumerator<DataPoint> iEnum;
-
-            int local_current_line = 0, range = 0, gap = 0;
-            DataPoint[] temporalCv;
-            /*for (int j = 0; j < Num_of_Atributes; j++)
-                atributes_IEnumerator[j] = atributes[j].GetEnumerator();*/
+            int local_current_line = 0, range = 0;
+            DataPoint[] temporalCv, temporalCv_cor;
             while (currentLine < 1)
             {
                 Thread.Sleep(200);
@@ -534,34 +554,28 @@ namespace WpfApp1
             while (currentLine < numOfLines && !stop)
             {
                 local_current_line = currentLine;
-                //iEnum = atributes_IEnumerator[atributes_index];
-                //display_lines_temp = display_lines[atributes_index];
-                //ChartValues<float> temp = atributes[atributes_index];
                 if(Play && start_to_read)
                 {
                     if (display_lines_temp < local_current_line)
                     {
-
-                        //display_atribute.Clear();// לשקול להחזיר אתזה!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         range = local_current_line - display_lines_temp;
                         temporalCv = new DataPoint[range];
-                        
+
                         attribute[Current_attribute].CopyTo(display_lines_temp, temporalCv, 0, range);
                         display_lines_temp += range;
-                        //display_lines[atributes_index] = display_lines_temp;
                         plotPoints.AddRange(temporalCv);
                         NotifyPropertyChanged("PlotPoints");
 
-                        /*
-                        plotPoints.InsertRange(display_lines_temp, atributes[atributes_index]);
+                        temporalCv_cor = new DataPoint[range];
+
+                        attribute[attribute_correlated[Current_attribute]].CopyTo(display_lines_temp, temporalCv, 0, range);
                         display_lines_temp += range;
-                        display_lines[atributes_index] = display_lines_temp;*/
+                        plotPoints.AddRange(temporalCv);
+                        NotifyPropertyChanged("PlotPoints");
                     }
 
                     if (display_lines_temp > local_current_line)
                     {
-                        //atributes_IEnumerator = attribute.GetEnumerator();
-                        //atributes_IEnumerator[atributes_index].Reset();
                         display_lines_temp = 0;
                         plotPoints = new List<DataPoint>();
                         for (; display_lines_temp < local_current_line; display_lines_temp++)
@@ -569,76 +583,13 @@ namespace WpfApp1
                             plotPoints.Add(attribute[Current_attribute][display_lines_temp]);
                         }
                         NotifyPropertyChanged("PlotPoints");
-                        /*for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
-                        {
-                            plotPoints.Add(atributes_IEnumerator.Current);
-                        }*/
                     }
                     Thread.Sleep(500);
                 }
                
             }
         }
-        /*private void display_atribute_update()
-         {
-             int[] display_lines=new int[Num_of_Atributes];//After creation all items of array will have default values, which is 0
-             IEnumerator<float>[] atributes_IEnumerator = new IEnumerator<float>[Num_of_Atributes];
-             IEnumerator<float> iEnum;
-             int local_current_line, display_lines_temp,range=0,gap=0;
-             float[] temporalCv;
-             for (int j = 0; j < Num_of_Atributes; j++)
-                 atributes_IEnumerator[j] = atributes[j].GetEnumerator();
-             while (currentLine < numOfLines && !stop)
-             {
-                 local_current_line = currentLine;
-                 iEnum = atributes_IEnumerator[atributes_index];
-                 display_lines_temp = display_lines[atributes_index];
-                 //ChartValues<float> temp = atributes[atributes_index];
-                 if (display_lines_temp < local_current_line - 80)
-                 {
-                     *//*for (; (display_lines_temp < local_current_line) && (iEnum.MoveNext()); display_lines[atributes_index]++)
-                     {
-                         display_lines_temp++;
-                         display_atribute.Add(iEnum.Current);
-
-                         //Thread.Sleep(50);
-                     }*/
-        /* range = local_current_line - display_lines_temp;
-         temporalCv = new float[range];
-
-         for (var i = 0; i < range && (iEnum.MoveNext()); i++)
-         {
-             display_lines_temp++;
-             temporalCv[i] = iEnum.Current;
-         }
-         display_lines[atributes_index] = display_lines_temp;
-         display_atribute.AddRange(temporalCv);*//*
-        range = local_current_line - display_lines_temp;
-        temporalCv = new float[range];
-        //atributes[j].CopyTo()
-        for (var i = 0; i < range && (iEnum.MoveNext()); i++)
-        {
-            display_lines_temp++;
-            temporalCv[i] = iEnum.Current;
-        }
-        display_lines[atributes_index] = display_lines_temp;
-        display_atribute.AddRange(temporalCv);
-    }
-
-    if (display_lines[atributes_index] > local_current_line)
-    {
-        atributes_IEnumerator[atributes_index].Reset();
-        display_lines[atributes_index] = 0;
-        display_atribute = new ChartValues<float>();
-        NotifyPropertyChanged("Atributes_atIndex");
-        for (; (display_lines[atributes_index] < local_current_line) && (atributes_IEnumerator[atributes_index].MoveNext()); display_lines[atributes_index]++)
-        {
-            display_atribute.Add(atributes_IEnumerator[atributes_index].Current);
-        }
-    }
-    Thread.Sleep(500);
-}
-}*/
+       
         public void start()
         {
 
@@ -658,25 +609,14 @@ namespace WpfApp1
                     numOfLines = list.Count;
                 }
                 string[] result = list.ToArray();
-
-                //
-                /* for (int j = 0; j < Num_of_Atributes; j++)
-                     atributes[j] = new ChartValues<float>();*/
-                /*for (int j = 0; j < Num_of_Atributes; j++)
-                    atributes[j] = new List<DataPoint>();*/
                 for (int k = 0; k < numOfLines; k++)
                 {
                     line_to_atributes_arr(result[k], k);
                 }
-                //atributes_are_ready = true;
-                //
-                // new Thread(getAndSaveFG_attribute).Start();
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
                     {
-                        //var line = reader.ReadLine();
-                       
                         if ((ProgressDirection == 1) || (CurrentLine > 0))
                         {
                             CurrentLine += ProgressDirection;
@@ -691,57 +631,23 @@ namespace WpfApp1
                     }
                 }
             }).Start();
-            /*while (!start_to_read)
-            {
-                Thread.Sleep(100);
-            }*/
             new Thread(getAndSaveFG_attribute).Start();
             new Thread(display_atribute_update).Start();
-
         }
+
+        //anomalyis
+
+        private void setCorrelatedAttributes(string correlatedInfoStr)
+        {
+            string[] correlated_couples = correlatedInfoStr.Split(' ');
+            foreach (string correlated_couple in correlated_couples)
+            {
+               
+            }
+        }
+
     }
 }
 
 //TOM AND RON AND MAIKY AND DANY 26.3 18:41
 
-
-
-/*i = 0;
-               foreach (string msg in get_msgs)
-               {
-                   tc_reader.write(msg);
-                   input = tc_reader.read();
-                   first = input.IndexOf('\'', 0) + 1;
-                   second = input.IndexOf('\'', first + 1) - 1;
-                   if (first != -1 && second != -1)
-                   {
-                       input_digits_and_dot = input.Substring(first, second - first + 1);
-                       converted_input = float.Parse(input_digits_and_dot);
-                       Console.WriteLine(converted_input);
-                       switch (i)
-                       {
-                           case 0:
-                               Altmeter = converted_input;
-                               break;
-                           case 1:
-                               Airspeed = converted_input;
-                               break;
-                           case 2:
-                               Registered_heading_degrees = converted_input;
-                               break;
-                           case 3:
-                               Roll = converted_input;
-                               break;
-                           case 4:
-                               Pitch = converted_input;
-                               break;
-                           case 5:
-                               Yaw = converted_input;
-                               break;
-                           default:
-                               break;
-                       }
-                   }
-                   i++;
-               }*/
-//add check if currentLine

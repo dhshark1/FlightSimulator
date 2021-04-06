@@ -24,7 +24,18 @@ namespace WpfApp1
             };
 
         }
-       
+
+        public string VM_Current_attribute
+        {
+            get
+            {
+                return _model.Current_attribute;
+            }
+            set
+            {
+                _model.Current_attribute = value;
+            }
+        }
         public string VM_PlotTitle
         {
             get
@@ -45,6 +56,26 @@ namespace WpfApp1
             }
 
         }
+        public string VM_PlotTitle_correlated
+        {
+            get
+            {
+                return _model.PlotTitle_correlated;
+
+            }
+            set
+            {
+                _model.PlotTitle_correlated = value;
+            }
+        }
+        public IList<DataPoint> VM_PlotPoints_correlated
+        {
+            get
+            {
+                return _model.PlotPoints_correlated;
+
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -53,100 +84,6 @@ namespace WpfApp1
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-       
-        /*
-        public double Altmeter
-        {
-            get
-            {
-                return _model.Altmeter;
-            }
-        }
-        public double Airspeed
-        {
-            get
-            {
-                return _model.airspeed;
-            }
-        }
-        public double Coordinates
-        {
-            get
-            {
-                return _model.coordinates;
-            }
-        }
-        public double RegisteredDirectionDeg
-        {
-            get
-            {
-                return _model.RegisteredDirectionDeg;
-            }
-        }
-        public double RegisteredVerticalSpeed
-        {
-            get
-            {
-                return _model.RegisteredVerticalSpeed;
-            }
-        }
-        public double RegisteredGroundSpeed
-        {
-            get
-            {
-                return _model.RegisteredGroundSpeed;
-            }
-        }
-        public double RegisteredRoll
-        {
-            get
-            {
-                return _model.RegisteredRoll;
-            }
-        }
-        public double RegisteredPitch
-        {
-            get
-            {
-                return _model.RegisteredPitch;
-            }
-        }
-        public double RegisteredYaw
-        {
-            get
-            {
-                return _model.RegisteredYaw;
-            }
-        }
-        public double RegisteredAltmeter
-        {
-            get
-            {
-                return _model.RegisteredAltmeter;
-            }
-        }
-        public double Pitch
-        {
-            get
-            {
-                return _model.pitch;
-            }
-        }
-        public double Roll
-        {
-            get
-            {
-                return _model.roll;
-            }
-        }
-        public double Yaw
-        {
-            get
-            {
-                return _model.yaw;
-            }
-        }
-        */
 
         public string VM_Time
         {

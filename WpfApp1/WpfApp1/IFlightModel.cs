@@ -27,6 +27,15 @@ namespace WpfApp1
         {
             get;
         }
+        public string PlotTitle_correlated
+        {
+            get;
+            set;
+        }
+        public IList<DataPoint> PlotPoints_correlated
+        {
+            get;
+        }
         //
         public string Current_attribute
         {
