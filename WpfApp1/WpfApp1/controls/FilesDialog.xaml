@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:WpfApp1.controls"
              mc:Ignorable="d" d:DesignWidth="800" Height="149">
     <Grid>
-        <TextBox x:Name="FilePathBox" HorizontalAlignment="Left" Height="30" Margin="149,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
-        <TextBox x:Name="FileXmlPathBox" HorizontalAlignment="Left" Height="30" Margin="149,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
+        <!--change the text to "-->
+        <TextBox x:Name="FilePathBox" Text="C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\reg_flight.csv" HorizontalAlignment="Left" Height="30" Margin="149,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
+        <TextBox x:Name="FileXmlPathBox" Text="C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\playback_small (1).xml" HorizontalAlignment="Left" Height="30" Margin="149,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="510" BorderBrush="#FFABADB3" Background="LightBlue" FontFamily="Showcard Gothic"/>
         <Button x:Name="OpenFileDialog" Content="Open CSV File" HorizontalAlignment="Left" Height="30" Margin="10,28,0,0" VerticalAlignment="Top" Width="129" Click="OpenFileDialog_Click" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="20"/>
-        <Button x:Name="UploadFileBox" Content="Upload File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="659,43,0,0" Height="30" FontFamily="Tw Cen MT" FontSize="20" Click="Button_Click" Visibility="Hidden"/>
+        <Button x:Name="UploadFileBox" Content="Upload File" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" Margin="659,43,0,0" Height="30" FontFamily="Tw Cen MT" FontSize="20" Click="Button_Click" Visibility="Visible"/>
     </Grid>
 </UserControl>

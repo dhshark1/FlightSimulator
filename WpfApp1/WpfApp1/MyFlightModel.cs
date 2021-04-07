@@ -403,7 +403,19 @@ namespace WpfApp1
                 NotifyPropertyChanged("XmlNameList");
             }
         }
-        
+        private void creat_csvWithHeader()
+        {
+            string file_name = "csvWithHeader.csv";
+            string[] lines = { "First line", "Second line", "Third line" };
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()), file_name))) 
+            {
+                foreach (string line in lines)
+                    outputFile.WriteLine(line);
+            };
+        }
+
+
         public string XmlPath
         {
             get
@@ -415,6 +427,7 @@ namespace WpfApp1
                 xmlPath = value;
                 buildNameListFromXML();
                 //new csv
+                creat_csvWithHeader();
                 /*using (var w = new StreamWriter(path))
                 {
                     for ( *//* your loop *//*)
@@ -651,3 +664,4 @@ namespace WpfApp1
 
 //TOM AND RON AND MAIKY AND DANY 26.3 18:41
 
+    //maiky g 7/4 15:42
