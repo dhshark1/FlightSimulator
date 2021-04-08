@@ -32,6 +32,16 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+
+            OxyPlot.Wpf.PointAnnotation pa = new OxyPlot.Wpf.PointAnnotation();
+            pa.X = 10;
+            pa.Y = 10;
+            pa.Size = 50;
+            pa.Fill = System.Windows.Media.Color.FromArgb(0, 255, 255, 255);
+            pa.StrokeThickness = 3;
+            this.plot.ano_plot.Annotations.Add(pa);
+            //this.plot.ano_plot.Annotations.RemoveAt(0);
+
             fm = new MyFlightModel();
             vm = new ViewModel(fm);
             //this.Slider.DataContext = this;

@@ -403,7 +403,7 @@ namespace WpfApp1
                 NotifyPropertyChanged("XmlNameList");
             }
         }
-        private void creat_csvWithHeader()
+       /* private void creat_csvWithHeader()
         {
             string file_name = "csvWithHeader.csv";
             string[] lines = { "First line", "Second line", "Third line" };
@@ -413,8 +413,20 @@ namespace WpfApp1
                 foreach (string line in lines)
                     outputFile.WriteLine(line);
             };
-        }
+        }*/
+        private void initDictionary(string cor_attributes) 
+        {
+            string pair_delim = ",", input_delim =" ";
+            List<string> cor_attributes_list = new List<string>(cor_attributes.Split(input_delim));
+            string[] splited_pair;
+            foreach (string pair in cor_attributes_list)
+            {
+                splited_pair = pair.Split(pair_delim);
+                if(splited_pair.Length == 2)
+                    attribute_correlated.Add(splited_pair[0], splited_pair[1]);
+            }
 
+        }
 
         public string XmlPath
         {
@@ -426,23 +438,8 @@ namespace WpfApp1
             {
                 xmlPath = value;
                 buildNameListFromXML();
-                //new csv
-                creat_csvWithHeader();
-                /*using (var w = new StreamWriter(path))
-                {
-                    for ( *//* your loop *//*)
-                    {
-                        var first = yourFnToGetFirst();
-                        var second = yourFnToGetSecond();
-                        var line = string.Format("{0},{1}", first, second);
-                        w.WriteLine(line);
-                        w.Flush();
-                    }
-                }*/
+                initDictionary("A,B D,C MAIKY,G tom,jery");
                 NotifyPropertyChanged("XmlNameList");
-                //NotifyPropertyChanged("XmlNameList");
-               // NotifyPropertyChanged("ListBoxxmlNameList");
-                //NotifyPropertyChanged("ListBoxxmlNameList");
                 NotifyPropertyChanged("XmlPath");
             }
         }
