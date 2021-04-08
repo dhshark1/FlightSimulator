@@ -1,0 +1,12 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (FINALCHANCEDLL.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  MainTrain.cpp
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\timeseries.h(94,65): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\MainTrain.h(25,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\MainTrain.h(28,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\MainTrain.h(33,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\MainTrain.h(96,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\MainTrain.h(120,20): warning C4018: '<': signed/unsigned mismatch
+  anomaly_detection_util.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  anomaly_detection_util.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+     Creating library C:\Users\16475\source\repos\ANOTHERCHANCEDLL\Debug\ANOTHERCHANCEDLL.lib and object C:\Users\16475\source\repos\ANOTHERCHANCEDLL\Debug\ANOTHERCHANCEDLL.exp
+  FINALCHANCEDLL.vcxproj -> C:\Users\16475\source\repos\ANOTHERCHANCEDLL\Debug\ANOTHERCHANCEDLL.dll

@@ -1,0 +1,2 @@
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\Debug\FINALCHANCEDLL.vcxprojAssemblyReference.cache
+C:\Users\16475\source\repos\ANOTHERCHANCEDLL\FINALCHANCEDLL\Debug\FINALCHANCEDLL.vcxprojAssemblyReference.cache
