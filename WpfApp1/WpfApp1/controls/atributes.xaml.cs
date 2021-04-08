@@ -27,24 +27,8 @@ namespace WpfApp1.controls
         }
         public void addEventHendler2Attributes()
         {
-            
-                //this.listbox.SelectionMode = SelectionMode.Multiple;
                 Button btn;
-            //this.listbox.SelectAll();
-           /* //int count = this.listbox
-            System.Object[] ItemObject = new System.Object[vm.VM_XmlNameList.Count];
-            int i = 0;
             foreach (string name in vm.VM_XmlNameList)
-            {
-                this.listbox.Items.Add(name);
-                //ItemObject[i++] = name;
-            }*/
-            
-                //this.listbox.listbox.AddRange(ItemObject);
-            
-            foreach (string name in vm.VM_XmlNameList)
-                //foreach (ListBoxItem btn in vm.VM_ListBoxxmlNameList)
-                //for(;i<count;++i)
                 {
                     
                     btn = new Button();

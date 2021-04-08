@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Text;
+using OxyPlot;
+using OxyPlot.Series;
 
 namespace WpfApp1 
 {
@@ -22,6 +24,79 @@ namespace WpfApp1
             if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+        public string VM_Current_attribute
+        {
+            get
+            {
+                return _model.Current_attribute;
+            }
+            set
+            {
+                _model.Current_attribute = value;
+            }
+        }
+        public string VM_PlotTitle
+        {
+            get
+            {
+                return _model.PlotTitle;
+            }
+            set
+            {
+
+            }
+        }
+
+        public IList<DataPoint> VM_PlotPoints
+        {
+            get
+            {
+                return new List<DataPoint>(_model.PlotPoints);
+            }
+
+        }
+        public string VM_PlotTitle_correlated
+        {
+            get
+            {
+                return _model.PlotTitle_correlated;
+
+            }
+            set
+            {
+                _model.PlotTitle_correlated = value;
+            }
+        }
+        public IList<DataPoint> VM_PlotPoints_correlated
+        {
+            get
+            {
+                return new List<DataPoint>(_model.PlotPoints_correlated);
+
+            }
+        }
+        public float VM_SlopeLineAnnotation
+        {
+            get
+            {
+                return _model.SlopeLineAnnotation;
+            }
+            set
+            {
+                _model.SlopeLineAnnotation = value;
+            }
+        }
+        public float VM_InterceptLineAnnotation
+        {
+            get
+            {
+                return _model.SlopeLineAnnotation;
+            }
+            set
+            {
+                _model.SlopeLineAnnotation = value;
             }
         }
     }

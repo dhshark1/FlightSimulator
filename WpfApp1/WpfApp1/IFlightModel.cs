@@ -157,5 +157,15 @@ namespace WpfApp1
         {
             set; get;
         }
+        public float SlopeLineAnnotation
+        {
+            get;
+            set;
+        }
+        public float InterceptLineAnnotation
+        {
+            get;
+            set;
+        }
     }
 }

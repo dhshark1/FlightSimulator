@@ -32,7 +32,7 @@
                 <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
             </oxy:Plot.Series>
             <oxy:Plot.Annotations>
-                
+                <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
             </oxy:Plot.Annotations>
         </oxy:Plot>
         <!--<StackPanel x:Name="stack"  Grid.Row="2">

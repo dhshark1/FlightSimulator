@@ -28,7 +28,9 @@ namespace WpfApp1
         internal ViewModel vm;
         internal VM_FileDialog vm_FD;
         internal VM_Attributes vm_A;
+        internal VM_Plot vm_P;
         internal MyFlightModel fm;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +60,10 @@ namespace WpfApp1
             this.Attributes.vm = vm_A;
             this.Attributes.DataContext = vm_A;
 
+            vm_P = new VM_Plot(fm);
+            this.plot.vm = vm_P;
+            this.plot.DataContext = vm_P;
+
             vm_A.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if(e.PropertyName.Equals("VM_XmlNameList"))
@@ -66,14 +72,7 @@ namespace WpfApp1
                     this.Attributes.addEventHendler2Attributes();
                 }
             };
-
-
-
-
-
         }
-        
-       
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {

@@ -16,7 +16,7 @@ namespace WpfApp1
     class MyFlightModel : IFlightModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private static Mutex mutex_atributes_index = new Mutex();
+        private static Mutex mutex = new Mutex();
         private MyTelnetClient tc;
         private volatile Boolean stop, play = false;
         private volatile string csvPath, xmlPath;
@@ -26,7 +26,8 @@ namespace WpfApp1
         private volatile int progressDirection;
         private volatile int Num_of_Atributes = 42;
         private volatile int display_lines_temp = 0;
-        private volatile string current_attribute = "aileron";
+        private volatile string current_attribute = "aileron", no_attribute = "-";
+        private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
 
         private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
@@ -42,25 +43,39 @@ namespace WpfApp1
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
         public volatile Dictionary<String, String> attribute_correlated = new Dictionary<string, String>();
 
-        //public volatile ChartValues<float>[] atributes = new ChartValues<float>[42];
-        //public volatile ChartValues<float> display_atribute = new ChartValues<float>();
-
-        /*        public ChartValues<float> Atributes_atIndex
-                {
-                    get
-                    {
-                        //display_atribute = atributes[atributes_index];
-                        return display_atribute;
-                    }
-
-                }*/
-        //plot
         volatile string plotTitle = "";
         volatile List<DataPoint> plotPoints = new List<DataPoint>();
 
         volatile string plotTitle_correlated = "";
         volatile List<DataPoint> plotPoints_correlated = new List<DataPoint>();
 
+        //key - attribute(like ailrone) , value - tuple(first slope, second intersect)
+        Dictionary<string, Tuple<float, float>> regression_dict = new Dictionary<string, Tuple<float, float>>();
+
+        public float SlopeLineAnnotation
+        {
+            get
+            {
+                return slopeLineAnnotation;
+            }
+            set
+            {
+                slopeLineAnnotation = value;
+                NotifyPropertyChanged("interceptLineAnnotation");
+            }
+        }
+        public float InterceptLineAnnotation
+        {
+            get
+            {
+                return interceptLineAnnotation;
+            }
+            set
+            {
+                interceptLineAnnotation = value;
+                NotifyPropertyChanged("interceptLineAnnotation");
+            }
+        }
         private void buildNameListFromXML()
         {
             List<string> temp;
@@ -69,17 +84,15 @@ namespace WpfApp1
             foreach(string name in temp)
             {
                 if (attribute.ContainsKey(name))
-                { 
+                {
+                    xmlNameList.Add(name + "1");
                     attribute.Add(name + "1", new List<DataPoint>());
                 }
                 else
-                { 
+                {
+                    xmlNameList.Add(name);
                     attribute.Add(name, new List<DataPoint>());
                 }
-            }
-            foreach(var pair in attribute)
-            {
-                xmlNameList.Add(pair.Key);
             }
         }
       
@@ -91,11 +104,18 @@ namespace WpfApp1
             }
             set
             {
+                mutex.WaitOne();
                 current_attribute = value;
                 display_lines_temp = 0;
-                //plotPoints.Clear();
                 plotPoints = new List<DataPoint>();
+                plotPoints_correlated = new List<DataPoint>();
+                mutex.ReleaseMutex();
+                if (attribute_correlated.ContainsKey(current_attribute))
+                    PlotTitle_correlated = attribute_correlated[current_attribute];
+                //slopeLineAnnotation = 
                 NotifyPropertyChanged("Current_attribute");
+                NotifyPropertyChanged("PlotTitle_correlated");
+                SlopeLineAnnotation = regression_dict
             }
         }
         public string PlotTitle
@@ -344,7 +364,12 @@ namespace WpfApp1
                     currentLine = numOfLines - 1;
                 }
                 else
+                {
+                    //mutex.WaitOne();
                     currentLine = value;
+                    //mutex.ReleaseMutex();
+
+                }
                 NotifyPropertyChanged("Time");
                 NotifyPropertyChanged("CurrentLine");
                 NotifyPropertyChanged("LineRatio");
@@ -358,9 +383,13 @@ namespace WpfApp1
             CurrentLine = -1;
             NumOfLines = 1;
             ProgressDirection = 1;
-            CsvPath = "";
+            csvPath = "";
             //listBoxxmlNameList = new List<ListBoxItem>();
             xmlNameList = new List<string>();
+            attribute.Add(no_attribute, new List<DataPoint>());
+            //Current_attribute = current_attribute;
+            NotifyPropertyChanged("Current_attribute");
+            //Current_attribute
             //attribute 
             //atributes[0] = new ChartValues<float>();
             //atributes[0].Add(0);
@@ -377,6 +406,38 @@ namespace WpfApp1
                 NotifyPropertyChanged("Play");
             }
         }
+        /*private void initDictionary(string cor_attributes)
+        {
+            string pair_delim = ",", input_delim = " ";
+            List<string> cor_attributes_list = new List<string>(cor_attributes.Split(input_delim));
+            string[] splited_pair;
+            foreach (string pair in cor_attributes_list)
+            {
+                splited_pair = pair.Split(pair_delim);
+                if (splited_pair.Length == 2)
+                    attribute_correlated.Add(splited_pair[0], splited_pair[1]);
+            }
+            foreach (string attr in xmlNameList)
+            {
+                if (!attribute_correlated.ContainsKey(attr))
+                    attribute_correlated.Add(attr, no_attribute);
+            }
+        }*/
+        private void initDictionary(Dictionary<string, Tuple<float, float>> src_dict)
+        {
+            string pair_delim = ",", input_delim = " ";
+            string[] splited_pair;
+            foreach (KeyValuePair<string, Tuple<float, float>> entry in src_dict)
+            {
+                splited_pair = entry.Key.Split(pair_delim);
+                if (splited_pair.Length == 2)
+                {
+                    attribute_correlated.Add(splited_pair[0], splited_pair[1]);
+                    regression_dict.Add(splited_pair[0], entry.Value);
+                }
+            }
+            Current_attribute = attribute_correlated.First().Key;
+        }
         public string CsvPath
         {
             get
@@ -387,6 +448,13 @@ namespace WpfApp1
             {
                 csvPath = value;
                 /*atributes_are_ready = false;*/
+                //call tom and dani!!!!!!!!!!!!!!!!!!!!!!!!!!
+                Dictionary<string, Tuple<float, float>> deletme = new Dictionary<string, Tuple<float, float>>();
+                deletme.Add("aileron,elevator", new Tuple<float, float>(2.2F, 3.3F));
+                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(4.23F, 15.23F));
+                Current_attribute = current_attribute;
+                //delet me
+                initDictionary(deletme);
                 NotifyPropertyChanged("CsvPath");
             }
         }
@@ -414,19 +482,6 @@ namespace WpfApp1
                     outputFile.WriteLine(line);
             };
         }*/
-        private void initDictionary(string cor_attributes) 
-        {
-            string pair_delim = ",", input_delim =" ";
-            List<string> cor_attributes_list = new List<string>(cor_attributes.Split(input_delim));
-            string[] splited_pair;
-            foreach (string pair in cor_attributes_list)
-            {
-                splited_pair = pair.Split(pair_delim);
-                if(splited_pair.Length == 2)
-                    attribute_correlated.Add(splited_pair[0], splited_pair[1]);
-            }
-
-        }
 
         public string XmlPath
         {
@@ -438,7 +493,7 @@ namespace WpfApp1
             {
                 xmlPath = value;
                 buildNameListFromXML();
-                initDictionary("A,B D,C MAIKY,G tom,jery");
+                /*initDictionary("aileron,elevator rudder,flaps slats,speedbrake throttle,latitude-deg");*/
                 NotifyPropertyChanged("XmlNameList");
                 NotifyPropertyChanged("XmlPath");
             }
@@ -556,6 +611,7 @@ namespace WpfApp1
         private void display_atribute_update()
         {
             int local_current_line = 0, range = 0;
+            string local_Current_attribute, local_Correlated_attribute;
             DataPoint[] temporalCv, temporalCv_cor;
             while (currentLine < 1)
             {
@@ -563,40 +619,56 @@ namespace WpfApp1
             }
             while (currentLine < numOfLines && !stop)
             {
-                local_current_line = currentLine;
-                if(Play && start_to_read)
+                mutex.WaitOne();
+                local_current_line = CurrentLine;
+                local_Current_attribute = Current_attribute;
+                local_Correlated_attribute = attribute_correlated[Current_attribute];
+                
+                if (Play && start_to_read)
                 {
                     if (display_lines_temp < local_current_line)
                     {
                         range = local_current_line - display_lines_temp;
                         temporalCv = new DataPoint[range];
 
-                        attribute[Current_attribute].CopyTo(display_lines_temp, temporalCv, 0, range);
-                        display_lines_temp += range;
+                        attribute[local_Current_attribute].CopyTo(display_lines_temp, temporalCv, 0, range);
+                        
                         plotPoints.AddRange(temporalCv);
                         NotifyPropertyChanged("PlotPoints");
 
-                        temporalCv_cor = new DataPoint[range];
+                        if (!local_Correlated_attribute.Equals(no_attribute))
+                        {
+                           // range = attribute[attribute_correlated[Current_attribute]].Co
+                            temporalCv_cor = new DataPoint[range];
 
-                        attribute[attribute_correlated[Current_attribute]].CopyTo(display_lines_temp, temporalCv, 0, range);
+                            attribute[local_Correlated_attribute].CopyTo(display_lines_temp, temporalCv, 0, range);
+                            //display_lines_temp += range;
+                            plotPoints_correlated.AddRange(temporalCv);
+                        }
+                        else
+                        {
+                            plotPoints_correlated = new List<DataPoint>();
+                        }
                         display_lines_temp += range;
-                        plotPoints.AddRange(temporalCv);
-                        NotifyPropertyChanged("PlotPoints");
+                        NotifyPropertyChanged("PlotPoints_correlated");
                     }
-
-                    if (display_lines_temp > local_current_line)
+                    else if (display_lines_temp > local_current_line)
                     {
                         display_lines_temp = 0;
+                        plotPoints_correlated = new List<DataPoint>();
                         plotPoints = new List<DataPoint>();
                         for (; display_lines_temp < local_current_line; display_lines_temp++)
                         {
-                            plotPoints.Add(attribute[Current_attribute][display_lines_temp]);
+                            plotPoints.Add(attribute[local_Current_attribute][display_lines_temp]);
+                            if (!local_Current_attribute.Equals(no_attribute))
+                                plotPoints_correlated.Add(attribute[local_Correlated_attribute][display_lines_temp]);
                         }
                         NotifyPropertyChanged("PlotPoints");
-                    }
-                    Thread.Sleep(500);
+                        NotifyPropertyChanged("PlotPoints_correlated");
+                    } 
                 }
-               
+                mutex.ReleaseMutex();
+                Thread.Sleep(500);
             }
         }
        

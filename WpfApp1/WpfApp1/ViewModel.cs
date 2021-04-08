@@ -36,46 +36,7 @@ namespace WpfApp1
                 _model.Current_attribute = value;
             }
         }
-        public string VM_PlotTitle
-        {
-            get
-            {
-                return _model.PlotTitle;
-            }
-            set
-            {
-
-            }
-        }
-
-        public IList<DataPoint> VM_PlotPoints
-        {
-            get
-            {
-                return new List<DataPoint>(_model.PlotPoints); 
-            }
-
-        }
-        public string VM_PlotTitle_correlated
-        {
-            get
-            {
-                return _model.PlotTitle_correlated;
-
-            }
-            set
-            {
-                _model.PlotTitle_correlated = value;
-            }
-        }
-        public IList<DataPoint> VM_PlotPoints_correlated
-        {
-            get
-            {
-                return _model.PlotPoints_correlated;
-
-            }
-        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
