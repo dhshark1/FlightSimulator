@@ -1,0 +1,12 @@
+﻿  MainTrain.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.h(94,65): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.h(34,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\MainTrain.h(27,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\MainTrain.h(30,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\MainTrain.h(35,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\MainTrain.h(97,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\MainTrain.h(125,18): warning C4018: '<': signed/unsigned mismatch
+  anomaly_detection_util.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  anomaly_detection_util.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+     Creating library C:\Users\16475\source\repos\FINALCHANCEDLL\Debug\FINALCHANCEDLL.lib and object C:\Users\16475\source\repos\FINALCHANCEDLL\Debug\FINALCHANCEDLL.exp
+  FINALCHANCEDLL.vcxproj -> C:\Users\16475\source\repos\FINALCHANCEDLL\Debug\FINALCHANCEDLL.dll

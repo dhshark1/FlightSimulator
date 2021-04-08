@@ -1,0 +1,353 @@
+﻿  pch.cpp
+  anomaly_detection_util.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(51,32): error C3861: 'sqrt': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(51,53): error C3861: 'sqrt': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(55,16): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(55,6): error C2146: syntax error: missing ';' before identifier 'linear_reg'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(55,41): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(55,41): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(72,11): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(72,17): error C2146: syntax error: missing ')' before identifier 'p'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(72,44): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(72,44): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(79,11): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(79,17): error C2146: syntax error: missing ')' before identifier 'p'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(79,26): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(79,26): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(84,14): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(84,22): error C2065: 'pArr': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(84,27): error C2062: type 'int' unexpected
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(84,46): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\anomaly_detection_util.cpp(84,46): error C2447: '{': missing function header (old-style formal list?)
+  dllmain.cpp
+  HybridAnomalyDetector.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(6,1): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(6,47): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(6,73): error C2550: 'HybridAnomalyDetector': constructor initializer lists are only allowed on constructor definitions
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(9,1): warning C4508: 'HybridAnomalyDetector': function should return a value; 'void' return type assumed
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(11,1): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(11,25): error C2523: '<Unknown>::~HybridAnomalyDetector': destructor tag mismatch
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(11,49): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(11,46): error C2084: function 'int HybridAnomalyDetector(void)' already has a body
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(6): message : see previous definition of 'HybridAnomalyDetector'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(15,6): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(15,70): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(15,76): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(15,76): error C2143: syntax error: missing ',' before '<'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(16,9): error C2065: 'cf': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,10): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,17): error C2065: 'correlatedFeatures': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,38): error C2039: 'const_iterator': is not a member of '`global namespace''
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,53): error C2065: 'const_iterator': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,53): error C2146: syntax error: missing ';' before identifier 'it'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(19,53): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(20,9): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(20,14): error C2065: 'cf': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(20,26): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(20,32): error C2065: 'cf': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(20,42): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(21,21): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(21,62): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(30,6): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(30,57): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(30,57): error C2143: syntax error: missing ',' before '&'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(31,18): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(31,38): error C2065: 'f1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(32,8): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(32,10): error C2065: 'threshold': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(32,40): error C2065: 'f1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(32,44): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(33,9): error C2065: 'Circle': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(33,16): error C2146: syntax error: missing ';' before identifier 'minC'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(33,16): error C2065: 'minC': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(33,37): error C2065: 'ps': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(33,23): error C3861: 'findMinCircle': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(34,9): error C2065: 'correlatedFeatures': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(34,28): error C2146: syntax error: missing ';' before identifier 'c'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(34,28): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(35,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(35,20): error C2065: 'f1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(36,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(36,20): error C2065: 'f2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(37,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(37,22): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(38,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(39,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(39,21): error C2065: 'minC': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(40,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(40,23): error C2061: syntax error: identifier 'Point'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(41,9): error C2065: 'cf': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(41,22): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(45,6): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(45,58): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(45,58): error C2143: syntax error: missing ',' before '&'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(46,5): error C2065: 'SimpleAnomalyDetector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(46,28): error C2065: 'sAD': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(46,38): error C2061: syntax error: identifier 'SimpleAnomalyDetector'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(47,5): error C2065: 'sAD': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(47,22): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(48,5): error C2065: 'vector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(48,12): error C2065: 'correlatedFeatures': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(48,32): error C2065: 'cf1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(48,38): error C2065: 'sAD': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(49,5): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(49,21): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(49,36): error C2065: 'cf1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(49,48): error C2065: 'cf1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(50,5): error C3861: 'setCorrelationThreshold': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(51,5): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(51,40): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(53,12): error C2065: 'sAD': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(53,15): error C2541: 'delete': cannot delete objects that are not pointers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(56,6): error C2653: 'HybridAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(56,58): error C2061: syntax error: identifier 'correlatedFeatures'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(57,9): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(58,25): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(58,17): error C3861: 'abs': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(58,43): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,44): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,60): error C2061: syntax error: identifier 'Point'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,17): error C3861: 'distanceBetweenTwoPoints': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,75): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,86): error C2143: syntax error: missing ';' before ')'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\HybridAnomalyDetector.cpp(60,86): error C2059: syntax error: ')'
+  MainTrain.cpp
+  minCircle.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(6,32): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(6,39): error C2065: 'p1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(6,43): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(6,50): error C2065: 'p2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(6,53): error C2448: 'distanceBetweenTwoPoints': function-style initializer appears to be a function definition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(10,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(10,7): error C2146: syntax error: missing ';' before identifier 'midPoint'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(10,36): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(10,36): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(14,24): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(14,34): error C2065: 'q': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(14,37): error C2448: 'calcSlope': function-style initializer appears to be a function definition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18,28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18,8): error C2146: syntax error: missing ';' before identifier 'getCircleFrom3Points'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18,56): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18,56): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(44,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(44,1): error C2086: 'int Circle': redefinition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18): message : see declaration of 'Circle'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(44,8): error C2146: syntax error: missing ';' before identifier 'trivialCircle'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(44,54): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(44,54): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(61,33): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(61,43): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(61,46): error C2448: 'checkPointInCircle': function-style initializer appears to be a function definition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,1): error C2086: 'int Circle': redefinition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18): message : see declaration of 'Circle'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,8): error C2146: syntax error: missing ';' before identifier 'welzel'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,20): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,85): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(74,85): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(91,21): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(91,1): error C2086: 'int Circle': redefinition
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(18): message : see declaration of 'Circle'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(91,8): error C2146: syntax error: missing ';' before identifier 'findMinCircle'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(91,49): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\minCircle.cpp(91,49): error C2447: '{': missing function header (old-style formal list?)
+  SimpleAnomalyDetector.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(8,6): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(9,9): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,10): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,16): error C2065: 'vector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,17): error C2065: 'correlatedFeatures': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,38): error C2039: 'iterator': is not a member of '`global namespace''
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,47): error C2065: 'iterator': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,47): error C2146: syntax error: missing ';' before identifier 'it'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(12,47): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(13,9): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(13,16): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(13,34): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(13,42): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(13,58): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(14,20): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(14,69): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(17,20): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(17,69): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(26,6): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(26,57): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(26,57): error C2143: syntax error: missing ',' before '&'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(27,64): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(28,10): error C2039: 'string': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(28,17): error C2065: 'string': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(28,17): error C2146: syntax error: missing ';' before identifier 'mostCorFeaName'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(28,17): error C2065: 'mostCorFeaName': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(29,5): error C2065: 'Feature': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(29,14): error C2065: 'mostCorFea': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(30,5): error C2065: 'Point': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(30,13): error C2065: 'pArr': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(32,10): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(32,16): error C2065: 'vector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(32,17): error C2065: 'Feature': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(32,25): error C2059: syntax error: '>'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(32,28): error C2039: 'const_iterator': is not a member of '`global namespace''
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(34,10): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(34,15): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(34,51): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(34,57): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(34,91): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,14): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,25): error C2039: 'next': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,30): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,9): error C3861: 'next': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,35): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,42): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(35,76): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(39,42): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(39,92): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(40,28): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(39,20): error C3861: 'pearson': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(41,17): error C3861: 'fabs': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(41,30): error C3861: 'fabs': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(43,17): error C2065: 'mostCorFeaName': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(43,38): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(44,17): error C2065: 'mostCorFea': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(44,32): error C2065: 'it2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(50,9): error C2065: 'pArr': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(50,20): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(50,55): error C2065: 'mostCorFea': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(52,21): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(52,55): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(52,71): error C2065: 'mostCorFeaName': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(52,94): error C2065: 'pArr': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(52,9): error C3861: 'learnHelper': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(58,20): error C2065: 'pArr': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(58,28): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(58,9): error C3861: 'releaseArr': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(63,6): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(63,57): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(63,57): error C2143: syntax error: missing ',' before '&'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(64,18): error C2065: 'ts': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(64,38): error C2065: 'f1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(65,29): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(66,14): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(66,9): error C3861: 'fabs': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(66,20): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(69,9): error C2065: 'Line': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(69,14): error C2146: syntax error: missing ';' before identifier 'lReg'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(69,14): error C2065: 'lReg': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(69,32): error C2065: 'ps': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(69,21): error C3861: 'linear_reg': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(70,11): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(70,31): error C2065: 'f1': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(70,35): error C2065: 'f2': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(71,31): error C2065: 'p': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(72,31): error C2065: 'lReg': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(73,53): error C2065: 'ps': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(73,63): error C2065: 'lReg': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(73,46): error C3861: 'maxDev': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(79,6): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(79,58): error C2061: syntax error: identifier 'correlatedFeatures'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(80,21): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(80,13): error C3861: 'abs': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(80,37): error C2065: 'c': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,6): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,12): error C2143: syntax error: missing ';' before '<'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,28): error C2653: 'SimpleAnomalyDetector': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,79): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\SimpleAnomalyDetector.cpp(83,79): error C2447: '{': missing function header (old-style formal list?)
+  timeseries.cpp
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(8,6): error C2653: 'TimeSeries': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(9,10): error C2039: 'fstream': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(9,18): error C2065: 'fstream': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(9,18): error C2146: syntax error: missing ';' before identifier 'fin'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(9,18): error C2065: 'fin': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,5): error C2065: 'fin': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,14): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,35): error C2039: 'ios': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,35): error C3083: 'ios': the symbol to the left of a '::' must be a type
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,40): error C2039: 'in': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(10,42): error C2065: 'in': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(11,10): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(11,16): error C2065: 'vector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(11,22): error C2039: 'string': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(11,16): error C2065: 'string': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(11,30): error C2065: 'row': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,10): error C2039: 'string': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,17): error C2065: 'string': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,17): error C2146: syntax error: missing ';' before identifier 'line'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,17): error C2065: 'line': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,23): error C2065: 'word': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(12,29): error C2065: 'temp': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(18,17): error C2039: 'getline': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(18,25): error C2065: 'fin': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(18,30): error C2065: 'line': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(18,24): error C3861: 'getline': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(19,14): error C2039: 'stringstream': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(19,27): error C2065: 'stringstream': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(19,27): error C2146: syntax error: missing ';' before identifier 's'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(19,29): error C2065: 'line': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(19,27): error C3861: 's': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(20,21): error C2039: 'getline': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(20,29): error C2065: 's': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(20,32): error C2065: 'word': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(20,28): error C3861: 'getline': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(22,20): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(22,54): error C2061: syntax error: identifier 'Feature'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(33,22): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(33,66): error C2039: 'stof': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(33,71): error C2065: 'word': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(33,70): error C3861: 'stof': identifier not found
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(40,8): error C2653: 'TimeSeries': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(40,43): error C2270: 'getFeaturesName': modifiers not allowed on nonmember functions
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(41,9): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(45,34): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(45,61): error C3078: array size must be specified in new expressions without an initializer
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(47,10): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(47,16): error C2065: 'vector': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(47,17): error C2065: 'Feature': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(47,25): error C2059: syntax error: '>'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(47,28): error C2039: 'iterator': is not a member of '`global namespace''
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(48,10): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(48,15): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(48,43): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(48,49): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(48,75): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(49,36): error C2065: 'it': undeclared identifier
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(49,45): error C2660: 'strcpy': function does not take 1 arguments
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h(130,1): message : see declaration of 'strcpy'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(54,5): error C2653: 'TimeSeries': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(54,41): error C2270: 'getNumOfFeatures': modifiers not allowed on nonmember functions
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(55,13): error C2355: 'this': can only be referenced inside non-static member functions or non-static data member initializers
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,12): error C2039: 'vector': is not a member of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\predefined C++ types (compiler internal)(340): message : see declaration of 'std'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,18): error C2143: syntax error: missing ';' before '<'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,30): error C2653: 'TimeSeries': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,71): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(58,71): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,14): error C2143: syntax error: missing ';' before '&'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,16): error C2653: 'TimeSeries': is not a class or namespace name
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,71): error C2270: 'getFeatureByName': modifiers not allowed on nonmember functions
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,71): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,71): error C2059: syntax error: '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,71): error C2143: syntax error: missing ';' before '{'
+C:\Users\16475\source\repos\FINALCHANCEDLL\FINALCHANCEDLL\timeseries.cpp(62,71): error C2447: '{': missing function header (old-style formal list?)
+  Generating Code...
