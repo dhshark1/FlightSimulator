@@ -37,7 +37,7 @@
 
             <Controls:atributes x:Name="Attributes" RenderTransformOrigin="0.612,0.541" Grid.Column="1" Grid.Row="1" Canvas.Top="210" Canvas.Left="758"/>
             <Controls:FilesDialog x:Name="FilesDialog" Margin="10,0,190,305" Width="781"/>
-
+            <Controls:AnomalyReportList x:Name="AnomalyReportList" Canvas.Left="-45" Height="602" Width="53" Canvas.Top="-31"/>
             <Controls:theJoystick Margin="290,144,941,425" Grid.Row="1" Grid.Column="1" Canvas.Left="-282" Canvas.Top="-17" />
             <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="506" Canvas.Left="165" Click="PlayButton_Click" Background="White">
                 <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
@@ -58,6 +58,8 @@
             <TextBox x:Name="pSTextBox" Canvas.Left="511" Canvas.Top="506" Text="{Binding VM_PlaySpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
             <TextBlock x:Name="timeTextBlock" Canvas.Left="564" Canvas.Top="506" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
             <Controls:controlPanel RenderTransformOrigin="0.627,0.288" Height="200" Canvas.Left="33" Canvas.Top="301" Width="228"/>
+
+
         </Canvas>
         <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="712" Height="26" Margin="44,268,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
 

@@ -30,6 +30,8 @@ namespace WpfApp1
         internal VM_Attributes vm_A;
         internal VM_Plot vm_P;
         internal MyFlightModel fm;
+        internal VM_AnomalyReport vm_ANR;
+       
         
         public MainWindow()
         {
@@ -60,6 +62,10 @@ namespace WpfApp1
             this.Attributes.vm = vm_A;
             this.Attributes.DataContext = vm_A;
 
+            vm_ANR = new VM_AnomalyReport(fm);
+            this.AnomalyReportList.vm = vm_ANR;
+            this.AnomalyReportList.DataContext = vm_ANR;
+
             vm_P = new VM_Plot(fm);
             this.plot.vm = vm_P;
             this.plot.DataContext = vm_P;
@@ -70,6 +76,7 @@ namespace WpfApp1
                 {
                     //this.Attributes.listbox.ItemsSource;
                     this.Attributes.addEventHendler2Attributes();
+                    
                 }
             };
         }

@@ -83,7 +83,9 @@ namespace WpfApp1
         private volatile int display_lines_temp = 0;
         private volatile string current_attribute = "aileron", no_attribute = "-";
         private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
-
+        private volatile List<string> anomalyReportList = new List<string> {"Hello", "World"};
+        private volatile string investigatedAnomaly;
+        //private volatile List<string> anomalyReportList = new List<string>();
         private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
         private volatile float altmeter = 0, airspeed = 0, registeredHeading_degrees = 0;
@@ -392,6 +394,24 @@ namespace WpfApp1
             {
                 numOfLines = value;
                 NotifyPropertyChanged("NumOfLines");
+            }
+        }
+        public string InvestigatedAnomaly
+        {
+            get { return investigatedAnomaly; }
+            set
+            {
+                investigatedAnomaly = value;
+                NotifyPropertyChanged("InvestigatedAnomaly");
+            }
+        }
+        public List<string> AnomalyReportList
+        {
+            get { return anomalyReportList; }
+            set
+            {
+                anomalyReportList = value;
+                NotifyPropertyChanged("AnomalyReportList");
             }
         }
 
@@ -748,7 +768,6 @@ namespace WpfApp1
         }
         public void start()
         {
-
             new Thread(delegate ()
             {
 

@@ -26,6 +26,13 @@ namespace WpfApp1
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        public List<string> AnomalyReportList
+        {
+            get
+            {
+                return _model.AnomalyReportList;
+            }
+        }
         public string VM_Current_attribute
         {
             get

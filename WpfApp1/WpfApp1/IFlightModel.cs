@@ -172,5 +172,15 @@ namespace WpfApp1
             get;
             set;
         }
+        public List<string> AnomalyReportList
+        {
+            get;
+            set;
+        }
+        public string InvestigatedAnomaly
+        {
+            get;
+            set;
+        }
     }
 }
