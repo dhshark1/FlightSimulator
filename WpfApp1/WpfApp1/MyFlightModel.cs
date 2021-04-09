@@ -13,6 +13,61 @@ using System.Windows.Controls;
 
 namespace WpfApp1
 {
+    public class Two_Correlated_attribute
+    {
+        float slope;
+        float intercept;
+        List<DataPoint> correlated_points;
+        public Two_Correlated_attribute(float slp, float inter, List<DataPoint> cor_points)
+        {
+            slope = slp;
+            intercept = inter;
+            correlated_points = cor_points;
+        }
+        public Two_Correlated_attribute(float slp, float inter)
+        {
+            slope = slp;
+            intercept = inter;
+            correlated_points = new List<DataPoint>();
+        }
+        public Two_Correlated_attribute()
+        {
+            correlated_points = new List<DataPoint>();
+        }
+        public float Slope
+        {
+            get
+            {
+                return slope;
+            }
+            set
+            {
+                slope = value;
+            }
+        }
+        public float Intercept
+        {
+            get
+            {
+                return intercept;
+            }
+            set
+            {
+                intercept = value;
+            }
+        }
+        public List<DataPoint> Correlated_points
+        {
+            get
+            {
+                return correlated_points;
+            }
+            set
+            {
+                correlated_points = value;
+            }
+        }
+    }
     class MyFlightModel : IFlightModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,7 +79,7 @@ namespace WpfApp1
         private volatile int numOfLines;
         private volatile string playSpeed;
         private volatile int progressDirection;
-        private volatile int Num_of_Atributes = 42;
+        /*private volatile int Num_of_Atributes = 42;*/
         private volatile int display_lines_temp = 0;
         private volatile string current_attribute = "aileron", no_attribute = "-";
         private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
@@ -48,9 +103,13 @@ namespace WpfApp1
 
         volatile string plotTitle_correlated = "";
         volatile List<DataPoint> plotPoints_correlated = new List<DataPoint>();
+        volatile List<DataPoint> regressionPoints = new List<DataPoint>();
 
         //key - attribute(like ailrone) , value - tuple(first slope, second intersect)
         Dictionary<string, Tuple<float, float>> regression_dict = new Dictionary<string, Tuple<float, float>>();
+        /*Dictionary<string, Tuple<float, float, List<DataPoint>>> regression_and_points_dict = new Dictionary<string, Tuple<float, float, List<DataPoint>>>();*/
+        //Two_Correlated_attribute
+        Dictionary<string, Two_Correlated_attribute> atributes_2_Two_Correlated_attribute_dict = new Dictionary<string, Two_Correlated_attribute>();
 
         public float SlopeLineAnnotation
         {
@@ -115,7 +174,14 @@ namespace WpfApp1
                 //slopeLineAnnotation = 
                 NotifyPropertyChanged("Current_attribute");
                 NotifyPropertyChanged("PlotTitle_correlated");
-                SlopeLineAnnotation = regression_dict
+                if (atributes_2_Two_Correlated_attribute_dict.ContainsKey(current_attribute))
+                {
+                    SlopeLineAnnotation = atributes_2_Two_Correlated_attribute_dict[current_attribute].Slope;
+                    InterceptLineAnnotation = atributes_2_Two_Correlated_attribute_dict[current_attribute].Intercept;
+                    RegressionPoints = atributes_2_Two_Correlated_attribute_dict[current_attribute].Correlated_points;
+                    NotifyPropertyChanged("SlopeLineAnnotation");
+                    NotifyPropertyChanged("InterceptLineAnnotation");
+                }
             }
         }
         public string PlotTitle
@@ -406,23 +472,7 @@ namespace WpfApp1
                 NotifyPropertyChanged("Play");
             }
         }
-        /*private void initDictionary(string cor_attributes)
-        {
-            string pair_delim = ",", input_delim = " ";
-            List<string> cor_attributes_list = new List<string>(cor_attributes.Split(input_delim));
-            string[] splited_pair;
-            foreach (string pair in cor_attributes_list)
-            {
-                splited_pair = pair.Split(pair_delim);
-                if (splited_pair.Length == 2)
-                    attribute_correlated.Add(splited_pair[0], splited_pair[1]);
-            }
-            foreach (string attr in xmlNameList)
-            {
-                if (!attribute_correlated.ContainsKey(attr))
-                    attribute_correlated.Add(attr, no_attribute);
-            }
-        }*/
+
         private void initDictionary(Dictionary<string, Tuple<float, float>> src_dict)
         {
             string pair_delim = ",", input_delim = " ";
@@ -433,7 +483,10 @@ namespace WpfApp1
                 if (splited_pair.Length == 2)
                 {
                     attribute_correlated.Add(splited_pair[0], splited_pair[1]);
-                    regression_dict.Add(splited_pair[0], entry.Value);
+                    //regression_dict.Add(splited_pair[0], entry.Value);
+                    //regression_and_points_dict.Add(splited_pair[0], new Tuple<float, float, List<DataPoint>>(entry.Value.Item1, entry.Value.Item2, new List<DataPoint>()));
+                    //init atributes_2_Two_Correlated_attribute_dict 
+                    atributes_2_Two_Correlated_attribute_dict.Add(splited_pair[0], new Two_Correlated_attribute(entry.Value.Item1, entry.Value.Item2));
                 }
             }
             Current_attribute = attribute_correlated.First().Key;
@@ -450,8 +503,8 @@ namespace WpfApp1
                 /*atributes_are_ready = false;*/
                 //call tom and dani!!!!!!!!!!!!!!!!!!!!!!!!!!
                 Dictionary<string, Tuple<float, float>> deletme = new Dictionary<string, Tuple<float, float>>();
-                deletme.Add("aileron,elevator", new Tuple<float, float>(2.2F, 3.3F));
-                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(4.23F, 15.23F));
+                deletme.Add("aileron,elevator", new Tuple<float, float>(0.5F, 0.3F));
+                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(0.5f, 1.23F));
                 Current_attribute = current_attribute;
                 //delet me
                 initDictionary(deletme);
@@ -471,18 +524,29 @@ namespace WpfApp1
                 NotifyPropertyChanged("XmlNameList");
             }
         }
-       /* private void creat_csvWithHeader()
+        /* private void creat_csvWithHeader()
+         {
+             string file_name = "csvWithHeader.csv";
+             string[] lines = { "First line", "Second line", "Third line" };
+             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+             using (StreamWriter outputFile = new StreamWriter(Path.Combine(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()), file_name))) 
+             {
+                 foreach (string line in lines)
+                     outputFile.WriteLine(line);
+             };
+         }*/
+        public List<DataPoint> RegressionPoints
         {
-            string file_name = "csvWithHeader.csv";
-            string[] lines = { "First line", "Second line", "Third line" };
-            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()), file_name))) 
+            get
             {
-                foreach (string line in lines)
-                    outputFile.WriteLine(line);
-            };
-        }*/
-
+                return regressionPoints;
+            }
+            set
+            {
+                regressionPoints = atributes_2_Two_Correlated_attribute_dict[Current_attribute].Correlated_points;
+                NotifyPropertyChanged("RegressionPoints");
+            }
+        }
         public string XmlPath
         {
             get
@@ -671,7 +735,17 @@ namespace WpfApp1
                 Thread.Sleep(500);
             }
         }
-       
+       private void fill_atributes_2_Two_Correlated_attribute_dict_List()
+        {
+            //attribute
+            foreach(KeyValuePair<string, Two_Correlated_attribute> pair in atributes_2_Two_Correlated_attribute_dict){
+                for(int point_index = 0; point_index < numOfLines; ++point_index)
+                {
+                    pair.Value.Correlated_points.Add(new DataPoint(attribute[pair.Key][point_index].Y, attribute[attribute_correlated[pair.Key]][point_index].Y ));
+                }
+            }
+            Current_attribute = current_attribute;
+        }
         public void start()
         {
 
@@ -695,6 +769,7 @@ namespace WpfApp1
                 {
                     line_to_atributes_arr(result[k], k);
                 }
+                fill_atributes_2_Two_Correlated_attribute_dict_List();
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))

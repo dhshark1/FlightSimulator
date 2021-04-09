@@ -29,7 +29,7 @@
         </oxy:Plot>
         <oxy:Plot x:Name="ano_plot" Title="{Binding VM_PlotTitle}" Grid.Row="1" Grid.ColumnSpan="2">
             <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
+                <oxy:LineSeries ItemsSource="{Binding VM_RegressionPoints}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
             </oxy:Plot.Series>
             <oxy:Plot.Annotations>
                 <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>

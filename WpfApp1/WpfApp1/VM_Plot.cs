@@ -99,5 +99,17 @@ namespace WpfApp1
                 _model.SlopeLineAnnotation = value;
             }
         }
+
+        public List<DataPoint> VM_RegressionPoints
+        {
+            get
+            {
+                return new List<DataPoint>(_model.RegressionPoints);
+            }
+            set
+            {
+                _model.RegressionPoints = value;
+            }
+        }
     }
 }
