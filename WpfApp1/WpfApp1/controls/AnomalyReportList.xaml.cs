@@ -23,7 +23,7 @@ namespace WpfApp1.controls
         {
             InitializeComponent();
             vm = new VM_AnomalyReport(new MyFlightModel());
-        }
+        } 
 
         private void AnomalyReportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -99,11 +99,11 @@ namespace WpfApp1
         {
             get
             {
-                return _model.SlopeLineAnnotation;
+                return _model.InterceptLineAnnotation;
             }
             set
             {
-                _model.SlopeLineAnnotation = value;
+                _model.InterceptLineAnnotation = value;
             }
         }
 
@@ -116,6 +116,31 @@ namespace WpfApp1
             set
             {
                 _model.RegressionPoints = value;
+            }
+        }
+        
+        public string VM_InvestigatedAnomaly
+        {
+            get
+            {
+                if(_model.InvestigatedAnomaly != null)
+                    return _model.InvestigatedAnomaly.Replace('\n',' ');
+                return _model.InvestigatedAnomaly;
+            }
+            set
+            {
+                _model.InvestigatedAnomaly = value;
+            }
+        }
+        public List<DataPoint> VM_AnomalyReportRegressionList
+        {
+            get
+            {
+                return new List<DataPoint>(_model.AnomalyReportRegressionList);
+            }
+            set
+            {
+                _model.AnomalyReportRegressionList = value;
             }
         }
     }

@@ -6,13 +6,22 @@
              xmlns:local="clr-namespace:WpfApp1.controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
-        <ListBox x:Name="AnomalyReportListBox" ItemsSource="{Binding VM_AnomalyReportList}" SelectionChanged="AnomalyReportList_SelectionChanged" >
-            <!--<ListBoxItem>
-                <StackPanel Orientation="Vertical">
-                    
-                </StackPanel>
-            </ListBoxItem>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Name="Label1"  
+            Content="anomalies"  
+            Width="150" Height="30"  
+            HorizontalContentAlignment="Center"
+               VerticalAlignment="Center"
+            FontSize="14" FontFamily="Georgia"  
+            FontWeight="Bold"/>
+        <ListBox x:Name="AnomalyReportListBox" ItemsSource="{Binding VM_AnomalyReportList}" SelectionChanged="AnomalyReportList_SelectionChanged" IsSynchronizedWithCurrentItem="True" Grid.Row="2" >
+            
         </ListBox>
+
     </Grid>
 </UserControl>

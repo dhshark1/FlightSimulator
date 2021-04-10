@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using OxyPlot.Series;
 using System.Linq;
 using System.Windows.Controls;
+using System.Text;
 
 namespace WpfApp1
 {
@@ -70,6 +71,9 @@ namespace WpfApp1
     }
     class MyFlightModel : IFlightModel
     {
+        private volatile List<string> anomalyReportList = new List<string> ();
+        //private volatile Dictionary<string, > anomalyReportList = new List<string>();
+        private volatile List<Tuple<string, int>> TESTForTomsDLL = new List<Tuple<string, int>> { new Tuple<string, int>("A,B", 5), new Tuple<string, int>("C,D", 180), new Tuple<string, int>("G,F", 183) };
         public event PropertyChangedEventHandler PropertyChanged;
         private static Mutex mutex = new Mutex();
         private MyTelnetClient tc;
@@ -83,7 +87,6 @@ namespace WpfApp1
         private volatile int display_lines_temp = 0;
         private volatile string current_attribute = "aileron", no_attribute = "-";
         private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
-        private volatile List<string> anomalyReportList = new List<string> {"Hello", "World"};
         private volatile string investigatedAnomaly;
         //private volatile List<string> anomalyReportList = new List<string>();
         private MyTelnetClient tc_reader;
@@ -99,6 +102,8 @@ namespace WpfApp1
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
         public volatile Dictionary<String, String> attribute_correlated = new Dictionary<string, String>();
+
+        private volatile List<DataPoint> anomalyReportRegressionList = new List<DataPoint>();
 
         volatile string plotTitle = "";
         volatile List<DataPoint> plotPoints = new List<DataPoint>();
@@ -122,7 +127,7 @@ namespace WpfApp1
             set
             {
                 slopeLineAnnotation = value;
-                NotifyPropertyChanged("interceptLineAnnotation");
+                NotifyPropertyChanged("SlopeLineAnnotation");
             }
         }
         public float InterceptLineAnnotation
@@ -134,7 +139,7 @@ namespace WpfApp1
             set
             {
                 interceptLineAnnotation = value;
-                NotifyPropertyChanged("interceptLineAnnotation");
+                NotifyPropertyChanged("InterceptLineAnnotation");
             }
         }
         private void buildNameListFromXML()
@@ -184,6 +189,18 @@ namespace WpfApp1
                     NotifyPropertyChanged("SlopeLineAnnotation");
                     NotifyPropertyChanged("InterceptLineAnnotation");
                 }
+            }
+        }
+
+        public List<DataPoint> AnomalyReportRegressionList
+        {
+            get
+            {
+                return anomalyReportRegressionList;
+            }
+            set
+            {
+                anomalyReportRegressionList = value;
             }
         }
         public string PlotTitle
@@ -522,12 +539,21 @@ namespace WpfApp1
                 csvPath = value;
                 /*atributes_are_ready = false;*/
                 //call tom and dani!!!!!!!!!!!!!!!!!!!!!!!!!!
-                Dictionary<string, Tuple<float, float>> deletme = new Dictionary<string, Tuple<float, float>>();
+                /*Dictionary<string, Tuple<float, float>> deletme = new Dictionary<string, Tuple<float, float>>();
                 deletme.Add("aileron,elevator", new Tuple<float, float>(0.5F, 0.3F));
-                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(0.5f, 1.23F));
+                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(0.5f, 1.23F));*/
+                var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
+                System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+                Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("SimpleAnomalyDLL.SA_AnomalyDetectorAPI");
+                object[] argstopass = new object[] { (object)@"csvs\trainFile.csv" };
+                Dictionary<string, Tuple<float, float>> ReturnValue = (Dictionary<string, Tuple<float, float>>)MyDLLInstance
+                .GetType() //Get the type of MyDLLForm
+                .GetMethod("getUseCaseEight") //Gets a System.Reflection.MethodInfo 
+                                              //object representing Some
+                .Invoke(MyDLLInstance, argstopass);
                 Current_attribute = current_attribute;
-                //delet me
-                initDictionary(deletme);
+                
+                initDictionary(ReturnValue);
                 NotifyPropertyChanged("CsvPath");
             }
         }
@@ -763,11 +789,98 @@ namespace WpfApp1
                 {
                     pair.Value.Correlated_points.Add(new DataPoint(attribute[pair.Key][point_index].Y, attribute[attribute_correlated[pair.Key]][point_index].Y ));
                 }
+               /* pair.Value.Correlated_points.Add(new DataPoint(0, pair.Value.Intercept));
+                pair.Value.Correlated_points.Add(new DataPoint(numOfLines, (pair.Value.Slope * numOfLines)+ pair.Value.Intercept));*/
             }
             Current_attribute = current_attribute;
         }
+        public static void AddAttributeLineToCSV(string pathRead, string pathWrite)
+        {
+            // Name of all attributes to add to the csv first line
+            const string attribute = "aileron	elevator	rudder	flaps	slats	speedbrake	throttle	throttle1	engine-pump	engine-pump1	electric-pump	electric-pump1	external-power	APU-generator	latitude-deg	longitude-deg	altitude-ft	roll-deg	pitch-deg	heading-deg	side-slip-deg	airspeed-kt	glideslope	vertical-speed-fps	airspeed-indicator_indicated-speed-kt	altimeter_indicated-altitude-ft	altimeter_pressure-alt-ft	attitude-indicator_indicated-pitch-deg	attitude-indicator_indicated-roll-deg	attitude-indicator_internal-pitch-deg	attitude-indicator_internal-roll-deg	encoder_indicated-altitude-ft	encoder_pressure-alt-ft	gps_indicated-altitude-ft	gps_indicated-ground-speed-kt	gps_indicated-vertical-speed	indicated-heading-deg	magnetic-compass_indicated-heading-deg	slip-skid-ball_indicated-slip-skid	turn-indicator_indicated-turn-rate	vertical-speed-indicator_indicated-speed-fpm	engine_rpm";
+            IList<string> attributeList = attribute.Split("\t");
+            IList<string> nonReplicaAttributeList = new List<string>();
+
+            foreach (string str in attributeList)
+            {
+                if (nonReplicaAttributeList.Contains(str))
+                {
+                    nonReplicaAttributeList.Add(str + "1");
+                }
+                else
+                {
+                    nonReplicaAttributeList.Add(str);
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            // creating the line to write in the first line of the CSV file
+            int index = 1;
+            foreach (string str in nonReplicaAttributeList)
+            {
+                sb.Append(str + ",");
+                index++;
+            }
+            // Holds the attributes seperated by ','
+            string strAttributeList = sb.ToString() + "\n";
+            // THe file without the Attributes
+            StreamReader sr = new StreamReader(pathRead);
+            // Creating new CSVFile with headers
+            StreamWriter sw = new StreamWriter(pathWrite);
+            // Writing the first line in the CSV (All the attributes name)
+            sw.Write(strAttributeList);
+
+            // filling the destination CSV file with the attributes headers
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                sw.WriteLine(line);
+                line = sr.ReadLine();
+            }
+            sr.Close();
+            sw.Close();
+        }
+        private void fill_AnomalyRerpotList()
+        {
+            string min, sec;
+            //
+            //creat testfile with headers
+            AddAttributeLineToCSV(CsvPath, @"csvs\testFile.csv");
+            //
+            var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
+            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("SimpleAnomalyDLL.SA_AnomalyDetectorAPI");
+            object[] argstopass1 = new object[] { (object)@"csvs\trainFile.csv", @"csvs\testFile.csv" };
+            List<Tuple<string, int>> ReturnValue = (List<Tuple<string, int>>)MyDLLInstance
+            .GetType() //Get the type of MyDLLForm
+            .GetMethod("getAnomalies") //Gets a System.Reflection.MethodInfo 
+                                       //object representing Some
+            .Invoke(MyDLLInstance, argstopass1);
+
+            object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv", @"csvs\testFile.csv" };
+            Dictionary<string, OxyPlot.Wpf.Annotation> ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
+            .GetType() //Get the type of MyDLLForm
+            .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
+                                                        //object representing Some
+            .Invoke(MyDLLInstance, argstopass2);
+
+            foreach (Tuple<string, int> pair in ReturnValue)
+            {
+                
+                min = ((pair.Item2/10) / 60).ToString();
+                sec = ((pair.Item2/10) % 60).ToString();
+                if (Convert.ToInt32(sec) < 10)
+                    sec = "0" + sec;
+                
+                anomalyReportList.Add(pair.Item1 + " " + min + ":" + sec + "\nAnomaly Line: " + pair.Item2.ToString());
+            }
+            //AnomalyReportList
+            AnomalyReportList = anomalyReportList;
+            NotifyPropertyChanged("AnomalyReportList");
+        }
+
         public void start()
         {
+            
             new Thread(delegate ()
             {
 
@@ -789,6 +902,7 @@ namespace WpfApp1
                     line_to_atributes_arr(result[k], k);
                 }
                 fill_atributes_2_Two_Correlated_attribute_dict_List();
+                fill_AnomalyRerpotList();
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))

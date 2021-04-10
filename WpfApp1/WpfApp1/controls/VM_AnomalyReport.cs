@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WpfApp1.controls
 {
-    class VM_AnomalyReport
+    class VM_AnomalyReport : INotifyPropertyChanged
     {
         private IFlightModel _model;
         
@@ -14,7 +14,10 @@ namespace WpfApp1.controls
             _model = model;
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
+                if(e.PropertyName.Equals("AnomalyReportList"))
+                    NotifyPropertyChanged("VM_" + e.PropertyName);
+                else
+                    NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,7 +32,7 @@ namespace WpfApp1.controls
         {
             get
             {
-                return _model.AnomalyReportList;
+                return new List<string>(_model.AnomalyReportList);
             }
             set
             {

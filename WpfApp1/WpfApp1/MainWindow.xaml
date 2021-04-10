@@ -6,8 +6,8 @@
         xmlns:Controls="clr-namespace:WpfApp1.controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="649" Width="1028">
-    <Grid ShowGridLines="False" Height="591" Margin="53,0,10,0" RenderTransformOrigin="0.503,0.511">
+        Title="MainWindow" Height="800" Width="1200">
+    <Grid ShowGridLines="False" Height="800" Margin="0,0,10,0" RenderTransformOrigin="0.503,0.511">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -19,10 +19,10 @@
 
 
 
-
+        <Controls:controlPanel RenderTransformOrigin="0.627,0.288" Canvas.Left="8" Margin="26,300,273,341" Grid.RowSpan="2"/>
         <Canvas RenderTransformOrigin="0.072,0.5" Background="White" Margin="0,10,164,208" Grid.ColumnSpan="2">
 
-            <Controls:oxyplot x:Name="plot" Margin="10,10,-14,-154" Canvas.Left="266" Canvas.Top="108" Width="390" Height="296" RenderTransformOrigin="0.5,0.5" >
+            <Controls:oxyplot x:Name="plot" Margin="10,10,-14,-154" Canvas.Left="264" Canvas.Top="109" Width="450" Height="536" RenderTransformOrigin="0.5,0.5" >
                 <Controls:oxyplot.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -35,33 +35,33 @@
 
 
 
-            <Controls:atributes x:Name="Attributes" RenderTransformOrigin="0.612,0.541" Grid.Column="1" Grid.Row="1" Canvas.Top="210" Canvas.Left="758"/>
+            <Controls:atributes x:Name="Attributes" RenderTransformOrigin="0.612,0.541" Grid.Column="1" Grid.Row="1" Canvas.Top="127" Canvas.Left="760" Height="518" Width="256"/>
             <Controls:FilesDialog x:Name="FilesDialog" Margin="10,0,190,305" Width="781"/>
-            <Controls:AnomalyReportList x:Name="AnomalyReportList" Canvas.Left="-45" Height="602" Width="53" Canvas.Top="-31"/>
+            <Controls:AnomalyReportList x:Name="AnomalyReportList"  Height="518" Width="140" Canvas.Top="127" Canvas.Left="1033"/>
             <Controls:theJoystick Margin="290,144,941,425" Grid.Row="1" Grid.Column="1" Canvas.Left="-282" Canvas.Top="-17" />
-            <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="506" Canvas.Left="165" Click="PlayButton_Click" Background="White">
+            <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="674" Canvas.Left="104" Click="PlayButton_Click" Background="White">
                 <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="PauseButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="506" Canvas.Left="217" Click="PauseButton_Click">
+            <Button x:Name="PauseButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="674" Canvas.Left="156" Click="PauseButton_Click">
                 <Image Source="Pause.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="FastForwardButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="506" Canvas.Left="321" Click="FastForwardButton_Click">
+            <Button x:Name="FastForwardButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="674" Canvas.Left="260" Click="FastForwardButton_Click">
                 <Image Source="FastForward.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="StopButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="506" Canvas.Left="269" Click="StopButton_Click">
+            <Button x:Name="StopButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="674" Canvas.Left="208" Click="StopButton_Click">
                 <Image Source="Stop.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <Button x:Name="FastBackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="506" Canvas.Left="108" Click="FastBackwardsButton_Click">
+            <Button x:Name="FastBackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="674" Canvas.Left="47" Click="FastBackwardsButton_Click">
                 <Image  Source="Backwards.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>
-            <TextBlock FontSize="24" Canvas.Left="382" Canvas.Top="506" Text="Play Speed" TextWrapping="Wrap" Height="49" Width="124"/>
-            <TextBox x:Name="pSTextBox" Canvas.Left="511" Canvas.Top="506" Text="{Binding VM_PlaySpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
-            <TextBlock x:Name="timeTextBlock" Canvas.Left="564" Canvas.Top="506" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
-            <Controls:controlPanel RenderTransformOrigin="0.627,0.288" Height="200" Canvas.Left="33" Canvas.Top="301" Width="228"/>
+            <TextBlock FontSize="24" Canvas.Left="321" Canvas.Top="674" Text="Play Speed" TextWrapping="Wrap" Height="49" Width="124"/>
+            <TextBox x:Name="pSTextBox" Canvas.Left="450" Canvas.Top="674" Text="{Binding VM_PlaySpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
+            <TextBlock x:Name="timeTextBlock" Canvas.Left="503" Canvas.Top="674" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
+
 
 
         </Canvas>
-        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="712" Height="26" Margin="44,268,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="556" Height="26" Margin="44,340,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
 
     </Grid>
 </Window>

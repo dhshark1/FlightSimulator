@@ -47,22 +47,5 @@ namespace WpfApp1.controls
                 _model.Current_attribute = value;
             }
         }
-
-      /*  public List<ListBoxItem> VM_ListBoxxmlNameList
-        {
-            get
-            {
-                return _model.ListBoxxmlNameList;
-            }
-            set
-            {
-                _model.ListBoxxmlNameList = value;
-            }
-        }*/
-
-
-
-
-
     }
 }

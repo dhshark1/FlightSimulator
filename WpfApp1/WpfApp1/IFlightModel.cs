@@ -182,5 +182,10 @@ namespace WpfApp1
             get;
             set;
         }
+        public List<DataPoint> AnomalyReportRegressionList
+        {
+            get;
+            set;
+        }
     }
 }

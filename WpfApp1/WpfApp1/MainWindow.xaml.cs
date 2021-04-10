@@ -36,23 +36,11 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-
-            OxyPlot.Wpf.PointAnnotation pa = new OxyPlot.Wpf.PointAnnotation();
-            pa.X = 10;
-            pa.Y = 10;
-            pa.Size = 50;
-            pa.Fill = System.Windows.Media.Color.FromArgb(0, 255, 255, 255);
-            pa.StrokeThickness = 3;
-            this.plot.ano_plot.Annotations.Add(pa);
-            //this.plot.ano_plot.Annotations.RemoveAt(0);
-
             fm = new MyFlightModel();
             vm = new ViewModel(fm);
-            //this.Slider.DataContext = this;
-            /*this.atributes_live_chart.DataContext = this.atributes_live_chart;
-            this.atributes_live_chart.vm_chart = vm;*/
+
             this.plot.DataContext = vm;
-            this.DataContext = vm;
+            
             
             vm_FD = new VM_FileDialog(fm);
             this.FilesDialog.vm = vm_FD;
@@ -69,6 +57,8 @@ namespace WpfApp1
             vm_P = new VM_Plot(fm);
             this.plot.vm = vm_P;
             this.plot.DataContext = vm_P;
+
+            this.DataContext = vm;
 
             vm_A.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
@@ -103,11 +93,6 @@ namespace WpfApp1
             vm.VM_PlaySpeed = "1";
         }
 
-        /*private void BackwardsButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            // TBC
-        }*/
 
         private void FastForwardButton_Click(object sender, RoutedEventArgs e)
         {
