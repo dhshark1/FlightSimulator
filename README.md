@@ -2,7 +2,7 @@
 
 Overview and Features: 
 
-Our project consists of a GUI interface (using WPF application and .NET framework) which will allow us to view and control the plane in FlightGear simulator. By recieving the data of a flight, we are able to simulate it through FlightGear and analyze several attributes related to the flight, such as throttle, altitude, airspeed, etc. Moreover, we are able to view the joystick of the plane to help us inspect the direction the plane is heading, along with a few graphs that help us visually evaluate the various aspect of the flight: the first graph is a view of the attribute selected in the attribute box, the second graph is a view of the attribute most correlated to the attribute we selected, the third graph shows the linear regression between the two attributes from the first two graphs, and the fourth graph displays anomalies from the flight in relation to the two attributes. Lastly, we developed a control panel that aids us in controlling the play speed of the flight, pause or play the simulation, and fast forward/backtrack. 
+Our project consists of a GUI interface (using WPF application and .NET framework) which will allow us to view and control the plane in FlightGear simulator. By recieving the data of a flight, we are able to simulate it through FlightGear and analyze several attributes related to the flight, such as throttle, altitude, airspeed, etc. Moreover, we are able to view the joystick of the plane to help us inspect the direction the plane is heading, along with a few graphs that help us visually evaluate the various aspects of the flight: the first graph is a view of the attribute selected in the attribute box, the second graph is a view of the attribute most correlated to the attribute we selected, the third graph shows the linear regression between the two attributes from the first two graphs, and the fourth graph displays anomalies from the flight in relation to the two attributes. Lastly, we developed a control panel that aids us in controlling the play speed of the flight, pause or play the simulation, and fast forward/backtrack. 
 The project runs on multiple threads and was developed using MVVM architechture.
 
 Structure of the Project: 
@@ -11,6 +11,7 @@ Our project is organized in two folders:
 
 1. WpfApp1- the main folder, contains the main window, view model, and model. 
 2. controls- contains all of the controls in our main window, such as the joystick, graphs, and control panel.
+3. plugins- the folder that contians the dynamic link libraries of our project.
 
 Required Installations: 
 
