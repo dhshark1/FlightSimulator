@@ -36,9 +36,10 @@
 
 
             <Controls:atributes x:Name="Attributes" RenderTransformOrigin="0.612,0.541" Grid.Column="1" Grid.Row="1" Canvas.Top="127" Canvas.Left="760" Height="518" Width="256"/>
+            <Controls:AlgorithmSelector x:Name="anomalyDLL" Margin="80,150,0,0"/>
             <Controls:FilesDialog x:Name="FilesDialog" Margin="10,0,190,305" Width="781"/>
             <Controls:AnomalyReportList x:Name="AnomalyReportList"  Height="518" Width="140" Canvas.Top="127" Canvas.Left="1033"/>
-            <Controls:theJoystick Margin="290,144,941,425" Grid.Row="1" Grid.Column="1" Canvas.Left="-282" Canvas.Top="-17" />
+            <Controls:theJoystick Margin="290,144,941,425" Grid.Row="1" Grid.Column="1" Canvas.Left="-227" Canvas.Top="325" />
             <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="674" Canvas.Left="104" Click="PlayButton_Click" Background="White">
                 <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
             </Button>

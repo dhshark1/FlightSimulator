@@ -187,5 +187,15 @@ namespace WpfApp1
             get;
             set;
         }
+        public List<DataPoint> RegressionPoints_last_30
+        {
+            get;
+            set;
+        }
+        public Object AlgorithmSelect
+        {
+            get;
+            set;
+        }
     }
 }

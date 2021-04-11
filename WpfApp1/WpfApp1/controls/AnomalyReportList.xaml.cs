@@ -19,6 +19,7 @@ namespace WpfApp1.controls
     public partial class AnomalyReportList : UserControl
     {
         internal VM_AnomalyReport vm;
+        bool first = true;
         public AnomalyReportList()
         {
             InitializeComponent();
@@ -27,7 +28,13 @@ namespace WpfApp1.controls
 
         private void AnomalyReportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            vm.VM_InvestigatedAnomaly = AnomalyReportListBox.SelectedItem.ToString();
+            if (!first)
+            {
+                vm.VM_InvestigatedAnomaly = AnomalyReportListBox.SelectedItem.ToString();
+            } else
+            {
+                first = false;
+            }  
         }
     }
 }

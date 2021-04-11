@@ -143,5 +143,16 @@ namespace WpfApp1
                 _model.AnomalyReportRegressionList = value;
             }
         }
+        public List<DataPoint> VM_RegressionPoints_last_30
+        {
+            get
+            {
+                return _model.RegressionPoints_last_30;
+            }
+            set
+            {
+                _model.RegressionPoints_last_30 = value;
+            }
+        }
     }
 }

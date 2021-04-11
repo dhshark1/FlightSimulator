@@ -71,6 +71,8 @@ namespace WpfApp1
     }
     class MyFlightModel : IFlightModel
     {
+        // Object to hold the DLL instance with the relevant methods.
+        Object myDLLInstance = new Object();
         private volatile List<string> anomalyReportList = new List<string> ();
         //private volatile Dictionary<string, > anomalyReportList = new List<string>();
         private volatile List<Tuple<string, int>> TESTForTomsDLL = new List<Tuple<string, int>> { new Tuple<string, int>("A,B", 5), new Tuple<string, int>("C,D", 180), new Tuple<string, int>("G,F", 183) };
@@ -95,14 +97,14 @@ namespace WpfApp1
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index = 0;
-        private volatile bool start_to_read = false;
+        private volatile bool start_to_read = false, first = false;
         /*private volatile bool atributes_are_ready = false;*/
         private volatile List<string> xmlNameList;
         /*private volatile List<ListBoxItem> listBoxxmlNameList;*/
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
         public volatile Dictionary<String, String> attribute_correlated = new Dictionary<string, String>();
-
+        public volatile Dictionary<string, AnomalyInfo> Anomaly_2_AnomalyInfo = new Dictionary<string, AnomalyInfo>();
         private volatile List<DataPoint> anomalyReportRegressionList = new List<DataPoint>();
 
         volatile string plotTitle = "";
@@ -110,6 +112,7 @@ namespace WpfApp1
 
         volatile string plotTitle_correlated = "";
         volatile List<DataPoint> plotPoints_correlated = new List<DataPoint>();
+        volatile List<DataPoint> regressionPoints_last_30 = new List<DataPoint>();
         volatile List<DataPoint> regressionPoints = new List<DataPoint>();
 
         //key - attribute(like ailrone) , value - tuple(first slope, second intersect)
@@ -117,6 +120,7 @@ namespace WpfApp1
         /*Dictionary<string, Tuple<float, float, List<DataPoint>>> regression_and_points_dict = new Dictionary<string, Tuple<float, float, List<DataPoint>>>();*/
         //Two_Correlated_attribute
         Dictionary<string, Two_Correlated_attribute> atributes_2_Two_Correlated_attribute_dict = new Dictionary<string, Two_Correlated_attribute>();
+       
 
         public float SlopeLineAnnotation
         {
@@ -201,6 +205,19 @@ namespace WpfApp1
             set
             {
                 anomalyReportRegressionList = value;
+                NotifyPropertyChanged("AnomalyReportRegressionList");
+            }
+        }
+        //regressionPoints_last_30
+        public List<DataPoint> RegressionPoints_last_30
+        {
+            get
+            {
+                return regressionPoints_last_30;
+            }
+            set
+            {
+                regressionPoints_last_30 = value;
             }
         }
         public string PlotTitle
@@ -419,6 +436,11 @@ namespace WpfApp1
             set
             {
                 investigatedAnomaly = value;
+                if (Anomaly_2_AnomalyInfo.ContainsKey(InvestigatedAnomaly))
+                {
+                    CurrentLine = Anomaly_2_AnomalyInfo[InvestigatedAnomaly].AnomalyLine;
+                    AnomalyReportRegressionList = Anomaly_2_AnomalyInfo[InvestigatedAnomaly].Points;
+                }
                 NotifyPropertyChanged("InvestigatedAnomaly");
             }
         }
@@ -476,6 +498,15 @@ namespace WpfApp1
                 NotifyPropertyChanged("Time");
                 NotifyPropertyChanged("CurrentLine");
                 NotifyPropertyChanged("LineRatio");
+            }
+        }
+        public Object AlgorithmSelect
+        {
+            get { return myDLLInstance; }
+            set
+            {
+                myDLLInstance = value;
+                NotifyPropertyChanged("AlgorithmSelect");
             }
         }
         public MyFlightModel()
@@ -544,7 +575,7 @@ namespace WpfApp1
                 deletme.Add("throttle,latitude-deg", new Tuple<float, float>(0.5f, 1.23F));*/
                 var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
                 System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
-                Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("SimpleAnomalyDLL.SA_AnomalyDetectorAPI");
+                Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
                 object[] argstopass = new object[] { (object)@"csvs\trainFile.csv" };
                 Dictionary<string, Tuple<float, float>> ReturnValue = (Dictionary<string, Tuple<float, float>>)MyDLLInstance
                 .GetType() //Get the type of MyDLLForm
@@ -722,7 +753,7 @@ namespace WpfApp1
         {
             int local_current_line = 0, range = 0;
             string local_Current_attribute, local_Correlated_attribute;
-            DataPoint[] temporalCv, temporalCv_cor;
+            DataPoint[] temporalCv, temporalCv_cor, temporalRg;
             while (currentLine < 1)
             {
                 Thread.Sleep(200);
@@ -775,7 +806,15 @@ namespace WpfApp1
                         }
                         NotifyPropertyChanged("PlotPoints");
                         NotifyPropertyChanged("PlotPoints_correlated");
-                    } 
+                    }
+                    temporalRg = new DataPoint[30];
+                    if(local_current_line<30)
+                        regressionPoints.CopyTo(0, temporalRg, 0, local_current_line);
+                    else
+                        regressionPoints.CopyTo(local_current_line - 30, temporalRg, 0, 30);
+                    //display_lines_temp += range;
+                    regressionPoints_last_30 = new List<DataPoint> (temporalRg);
+                    NotifyPropertyChanged("RegressionPoints_last_30");
                 }
                 mutex.ReleaseMutex();
                 Thread.Sleep(500);
@@ -848,7 +887,7 @@ namespace WpfApp1
             //
             var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
             System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
-            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("SimpleAnomalyDLL.SA_AnomalyDetectorAPI");
+            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
             object[] argstopass1 = new object[] { (object)@"csvs\trainFile.csv", @"csvs\testFile.csv" };
             List<Tuple<string, int>> ReturnValue = (List<Tuple<string, int>>)MyDLLInstance
             .GetType() //Get the type of MyDLLForm
@@ -856,22 +895,32 @@ namespace WpfApp1
                                        //object representing Some
             .Invoke(MyDLLInstance, argstopass1);
 
-            object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv", @"csvs\testFile.csv" };
+            object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv"};
             Dictionary<string, OxyPlot.Wpf.Annotation> ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
             .GetType() //Get the type of MyDLLForm
             .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
                                                         //object representing Some
             .Invoke(MyDLLInstance, argstopass2);
-
+            string str, first,second;
+            List<DataPoint> temp;
             foreach (Tuple<string, int> pair in ReturnValue)
             {
-                
-                min = ((pair.Item2/10) / 60).ToString();
-                sec = ((pair.Item2/10) % 60).ToString();
+
+                min = ((pair.Item2 / 10) / 60).ToString();
+                sec = ((pair.Item2 / 10) % 60).ToString();
                 if (Convert.ToInt32(sec) < 10)
                     sec = "0" + sec;
-                
-                anomalyReportList.Add(pair.Item1 + " " + min + ":" + sec + "\nAnomaly Line: " + pair.Item2.ToString());
+                str = pair.Item1 + " " + min + ":" + sec + "\nAnomaly Line: " + pair.Item2.ToString();
+                anomalyReportList.Add(str);
+                temp = new List<DataPoint>();
+                first = pair.Item1.Split(",")[0];
+                second = pair.Item1.Split(",")[1];
+                for (int point_index = 0; point_index < numOfLines; ++point_index)
+                {
+                    temp.Add(new DataPoint(attribute[first][point_index].Y, attribute[second][point_index].Y));
+                }
+                Anomaly_2_AnomalyInfo.Add(str, new AnomalyInfo(pair.Item2, temp));
+
             }
             //AnomalyReportList
             AnomalyReportList = anomalyReportList;

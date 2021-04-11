@@ -48,5 +48,13 @@ namespace WpfApp1.controls
             }
             
         }
+        public Object VM_AlgorithmSelect
+        {
+            get { return _model.AlgorithmSelect; }
+            set
+            {
+                _model.AlgorithmSelect = value;
+            }
+        }
     }
 }

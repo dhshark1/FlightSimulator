@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Users\tomma\Studies\SecondYearSemesterD\Projects\repos\FlightSimulator\WpfApp1\WpfApp1\obj\Release\netcoreapp3.1\
+C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\obj\Release\netcoreapp3.1\
 WpfApp1
 none
 false
-TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
-D:\Users\tomma\Studies\SecondYearSemesterD\Projects\repos\FlightSimulator\WpfApp1\WpfApp1\App.xaml
-7-1714626100
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
+C:\Users\maiky\source\repos\FlightSimulator\WpfApp1\WpfApp1\App.xaml
+9-258811760
 
-18-412560062
-196-1946947194
-controls\atributes.xaml;controls\chartLive.xaml;controls\controlPanel.xaml;controls\FilesDialog.xaml;controls\oxyplot.xaml;controls\theJoystick.xaml;MainWindow.xaml;
+22-1159830901
+1961591008776
+controls\AlgorithmSelector.xaml;controls\AnomalyReportList.xaml;controls\atributes.xaml;controls\chartLive.xaml;controls\controlPanel.xaml;controls\FilesDialog.xaml;controls\oxyplot.xaml;controls\theJoystick.xaml;MainWindow.xaml;
 
 True
 

@@ -31,6 +31,7 @@
         <oxy:Plot x:Name="ano_plot" Title="{Binding VM_PlotTitle}" Grid.Row="1" Grid.ColumnSpan="2">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding VM_RegressionPoints}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
+                <oxy:LineSeries ItemsSource="{Binding VM_RegressionPoints_last_30}" LineStyle="None" MarkerSize="4" MarkerFill="Red" MarkerStrokeThickness="3" MarkerType="Circle"/>
             </oxy:Plot.Series>
             <oxy:Plot.Annotations>
                 <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
@@ -41,7 +42,7 @@
             <oxy:LineSeries ItemsSource="{Binding VM_AnomalyReportRegressionList}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
         </oxy:Plot.Series>
         <oxy:Plot.Annotations>
-            <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
+            
         </oxy:Plot.Annotations>
         </oxy:Plot>
         <!--<StackPanel x:Name="stack"  Grid.Row="2">
