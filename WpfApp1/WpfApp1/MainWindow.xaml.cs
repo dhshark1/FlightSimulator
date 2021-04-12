@@ -17,6 +17,7 @@ using OxyPlot.Series;
 using WpfApp1.controls;
 using Microsoft.Win32; // FileDialog 
 using System.ComponentModel;
+using System.Threading;
 
 namespace WpfApp1
 {
@@ -54,9 +55,25 @@ namespace WpfApp1
             this.AnomalyReportList.vm = vm_ANR;
             this.AnomalyReportList.DataContext = vm_ANR;
 
+            this.anomalyDLL.vm = vm_ANR;
+            this.anomalyDLL.DataContext = vm_ANR;
+
             vm_P = new VM_Plot(fm);
             this.plot.vm = vm_P;
             this.plot.DataContext = vm_P;
+            this.plot.vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName.Equals("VM_Investigated_Annotation"))
+                {
+                    //this.Attributes.listbox.ItemsSource;
+                    /*Thread t = new Thread(this.plot.listeningFunc);
+                    t.SetApartmentState(ApartmentState.STA);
+                    t.Start();*/
+                    //((DispatcherTimer)sender).this.plot.listeningFunc();
+                    this.plot.listeningFunc();
+                }
+            };
+            
 
             this.DataContext = vm;
 
@@ -112,6 +129,6 @@ namespace WpfApp1
             }
         }
 
-     
+
     }
 }

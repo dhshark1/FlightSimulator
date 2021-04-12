@@ -61,9 +61,11 @@ namespace WpfApp1.controls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.disconnect();
+            
             vm.VM_XmlPath = FileXmlPathBox.Text;
             vm.VM_CsvPath = FilePathBox.Text;
             vm.start();
+
         }
     }
 }

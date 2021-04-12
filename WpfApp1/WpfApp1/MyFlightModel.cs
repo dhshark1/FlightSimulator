@@ -72,7 +72,7 @@ namespace WpfApp1
     class MyFlightModel : IFlightModel
     {
         // Object to hold the DLL instance with the relevant methods.
-        Object myDLLInstance = new Object();
+        string dllFullPath;
         private volatile List<string> anomalyReportList = new List<string> ();
         //private volatile Dictionary<string, > anomalyReportList = new List<string>();
         private volatile List<Tuple<string, int>> TESTForTomsDLL = new List<Tuple<string, int>> { new Tuple<string, int>("A,B", 5), new Tuple<string, int>("C,D", 180), new Tuple<string, int>("G,F", 183) };
@@ -97,7 +97,7 @@ namespace WpfApp1
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index = 0;
-        private volatile bool start_to_read = false, first = false;
+        private volatile bool start_to_read = false, first = false, init = false;
         /*private volatile bool atributes_are_ready = false;*/
         private volatile List<string> xmlNameList;
         /*private volatile List<ListBoxItem> listBoxxmlNameList;*/
@@ -120,7 +120,9 @@ namespace WpfApp1
         /*Dictionary<string, Tuple<float, float, List<DataPoint>>> regression_and_points_dict = new Dictionary<string, Tuple<float, float, List<DataPoint>>>();*/
         //Two_Correlated_attribute
         Dictionary<string, Two_Correlated_attribute> atributes_2_Two_Correlated_attribute_dict = new Dictionary<string, Two_Correlated_attribute>();
-       
+
+        volatile Dictionary<string, OxyPlot.Wpf.Annotation> ReturnValue2;
+        private OxyPlot.Wpf.Annotation investigated_Annotation;
 
         public float SlopeLineAnnotation
         {
@@ -430,6 +432,19 @@ namespace WpfApp1
                 NotifyPropertyChanged("NumOfLines");
             }
         }
+        public OxyPlot.Wpf.Annotation Investigated_Annotation
+        {
+            get
+            {
+
+                return investigated_Annotation;
+            }
+            set
+            {
+                investigated_Annotation = value;
+                NotifyPropertyChanged("Investigated_Annotation");
+            }
+        }
         public string InvestigatedAnomaly
         {
             get { return investigatedAnomaly; }
@@ -440,8 +455,10 @@ namespace WpfApp1
                 {
                     CurrentLine = Anomaly_2_AnomalyInfo[InvestigatedAnomaly].AnomalyLine;
                     AnomalyReportRegressionList = Anomaly_2_AnomalyInfo[InvestigatedAnomaly].Points;
+                    Investigated_Annotation = Anomaly_2_AnomalyInfo[InvestigatedAnomaly].Anno;
+                    NotifyPropertyChanged("InvestigatedAnomaly");
                 }
-                NotifyPropertyChanged("InvestigatedAnomaly");
+                
             }
         }
         public List<string> AnomalyReportList
@@ -500,17 +517,17 @@ namespace WpfApp1
                 NotifyPropertyChanged("LineRatio");
             }
         }
-        public Object AlgorithmSelect
+        public string DllFullPath
         {
-            get { return myDLLInstance; }
+            get { return dllFullPath; }
             set
             {
-                myDLLInstance = value;
-                NotifyPropertyChanged("AlgorithmSelect");
+                dllFullPath = value;
             }
         }
         public MyFlightModel()
         {
+            
             tc = new MyTelnetClient();
             tc_reader = new MyTelnetClient();
             PlaySpeed = "1";
@@ -522,11 +539,15 @@ namespace WpfApp1
             xmlNameList = new List<string>();
             attribute.Add(no_attribute, new List<DataPoint>());
             //Current_attribute = current_attribute;
-            NotifyPropertyChanged("Current_attribute");
+
             //Current_attribute
             //attribute 
             //atributes[0] = new ChartValues<float>();
             //atributes[0].Add(0);
+            var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
+            DllFullPath = dllFile.FullName;
+            NotifyPropertyChanged("Current_attribute");
+
         }
         public Boolean Play
         {
@@ -885,8 +906,8 @@ namespace WpfApp1
             //creat testfile with headers
             AddAttributeLineToCSV(CsvPath, @"csvs\testFile.csv");
             //
-            var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
-            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+
+            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(DllFullPath);
             Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
             object[] argstopass1 = new object[] { (object)@"csvs\trainFile.csv", @"csvs\testFile.csv" };
             List<Tuple<string, int>> ReturnValue = (List<Tuple<string, int>>)MyDLLInstance
@@ -895,12 +916,28 @@ namespace WpfApp1
                                        //object representing Some
             .Invoke(MyDLLInstance, argstopass1);
 
-            object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv"};
-            Dictionary<string, OxyPlot.Wpf.Annotation> ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
+           
+            object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv" };
+            ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
             .GetType() //Get the type of MyDLLForm
             .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
                                                         //object representing Some
             .Invoke(MyDLLInstance, argstopass2);
+            /* Thread t = new Thread(delegate() {
+                 var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
+                 System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+                 Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
+                 object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv" };
+                 ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
+                 .GetType() //Get the type of MyDLLForm
+                 .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
+                                                             //object representing Some
+                 .Invoke(MyDLLInstance, argstopass2);
+             });
+             t.SetApartmentState(ApartmentState.STA);
+             t.Start();
+             //Thread.Join(t);
+             t.Join();*/
             string str, first,second;
             List<DataPoint> temp;
             foreach (Tuple<string, int> pair in ReturnValue)
@@ -919,7 +956,8 @@ namespace WpfApp1
                 {
                     temp.Add(new DataPoint(attribute[first][point_index].Y, attribute[second][point_index].Y));
                 }
-                Anomaly_2_AnomalyInfo.Add(str, new AnomalyInfo(pair.Item2, temp));
+                /*OxyPlot.Wpf.Annotation anno_temp = ReturnValue2[pair.Item1]*/
+                Anomaly_2_AnomalyInfo.Add(str, new AnomalyInfo(pair.Item2, ReturnValue2[pair.Item1], temp));
 
             }
             //AnomalyReportList
@@ -951,7 +989,8 @@ namespace WpfApp1
                     line_to_atributes_arr(result[k], k);
                 }
                 fill_atributes_2_Two_Correlated_attribute_dict_List();
-                fill_AnomalyRerpotList();
+                init = true;
+                /*fill_AnomalyRerpotList();*/
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
@@ -972,6 +1011,11 @@ namespace WpfApp1
             }).Start();
             new Thread(getAndSaveFG_attribute).Start();
             new Thread(display_atribute_update).Start();
+            while (!init)
+            {
+
+            }
+            fill_AnomalyRerpotList();
         }
 
         //anomalyis

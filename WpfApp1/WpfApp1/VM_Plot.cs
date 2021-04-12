@@ -154,5 +154,17 @@ namespace WpfApp1
                 _model.RegressionPoints_last_30 = value;
             }
         }
+        //VM_Investigated_anomaly
+        public OxyPlot.Wpf.Annotation VM_Investigated_Annotation
+        {
+            get
+            {
+                return _model.Investigated_Annotation;
+            }
+            set
+            {
+                _model.Investigated_Annotation = value;
+            }
+        }
     }
 }

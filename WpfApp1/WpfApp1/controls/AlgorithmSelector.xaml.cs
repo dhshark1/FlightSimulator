@@ -24,7 +24,12 @@ namespace WpfApp1.controls
         public AlgorithmSelector()
         {
             InitializeComponent();
-            vm = new VM_AnomalyReport(new MyFlightModel());
+
+            /*            var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
+                        System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+                        Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
+                        vm.VM_AlgorithmSelect = MyDLLInstance;*/
+            this.dllBox.Text = "Simple Anomaly Detector Selected";
         }
 
         private void Simple_Click(object sender, RoutedEventArgs e)
@@ -32,12 +37,10 @@ namespace WpfApp1.controls
             this.Simple.Background = Brushes.LightCoral;
             this.Hybrid.Background = Brushes.LightGray;
             this.Other.Background = Brushes.LightGray;
-
             this.dllBox.Text = "Simple Anomaly Detector Selected";
             var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
-            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
-            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
-            vm.VM_AlgorithmSelect = MyDLLInstance;
+            vm.VM_DllFullPath = dllFile.FullName;
+
         }
 
         private void Hybrid_Click(object sender, RoutedEventArgs e)
@@ -46,10 +49,12 @@ namespace WpfApp1.controls
             this.Hybrid.Background = Brushes.LightCoral;
             this.Other.Background = Brushes.LightGray; 
             this.dllBox.Text = "Hybrid Anomaly Detector Selected";
+            /*            var dllFile = new System.IO.FileInfo(@"plugins\HybridAnomalyDLL.dll");
+                        System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
+                        Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
+                        vm.VM_AlgorithmSelect = MyDLLInstance;*/
             var dllFile = new System.IO.FileInfo(@"plugins\HybridAnomalyDLL.dll");
-            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
-            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
-            vm.VM_AlgorithmSelect = MyDLLInstance;
+            vm.VM_DllFullPath = dllFile.FullName;
         }
 
         private void Other_Click(object sender, RoutedEventArgs e)
@@ -68,9 +73,7 @@ namespace WpfApp1.controls
             {
                 dllBox.Text = fDia.FileNames[0];
             }
-            System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(fDia.FileNames[0]);
-            Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
-            vm.VM_AlgorithmSelect = MyDLLInstance;
+            vm.VM_DllFullPath = fDia.FileNames[0];
         }
 
         private void Simple_DragOver(object sender, DragEventArgs e)

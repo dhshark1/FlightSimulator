@@ -192,10 +192,16 @@ namespace WpfApp1
             get;
             set;
         }
-        public Object AlgorithmSelect
+        public string DllFullPath
+        {
+            get;
+            set;
+        }
+        public OxyPlot.Wpf.Annotation Investigated_Annotation
         {
             get;
             set;
         }
     }
+    
 }

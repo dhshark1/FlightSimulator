@@ -28,13 +28,19 @@ namespace WpfApp1.controls
 
         private void AnomalyReportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!first)
+            if(this.AnomalyReportListBox.SelectedItem != null)
             {
-                vm.VM_InvestigatedAnomaly = AnomalyReportListBox.SelectedItem.ToString();
-            } else
-            {
-                first = false;
-            }  
+                if (!first)
+                {
+                    vm.VM_InvestigatedAnomaly = AnomalyReportListBox.SelectedItem.ToString();
+                }
+                else
+                {
+                    first = false;
+                }
+            }
+            
+            this.AnomalyReportListBox.SelectedItem = null;
         }
     }
 }

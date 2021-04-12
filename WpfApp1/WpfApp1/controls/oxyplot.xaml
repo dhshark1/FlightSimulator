@@ -37,13 +37,13 @@
                 <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
             </oxy:Plot.Annotations>
         </oxy:Plot>
-        <oxy:Plot Title="{Binding VM_InvestigatedAnomaly}" Grid.Row="2" Grid.ColumnSpan="2">
-        <oxy:Plot.Series>
-            <oxy:LineSeries ItemsSource="{Binding VM_AnomalyReportRegressionList}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
-        </oxy:Plot.Series>
-        <oxy:Plot.Annotations>
-            
-        </oxy:Plot.Annotations>
+        <oxy:Plot x:Name="fourthGraph" Title="{Binding VM_InvestigatedAnomaly}" Grid.Row="2" Grid.ColumnSpan="2">
+            <oxy:Plot.Annotations/>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_AnomalyReportRegressionList}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
+            </oxy:Plot.Series>
+
+
         </oxy:Plot>
         <!--<StackPanel x:Name="stack"  Grid.Row="2">
             <Button x:Name="b1" Content="{Binding VM_Name_b1}" HorizontalAlignment="Left" Margin="348,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="65" Width="100" Click="Button_Click"/>

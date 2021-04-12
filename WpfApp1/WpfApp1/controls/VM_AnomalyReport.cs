@@ -48,12 +48,12 @@ namespace WpfApp1.controls
             }
             
         }
-        public Object VM_AlgorithmSelect
+        public string VM_DllFullPath
         {
-            get { return _model.AlgorithmSelect; }
+            get { return _model.DllFullPath; }
             set
             {
-                _model.AlgorithmSelect = value;
+                _model.DllFullPath = value;
             }
         }
     }
