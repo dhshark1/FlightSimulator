@@ -38,6 +38,10 @@
             </oxy:Plot.Annotations>
         </oxy:Plot>
         <oxy:Plot x:Name="fourthGraph" Title="{Binding VM_InvestigatedAnomaly}" Grid.Row="2" Grid.ColumnSpan="2">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis x:Name="bottom_axis" Position="Bottom"></oxy:LinearAxis>
+                <oxy:LinearAxis x:Name="left_axis"  Position="Left"></oxy:LinearAxis>
+            </oxy:Plot.Axes>
             <oxy:Plot.Annotations/>
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding VM_AnomalyReportRegressionList}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>

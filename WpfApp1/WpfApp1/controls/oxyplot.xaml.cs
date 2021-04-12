@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OxyPlot;
+using OxyPlot.Axes;
 
 namespace WpfApp1.controls
 {
@@ -37,8 +39,10 @@ namespace WpfApp1.controls
             la.Visibility = System.Windows.Visibility.Visible;
             
             temp =vm.VM_Investigated_Annotation;
+            temp.YAxisKey = this.left_axis.Key;
+            temp.XAxisKey = this.bottom_axis.Key;
             //this.fourthGraph.Annotations.Clear();
-                if (this.fourthGraph.Annotations.Count > 0)
+            if (this.fourthGraph.Annotations.Count > 0)
                 {
                     this.fourthGraph.Annotations.RemoveAt(0);
                     this.fourthGraph.Annotations.Add(temp);
@@ -46,6 +50,7 @@ namespace WpfApp1.controls
                 }
                 else
                 {
+               
                 Dispatcher.Invoke(() =>
                 {
                     this.fourthGraph.Annotations.Add(temp);

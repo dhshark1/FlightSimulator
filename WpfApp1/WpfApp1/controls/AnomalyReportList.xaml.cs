@@ -28,7 +28,8 @@ namespace WpfApp1.controls
 
         private void AnomalyReportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(this.AnomalyReportListBox.SelectedItem != null)
+            
+            if (this.AnomalyReportListBox.SelectedItem != null)
             {
                 if (!first)
                 {
@@ -39,8 +40,8 @@ namespace WpfApp1.controls
                     first = false;
                 }
             }
-            
-            this.AnomalyReportListBox.SelectedItem = null;
+
+            this.AnomalyReportListBox.UnselectAll();
         }
     }
 }
