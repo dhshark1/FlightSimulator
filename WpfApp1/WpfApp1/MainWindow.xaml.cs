@@ -32,6 +32,7 @@ namespace WpfApp1
         internal VM_Plot vm_P;
         internal MyFlightModel fm;
         internal VM_AnomalyReport vm_ANR;
+        internal VM_VideoControl vm_VC;
        
         
         public MainWindow()
@@ -76,6 +77,11 @@ namespace WpfApp1
                     this.plot.listeningFunc();
                 }
             };
+
+            vm_VC = new VM_VideoControl(fm);
+            this.VideoControl.vm = vm_VC;
+            this.VideoControl.vm_FD = vm_FD;
+            this.VideoControl.DataContext = vm_VC;
             
 
             this.DataContext = vm;
@@ -91,46 +97,7 @@ namespace WpfApp1
             };
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (vm_FD.VM_CsvPath != "")
-            {
-                vm.VM_ProgressDirection = 1;
-                vm.VM_Play = true;
-                vm.VM_PlaySpeed = "1";
-            }
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-            vm.VM_Play = false;
-        }
-
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            vm.VM_Play = false;
-            vm.VM_CurrentLine = 0;
-            vm.VM_PlaySpeed = "1";
-        }
-
-
-        private void FastForwardButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (vm.VM_Play)
-            {
-                vm.VM_ProgressDirection = 1;
-                vm.VM_PlaySpeed = "2";
-            }
-        }
-
-        private void FastBackwardsButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (vm.VM_Play)
-            {
-                vm.VM_ProgressDirection = -1;
-                vm.VM_PlaySpeed = "2";
-            }
-        }
+        
 
 
     }

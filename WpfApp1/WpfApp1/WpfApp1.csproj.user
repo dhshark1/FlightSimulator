@@ -25,6 +25,9 @@
     <Compile Update="controls\oxyplot.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="controls\VideoControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="controls\AlgorithmSelector.xaml">
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="controls\oxyplot.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="controls\VideoControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

@@ -25,22 +25,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Backwards.GIF">
+    <Resource Include="controls\Backwards.GIF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="FastForward.GIF">
+    <Resource Include="controls\FastForward.GIF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pause.GIF">
+    <Resource Include="controls\Pause.GIF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="play.png">
+    <Resource Include="controls\play.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="playImg2.GIF">
+    <Resource Include="controls\playImg2.GIF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Stop.GIF">
+    <Resource Include="controls\Stop.GIF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

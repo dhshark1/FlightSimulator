@@ -46,50 +46,13 @@ namespace WpfApp1
             }
         }
 
-        public string VM_Time
-        {
-            get
-            {
-                return _model.Time;
-            }
-        }
+
        
-        public Boolean VM_Play
-        {
-            get
-            {
-                return _model.Play;
-            }
-            set
-            {
-                _model.Play = value;
-            }
-        }
 
-        public string VM_PlaySpeed
-        {
-            get
-            {
-                return _model.PlaySpeed;
-            }
-            set
-            {
-                _model.PlaySpeed = value;
-            }
 
-        }
 
-        public int VM_CurrentLine
-        {
-            get
-            {
-                return _model.CurrentLine;
-            }
-            set
-            {
-                _model.CurrentLine = value;
-            }
-        }
+
+
 
         public int VM_NumOfLines
         {
@@ -103,37 +66,8 @@ namespace WpfApp1
             }
         }
 
-        public float VM_LineRatio
-        {
-            get
-            {
-                return _model.LineRatio;
-            }
-            set
-            {
-                _model.LineRatio = value;
-            }
-        }
 
-        public int VM_ProgressDirection
-        {
-            get
-            {
-                return _model.ProgressDirection;
-            }
-            set
-            {
-                _model.ProgressDirection = value;
-            }
-        }
-        //maiky
-        /*public ChartValues<float> VM_Atributes_atIndex
-        {
-            get
-            {
-                return _model.Atributes_atIndex;
-            }
-        }*/
+
         public short VM_Atributes_index
         {
             get
