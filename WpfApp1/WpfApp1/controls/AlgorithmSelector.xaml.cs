@@ -74,7 +74,7 @@ namespace WpfApp1.controls
                 dllBox.Text = "Other Anomaly Detector was selected";
             }
             vm.VM_DllFullPath = fDia.FileNames[0];
-        }
+        }//
 
         private void Simple_DragOver(object sender, DragEventArgs e)
         {
