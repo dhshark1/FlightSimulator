@@ -24,10 +24,10 @@ Our project is organized in three folders:
 2. Upload your CSV and XML files and press Upload File on your right hand side. 
 3. The simulation will begin, and you are free to use the controls and sliders to analyze the flight 
 4. 
-'''cs
+```cs
 List<Tuple<string, int>> getAnomalies(string trainFile, string testFile){}
 void getAttributeWithADAnnotations(string trainFile){}
-'''
+```
 5. Insert the plugins folder where the executable file is located. In addition insert the "csvs" folder in the same location with a trainFile. 
 
 
