@@ -24,8 +24,9 @@ Our project is organized in three folders:
 ```cs
 List<Tuple<string, int>> getAnomalies(string trainFile, string testFile){}
 void getAttributeWithADAnnotations(string testFile){}
-Dictionary<string, Tuple<float, float>> getUseCaseEight(string trainFile){}
 ```
+The methods above should be written in class named: AnomalyDetector with the following namespace: AnomalyDLL
+the class in the dll must be called AnomalyDetector with the namespace - AnomalyDLL.
 
 ## Manual: 
 
