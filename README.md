@@ -28,7 +28,7 @@ Manual:
 
 UMLs and Class Diagrams: 
 
-Our desktop application consists of 3 main parts that communicate and run. The first component is the MyFlightModel that interacts with the server via TCP communication. The second component is the ViewModel that sends data requests to the MyFlightModel and recieves notifications when data changes from the MyFlightModel. Our last component is the View (MainWindow file) that sends commands to the ViewModel and gets notified about changed data from the ViewModel. Data is displayed in our MainWindow through the process of data binding. The following link is our project UML: 
+Our desktop application consists of 3 main parts that communicate and run. The first component is the MyFlightModel that interacts with the server via TCP communication. The second component is the ViewModel that sends data requests to the MyFlightModel and recieves notifications when data changes from the MyFlightModel. Our last component is the View (MainWindow file) that sends commands to the ViewModel and gets notified about changed data from the ViewModel. Data is displayed in our MainWindow through the process of data binding. The following link is our project UML: https://github.com/dhshark1/FlightSimulator/tree/Main_Branch/WpfApp1/WpfApp1/class%20diagram
 
 Short Video About Our Project: 
 
