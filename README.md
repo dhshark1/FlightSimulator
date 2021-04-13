@@ -7,7 +7,7 @@ The project runs on multiple threads and was developed using MVVM architechture.
 
 ## Structure of the Project: 
 
-Our project is organized in two folders: 
+Our project is organized in three folders: 
 
 1. WpfApp1- the main folder, contains the main window, view model, and model. 
 2. controls- contains all of the controls in our main window, such as the joystick, graphs, and control panel.
