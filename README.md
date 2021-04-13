@@ -17,17 +17,23 @@ Our project is organized in three folders:
 
 1. Import oxyplot in appropriate files in order to view graphs
 2. Install the latest version of FlightGear on your computer 
-3. Execute the solution! 
 
 ## Manual: 
 
 1. Run the app and a GUI should open.
 2. Upload your CSV and XML files and press Upload File on your right hand side. 
 3. The simulation will begin, and you are free to use the controls and sliders to analyze the flight 
+4. 
+'''cs
+List<Tuple<string, int>> getAnomalies(string trainFile, string testFile){}
+void getAttributeWithADAnnotations(string trainFile){}
+'''
+5. Insert the plugins folder where the executable file is located. In addition insert the "csvs" folder in the same location with a trainFile. 
+
 
 ## UMLs and Class Diagrams: 
 
 Our desktop application consists of 3 main parts that communicate and run. The first component is the MyFlightModel that interacts with the server via TCP communication. The second component is the ViewModel that sends data requests to the MyFlightModel and recieves notifications when data changes from the MyFlightModel. Our last component is the View (MainWindow file) that sends commands to the ViewModel and gets notified about changed data from the ViewModel. Data is displayed in our MainWindow through the process of data binding. The following link is our project UML: https://github.com/dhshark1/FlightSimulator/tree/Main_Branch/WpfApp1/WpfApp1/class%20diagram
 
 ## Short Video About Our Project: 
-
+https://www.youtube.com/watch?v=lR0nlxIm9Q0&ab_channel=%D7%9E%D7%99%D7%9B%D7%90%D7%9C%D7%92%D7%A0%D7%95%D7%9F
