@@ -19,19 +19,20 @@ Our project is organized in two folders:
 2. Import oxyplot in appropriate files in order to view graphs
 3. Install the latest version of FlightGear on your computer 
 4. Execute the solution! 
-
-## Manual: 
-
-1. Run the app and a GUI should open.
-2. Upload your CSV and XML files and press Upload File on your right hand side. 
-3. The simulation will begin, and you are free to use the controls and sliders to analyze the flight 
-4. You must implement the following method to run a different dll from our built in dll's:
+5. You must implement the following methods to run a different dll from our built in dll's:
 
 ```cs
 List<Tuple<string, int>> getAnomalies(string trainFile, string testFile){}
 void getAttributeWithADAnnotations(string testFile){}
 Dictionary<string, Tuple<float, float>> getUseCaseEight(string trainFile){}
 ```
+
+## Manual: 
+
+1. Run the app and a GUI should open.
+2. Upload your CSV and XML files and press Upload File on your right hand side. 
+3. The simulation will begin, and you are free to use the controls and sliders to analyze the flight 
+
 
 ## UMLs and Class Diagrams: 
 
