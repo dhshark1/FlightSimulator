@@ -991,18 +991,28 @@ namespace WpfApp1
                 }
                 fill_atributes_2_Two_Correlated_attribute_dict_List();
                 init = true;
+                float ps;
                 /*fill_AnomalyRerpotList();*/
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
-                    if ((CurrentLine >= -1) && (PlaySpeed != "") && Play && (float.Parse(PlaySpeed) > 0))
+                    try
                     {
+                        ps = float.Parse(PlaySpeed);
+                    }
+                    catch (Exception e)
+                    {
+                        continue;
+                    }
+                    if ((CurrentLine >= -1)  && Play && (ps > 0))
+                    {
+
                         if ((ProgressDirection == 1) || (CurrentLine > 0))
                         {
                             CurrentLine += ProgressDirection;
                         }
                         tc.write(result[CurrentLine]);
                         start_to_read = true;
-                        Thread.Sleep(Convert.ToInt32(100 * (1 / float.Parse(PlaySpeed))));
+                        Thread.Sleep(Convert.ToInt32(100 * (1 / ps)));
                     }
                     else
                     {

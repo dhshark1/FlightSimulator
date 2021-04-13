@@ -18,12 +18,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <oxy:Plot Title="{Binding VM_Current_attribute }" Grid.Column="0">
+        <oxy:Plot Title="{Binding VM_Current_attribute }" TitleFontSize="10" Grid.Column="0">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
             </oxy:Plot.Series>
         </oxy:Plot>
-        <oxy:Plot Title="{Binding VM_PlotTitle_correlated}" Grid.Column="1">
+        <oxy:Plot Title="{Binding VM_PlotTitle_correlated}" TitleFontSize="10" Grid.Column="1">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints_correlated}"/>
             </oxy:Plot.Series>

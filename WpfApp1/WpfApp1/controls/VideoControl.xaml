@@ -5,28 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.controls"
              mc:Ignorable="d" 
-             d:DesignHeight="90" d:DesignWidth="1200">
+             d:DesignHeight="90" Width="1015">
     <Canvas >
         <Button x:Name="PlayButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Canvas.Top="31" Canvas.Left="77" Click="PlayButton_Click" Background="White">
-            <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            <Image Source="playImg2.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="53" RenderTransformOrigin="5.292,0.311" />
         </Button>
         <Button x:Name="PauseButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="31" Canvas.Left="129" Click="PauseButton_Click">
-            <Image Source="Pause.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            <Image Source="Pause.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="48" RenderTransformOrigin="5.292,0.311" />
         </Button>
         <Button x:Name="FastForwardButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="31" Canvas.Left="233" Click="FastForwardButton_Click">
-            <Image Source="FastForward.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            <Image Source="FastForward.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="50" RenderTransformOrigin="5.292,0.311" />
         </Button>
         <Button x:Name="StopButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="31" Canvas.Left="181" Click="StopButton_Click">
-            <Image Source="Stop.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            <Image Source="Stop.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="49" RenderTransformOrigin="5.292,0.311" />
         </Button>
         <Button x:Name="FastBackwardsButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="49" Width="52" Background="White" Canvas.Top="31" Canvas.Left="20" Click="FastBackwardsButton_Click">
-            <Image  Source="Backwards.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="58" RenderTransformOrigin="5.292,0.311" />
+            <Image  Source="Backwards.GIF" Canvas.Left="150" Canvas.Top="-16" Height="45" Width="50" RenderTransformOrigin="5.292,0.311" />
         </Button>
         <TextBlock FontSize="24" Canvas.Left="294" Canvas.Top="31" Text="Play Speed" TextWrapping="Wrap" Height="49" Width="124"/>
         <TextBox x:Name="pSTextBox" Canvas.Left="423" Canvas.Top="31" Text="{Binding VM_PlaySpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="48" Height="25"/>
         <TextBlock x:Name="timeTextBlock" Canvas.Left="476" Canvas.Top="31" Visibility="Visible" Text="{Binding VM_Time}" TextWrapping="Wrap" Height="29" Width="90"/>
 
-        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" Width="556" Height="26" Margin="575,292,0,0" Grid.ColumnSpan="2" Grid.Row="1" Canvas.Left="46" Canvas.Top="-249"/>
+        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" Width="300" Height="26" Margin="575,292,0,0" Grid.ColumnSpan="2" Grid.Row="1" Canvas.Left="46" Canvas.Top="-249"/>
 
     </Canvas>
 </UserControl>

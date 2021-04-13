@@ -6,10 +6,18 @@
         xmlns:Controls="clr-namespace:WpfApp1.controls"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="MainWindow" Height="800" Width="1000">
 
     <Grid ShowGridLines="False" Height="800" Margin="0,0,10,0" RenderTransformOrigin="0.503,0.511">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -36,25 +44,33 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
 
 
-        <Controls:controlPanel RenderTransformOrigin="0.627,0.288" Canvas.Left="8" Margin="26,20,70,22" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Row="4"/>
+        <Controls:controlPanel RenderTransformOrigin="0.627,0.288" Grid.Row="9" Grid.RowSpan="4" Grid.ColumnSpan="3" />
 
-        <Controls:oxyplot x:Name="plot" Margin="96,62,49,2" Canvas.Left="264" Canvas.Top="109" Width="450" Height="536" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="6" Grid.Column="2" Grid.RowSpan="9" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
-
-
+        <Controls:oxyplot x:Name="plot" RenderTransformOrigin="0.5,0.5" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="11"  Grid.RowSpan="14"  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="40,0,10,0" />
 
 
-        <Controls:atributes x:Name="Attributes" Grid.Row="2" Height="518" Width="256" Grid.ColumnSpan="3" Grid.RowSpan="8" Grid.Column="7" Margin="10,8,32,8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Controls:AlgorithmSelector x:Name="anomalyDLL" Margin="26,14,10,29" Grid.RowSpan="3"    Grid.Column="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Controls:FilesDialog x:Name="FilesDialog" Margin="2,-16,10,0" Width="781" Grid.ColumnSpan="8" Grid.Column="4" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Controls:AnomalyReportList x:Name="AnomalyReportList"  Height="518" Width="140" Grid.ColumnSpan="2" Grid.Column="10" Margin="48,10,10,6" Grid.RowSpan="8" Grid.Row="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Controls:theJoystick Margin="26,17,69,17" Grid.Row="7" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" />
 
 
-        <Controls:VideoControl x:Name="VideoControl" Grid.Row="10" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="10" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Controls:atributes x:Name="Attributes" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="14" Grid.Column="14" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Controls:AlgorithmSelector x:Name="anomalyDLL" Grid.Row="5" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        <Controls:FilesDialog x:Name="FilesDialog" Grid.ColumnSpan="17" Grid.RowSpan="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Controls:AnomalyReportList x:Name="AnomalyReportList" Grid.Column="17" Grid.ColumnSpan="3"  Grid.RowSpan="14" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Controls:theJoystick Grid.Row="13" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" />
+
+
+        <Controls:VideoControl x:Name="VideoControl" Grid.Row="17" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="20" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
 
 
     </Grid>
