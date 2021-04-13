@@ -58,6 +58,9 @@ namespace WpfApp1
             this.anomalyDLL.vm = vm_ANR;
             this.anomalyDLL.DataContext = vm_ANR;
 
+            this.AnomalyReportList.vm = vm_ANR;
+            this.AnomalyReportList.DataContext = vm_ANR;
+
             vm_P = new VM_Plot(fm);
             this.plot.vm = vm_P;
             this.plot.DataContext = vm_P;

@@ -46,11 +46,17 @@ namespace WpfApp1.controls
                 _model.XmlPath = value;
             }
         }
-        public void start()
+        public bool start(string xmlP, string csvP)
         {
-            _model.connect("127.0.0.1", 5400);
-            _model.connect("127.0.0.1", 5402);
-            _model.start();
+            if (_model.connect("127.0.0.1", 5400) == 1)
+            {
+                // _model.connect("127.0.0.1", 5402);
+                VM_XmlPath = xmlP;
+                VM_CsvPath = csvP;
+                _model.start();
+                return true;
+            }
+            return false;
         }
         public void disconnect()
         {

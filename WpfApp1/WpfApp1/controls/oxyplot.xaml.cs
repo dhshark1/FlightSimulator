@@ -22,6 +22,7 @@ namespace WpfApp1.controls
         internal VM_Plot vm;
         int x = 1;
         OxyPlot.Wpf.LineAnnotation la = new OxyPlot.Wpf.LineAnnotation();
+        OxyPlot.Wpf.EllipseAnnotation pa = new OxyPlot.Wpf.EllipseAnnotation();
         OxyPlot.Wpf.Annotation temp;
         public oxyplot()
         {
@@ -32,31 +33,23 @@ namespace WpfApp1.controls
         public void listeningFunc()
         {
            
-           
-            x *= -1;
-            la.Slope = 2 * x;
-            la.Intercept = 2;
-            la.Visibility = System.Windows.Visibility.Visible;
+            temp = vm.VM_Investigated_Annotation;
             
-            temp =vm.VM_Investigated_Annotation;
-            temp.YAxisKey = this.left_axis.Key;
-            temp.XAxisKey = this.bottom_axis.Key;
-            //this.fourthGraph.Annotations.Clear();
             if (this.fourthGraph.Annotations.Count > 0)
-                {
-                    this.fourthGraph.Annotations.RemoveAt(0);
-                    this.fourthGraph.Annotations.Add(temp);
-                    //this.fourthGraph.Visibility = System.Windows.Visibility.Visible;
-                }
-                else
-                {
+            {
+                this.fourthGraph.Annotations.RemoveAt(0);
+                this.fourthGraph.Annotations.Add(temp);
+                //this.fourthGraph.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
                
-                Dispatcher.Invoke(() =>
-                {
-                    this.fourthGraph.Annotations.Add(temp);
-                });
+            Dispatcher.Invoke(() =>
+            {
+                this.fourthGraph.Annotations.Add(temp);
+            });
                 
-                }
+            }
 
                
         } 

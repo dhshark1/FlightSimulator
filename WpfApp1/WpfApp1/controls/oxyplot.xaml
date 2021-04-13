@@ -37,7 +37,7 @@
                 <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
             </oxy:Plot.Annotations>
         </oxy:Plot>
-        <oxy:Plot x:Name="fourthGraph" Title="{Binding VM_InvestigatedAnomaly}" Grid.Row="2" Grid.ColumnSpan="2">
+        <oxy:Plot x:Name="fourthGraph" Title="{Binding VM_InvestigatedAnomaly}" TitleFontSize="10" Grid.Row="2" Grid.ColumnSpan="2">
             <oxy:Plot.Axes>
                 <oxy:LinearAxis x:Name="bottom_axis" Position="Bottom"></oxy:LinearAxis>
                 <oxy:LinearAxis x:Name="left_axis"  Position="Left"></oxy:LinearAxis>

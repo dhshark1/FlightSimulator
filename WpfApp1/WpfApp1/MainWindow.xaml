@@ -63,7 +63,7 @@
 
 
         </Canvas>
-        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="556" Height="26" Margin="44,340,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Slider x:Name="Slider" Value="{Binding VM_LineRatio, Mode=TwoWay}" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="556" Height="26" Margin="575,292,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
 
     </Grid>
 </Window>

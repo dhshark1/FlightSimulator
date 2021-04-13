@@ -19,9 +19,9 @@
                VerticalAlignment="Center"
             FontSize="14" FontFamily="Georgia"  
             FontWeight="Bold"/>
-        <ListBox x:Name="AnomalyReportListBox" ItemsSource="{Binding VM_AnomalyReportList}" SelectionChanged="AnomalyReportList_SelectionChanged" IsSynchronizedWithCurrentItem="True" Grid.Row="2" >
-            
-        </ListBox>
+        <ListBox x:Name="AnomalyReportListBox" ItemsSource="{Binding VM_AnomalyReportList}" SelectionChanged="AnomalyReportList_SelectionChanged" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" Grid.Row="2" >
 
+        </ListBox>
+        
     </Grid>
 </UserControl>

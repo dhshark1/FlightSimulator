@@ -14,7 +14,7 @@ namespace WpfApp1
     {
 
         // connection to the robot
-        void connect(string ip, int port);
+        int connect(string ip, int port);
         void disconnect();
         void start();
 

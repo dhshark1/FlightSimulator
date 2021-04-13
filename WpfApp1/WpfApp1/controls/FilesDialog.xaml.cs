@@ -60,11 +60,20 @@ namespace WpfApp1.controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.disconnect();
-            
-            vm.VM_XmlPath = FileXmlPathBox.Text;
-            vm.VM_CsvPath = FilePathBox.Text;
-            vm.start();
+            System.Diagnostics.Process[] pname = System.Diagnostics.Process.GetProcessesByName("fgfs");
+            if (pname.Length == 0)
+            {
+                MessageBox.Show("FlightGear is not up yet");
+            }
+            else
+            {
+                vm.disconnect();
+
+                /*            vm.VM_XmlPath = FileXmlPathBox.Text;
+                            vm.VM_CsvPath = FilePathBox.Text;*/
+                if (vm.start(FileXmlPathBox.Text, FilePathBox.Text))
+                    this.UploadFileBox.Visibility = System.Windows.Visibility.Hidden;
+            }
 
         }
     }

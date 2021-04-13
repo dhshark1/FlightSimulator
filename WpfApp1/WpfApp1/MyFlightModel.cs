@@ -91,7 +91,7 @@ namespace WpfApp1
         private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
         private volatile string investigatedAnomaly;
         //private volatile List<string> anomalyReportList = new List<string>();
-        private MyTelnetClient tc_reader;
+        //private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
         private volatile float altmeter = 0, airspeed = 0, registeredHeading_degrees = 0;
         private volatile float pitch = 0, roll = 0, yaw = 0;
@@ -529,7 +529,7 @@ namespace WpfApp1
         {
             
             tc = new MyTelnetClient();
-            tc_reader = new MyTelnetClient();
+            //tc_reader = new MyTelnetClient();
             PlaySpeed = "1";
             CurrentLine = -1;
             NumOfLines = 1;
@@ -660,13 +660,15 @@ namespace WpfApp1
                 NotifyPropertyChanged("XmlPath");
             }
         }
-        public void connect(string ip, int port)
+        public int connect(string ip, int port)
         {
             stop = false;
+            int result = 0;
             if (port == 5400)
-                tc.connect(ip, port);
-            if (port == 5402)
-                tc_reader.connect(ip, port);
+                result = tc.connect(ip, port);
+/*            if (port == 5402)
+                tc_reader.connect(ip, port);*/
+            return result;
         }
 
         public void disconnect()
@@ -961,7 +963,6 @@ namespace WpfApp1
 
             }
             //AnomalyReportList
-            AnomalyReportList = anomalyReportList;
             NotifyPropertyChanged("AnomalyReportList");
         }
 

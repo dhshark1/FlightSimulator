@@ -71,7 +71,7 @@ namespace WpfApp1.controls
             Nullable<bool> fDiaOK = fDia.ShowDialog();
             if (fDiaOK == true) // File Dialog opened safely
             {
-                dllBox.Text = fDia.FileNames[0];
+                dllBox.Text = "Other Anomaly Detector was selected";
             }
             vm.VM_DllFullPath = fDia.FileNames[0];
         }
