@@ -12,6 +12,7 @@ namespace WpfApp1.controls
         public VM_Attributes(IFlightModel model)
         {
             _model = model;
+            //add property for viewmodel to observe
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -22,9 +23,11 @@ namespace WpfApp1.controls
         {
             if (this.PropertyChanged != null)
             {
+                //notify if property changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        //properties
         public List<string> VM_XmlNameList
         {
             get
