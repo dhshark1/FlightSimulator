@@ -18,6 +18,7 @@ namespace WpfApp1
         public ViewModel(IFlightModel model)
         {
             _model = model;
+            //add property for viewmodel to observe
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -42,6 +43,7 @@ namespace WpfApp1
         {
             if (this.PropertyChanged != null)
             {
+                //send notification if property changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
@@ -49,7 +51,7 @@ namespace WpfApp1
 
        
 
-
+        //properties
 
 
 
