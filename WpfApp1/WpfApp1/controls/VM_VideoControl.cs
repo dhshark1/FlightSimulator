@@ -11,6 +11,7 @@ namespace WpfApp1.controls
         public VM_VideoControl(IFlightModel model)
         {
             _model = model;
+            //add property for VM to observe 
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -21,9 +22,15 @@ namespace WpfApp1.controls
         {
             if (this.PropertyChanged != null)
             {
+                //notify that a property has changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        
+        /*
+        properties that are relevant for the video control
+        some have a getter and a setter and some have only a getter.
+        */
 
         public float VM_LineRatio
         {
