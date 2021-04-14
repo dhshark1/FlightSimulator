@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-using LiveCharts;//chart
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
 using OxyPlot;
 using OxyPlot.Series;
 namespace WpfApp1
