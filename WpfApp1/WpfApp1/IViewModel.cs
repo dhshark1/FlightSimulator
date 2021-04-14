@@ -9,6 +9,7 @@ namespace WpfApp1
     interface IViewModel
     {
 
+        //properties
         public string VM_CsvPath
         {
             get;
