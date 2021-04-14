@@ -662,22 +662,29 @@ namespace WpfApp1
         }
         public int connect(string ip, int port)
         {
-            stop = false;
+            /*
+             * This method purpose is to connect to the filghtGear using TelnetClient field's connect method
+             */
+            stop = false; 
             int result = 0;
-            if (port == 5400)
+            if (port == 5400)// it is possible to connect only with port 5400, this port is used by the fg to accept lines from regflight.csv
                 result = tc.connect(ip, port);
-/*            if (port == 5402)
-                tc_reader.connect(ip, port);*/
             return result;
         }
 
         public void disconnect()
         {
+            /*
+             * This method purpose is to disconnnect from the flightGear using TelnetClient's disconnet method
+             */
             stop = true;
             tc.disconnect();
         }
+
+        //Properties that are in use of the view:
         public string Time
         {
+            //Is in use of the time displaying control (view)
             get
             {
                 int x = (CurrentLine / 10) % 60;
@@ -690,6 +697,7 @@ namespace WpfApp1
         }
         public float LineRatio
         {
+            //Is in use of the Slider 
             get
             {
                 return ((float)CurrentLine) / NumOfLines;
@@ -701,20 +709,16 @@ namespace WpfApp1
                 NotifyPropertyChanged("LineRatio");
             }
         }
-        /*private void notifyHelper()
-        {
-            NotifyPropertyChanged("Atributes_atIndex");
-        }*/
-        //
+
         private void getAndSaveFG_attribute()
         {
-            /*string input, input_digits_and_dot = "";
-            int first, second, i = 0;
-            float converted_input;*/
+            /*
+             * This method purpose is to update attributes according to the currentLine (=int variable that equals to the number of the last line that was sent to the fg)
+             * 
+             */
             NotifyPropertyChanged("Atributes_atIndex");
 
 
-            //new Thread(display_atribute_update).Start();
             // List of strings binded from the XAML directly to the attributes in the model
             string[] bindedPropertiesAttributes = { "altimeter_indicated-altitude-ft", "airspeed-kt", "heading-deg", "roll-deg", "pitch-deg", "side-slip-deg" };
             while (currentLine < numOfLines && !stop)
@@ -722,6 +726,7 @@ namespace WpfApp1
                 if (Play && start_to_read)
                 {
                    // foreach attribute in bindedPropertiesAttributes update the View Model that a change was made
+                   //attribute is a dictionary that mapped an attributes to all of its values in the csv file that was loaded
                    for(int j = 0; j < 6; j++)
                     {
                         switch (j)
@@ -765,15 +770,17 @@ namespace WpfApp1
             for (int i = 0; i < size; i++)
             {
                 attribute[xmlNameList[i]].Add(new DataPoint(index, float.Parse(Fields[i])));
-               // atributes[i].Add(new DataPoint(index, float.Parse(Fields[i])));
             }
-            // atributes_are_ready = true;
 
 
         }
-        //VERSION WITHOU IENUMERATOR
         private void display_atribute_update()
         {
+            /*
+             * This methods is incharge of updating the variables that containes the points of selected attribute and its most correlated attribute
+             * This method will be running on seperate thread. It is running as long the flight is running. The main loop will run as long the flight is on with sleep of 500 milisec between two followed iterations.
+             *  
+             */
             int local_current_line = 0, range = 0;
             string local_Current_attribute, local_Correlated_attribute;
             DataPoint[] temporalCv, temporalCv_cor, temporalRg;
@@ -783,7 +790,7 @@ namespace WpfApp1
             }
             while (currentLine < numOfLines && !stop)
             {
-                mutex.WaitOne();
+                mutex.WaitOne();//The main thread is also updates the plotPoints list, therefore mutex is in use.
                 local_current_line = CurrentLine;
                 local_Current_attribute = Current_attribute;
                 local_Correlated_attribute = attribute_correlated[Current_attribute];
@@ -792,6 +799,8 @@ namespace WpfApp1
                 {
                     if (display_lines_temp < local_current_line)
                     {
+                        //as the flight progresses forward, it is not needed to build a new list of data point in each iteration, threrefore the list will be updated according to the difference between the last current line
+                        //that was sent to the fg before the iteration was started, and the last line that was sent to fg and the list of plotPoints is updated according to.
                         range = local_current_line - display_lines_temp;
                         temporalCv = new DataPoint[range];
 
@@ -818,6 +827,7 @@ namespace WpfApp1
                     }
                     else if (display_lines_temp > local_current_line)
                     {
+                        //In case the flight was moved backward then the plotPoint list and the plotPoint_correlated are built from the start
                         display_lines_temp = 0;
                         plotPoints_correlated = new List<DataPoint>();
                         plotPoints = new List<DataPoint>();
@@ -925,21 +935,7 @@ namespace WpfApp1
             .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
                                                         //object representing Some
             .Invoke(MyDLLInstance, argstopass2);
-            /* Thread t = new Thread(delegate() {
-                 var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
-                 System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
-                 Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
-                 object[] argstopass2 = new object[] { (object)@"csvs\trainFile.csv" };
-                 ReturnValue2 = (Dictionary<string, OxyPlot.Wpf.Annotation>)MyDLLInstance
-                 .GetType() //Get the type of MyDLLForm
-                 .GetMethod("getAttributeWithADAnnotations") //Gets a System.Reflection.MethodInfo 
-                                                             //object representing Some
-                 .Invoke(MyDLLInstance, argstopass2);
-             });
-             t.SetApartmentState(ApartmentState.STA);
-             t.Start();
-             //Thread.Join(t);
-             t.Join();*/
+
             string str, first,second;
             List<DataPoint> temp;
             foreach (Tuple<string, int> pair in ReturnValue)
@@ -958,16 +954,20 @@ namespace WpfApp1
                 {
                     temp.Add(new DataPoint(attribute[first][point_index].Y, attribute[second][point_index].Y));
                 }
-                /*OxyPlot.Wpf.Annotation anno_temp = ReturnValue2[pair.Item1]*/
                 Anomaly_2_AnomalyInfo.Add(str, new AnomalyInfo(pair.Item2, ReturnValue2[pair.Item1], temp));
 
             }
-            //AnomalyReportList
             NotifyPropertyChanged("AnomalyReportList");
         }
 
         public void start()
         {
+            /*
+             * When the uploadFile button is selected the model will try to connect the flightGear, after they are connected this method is invoked.
+             * This method will invoke 3 threads - In general: thread number one is incharge of sending lines from the csv to the flightgear,
+             * theard number two is in charge of updating the properties of the flight's attributes, each one of them will be update to the most updated value according to the last line that was sent to FG.
+             * thread number three is in charge of updating the list of dataPoints of the selected attribute (by the user to be displayed in the graph) and its most correlated attribute.
+             */
             
             new Thread(delegate ()
             {
@@ -992,7 +992,6 @@ namespace WpfApp1
                 fill_atributes_2_Two_Correlated_attribute_dict_List();
                 init = true;
                 float ps;
-                /*fill_AnomalyRerpotList();*/
                 while (CurrentLine <= numOfLines - 1 && !stop)
                 {
                     try
@@ -1043,6 +1042,4 @@ namespace WpfApp1
     }
 }
 
-//TOM AND RON AND MAIKY AND DANY 26.3 18:41
-
-    //maiky g 7/4 15:42
+//$$$

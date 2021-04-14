@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jDV75zQDjxB5NeQQO22x71scrsQXLCTUxsAKhTfI1piVqbwVZOfxPOriuEFpOaAuvazoXodkL8cDEbIo+oKgzw==",
+  "dgSpecHash": "BpLHq30rFAMb2EW8c5CTNYQuGsEQv2wVjneA1LGFgcA9Trp01OHBxwslM/VwlqofBCt7B58hdYKmaBiqPKHA7w==",
   "success": true,
-  "projectFilePath": "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\FlightSimulator\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
+  "projectFilePath": "D:\\Users\\tomma\\Studies\\SecondYearSemesterD\\Projects\\repos\\Clone_FlightSimulatorComments1\\WpfApp1\\WpfApp1\\WpfApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tomma\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
     "C:\\Users\\tomma\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",
