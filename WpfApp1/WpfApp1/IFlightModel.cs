@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using LiveCharts;//chart
-using LiveCharts.Defaults;
-using LiveCharts.Wpf;
 using OxyPlot;
 using OxyPlot.Series;
 using System.Windows.Controls;
