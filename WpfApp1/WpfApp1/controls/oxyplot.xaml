@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="WpfApp1.controls.oxyplot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:local="clr-namespace:WpfApp1.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <oxy:Plot Title="{Binding VM_Current_attribute }" TitleFontSize="10" Grid.Column="0">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <oxy:Plot Title="{Binding VM_PlotTitle_correlated}" TitleFontSize="10" Grid.Column="1">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_PlotPoints_correlated}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <oxy:Plot x:Name="ano_plot" Title="{Binding VM_PlotTitle}" Grid.Row="1" Grid.ColumnSpan="2">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_RegressionPoints}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
+                <oxy:LineSeries ItemsSource="{Binding VM_RegressionPoints_last_30}" LineStyle="None" MarkerSize="4" MarkerFill="Red" MarkerStrokeThickness="3" MarkerType="Circle"/>
+            </oxy:Plot.Series>
+            <oxy:Plot.Annotations>
+                <oxy:LineAnnotation Slope="{Binding VM_SlopeLineAnnotation}" Intercept="{Binding VM_InterceptLineAnnotation}" LineStyle="Solid"></oxy:LineAnnotation>
+            </oxy:Plot.Annotations>
+        </oxy:Plot>
+        <oxy:Plot x:Name="fourthGraph" Title="{Binding VM_InvestigatedAnomaly}" TitleFontSize="10" Grid.Row="2" Grid.ColumnSpan="2">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis x:Name="bottom_axis" Position="Bottom"></oxy:LinearAxis>
+                <oxy:LinearAxis x:Name="left_axis"  Position="Left"></oxy:LinearAxis>
+            </oxy:Plot.Axes>
+            <oxy:Plot.Annotations/>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding VM_AnomalyReportRegressionList}" LineStyle="None" MarkerSize="1.5" MarkerFill="Black" MarkerStrokeThickness="3" MarkerType="Circle"/>
+            </oxy:Plot.Series>
+
+
+        </oxy:Plot>
+        <!--<StackPanel x:Name="stack"  Grid.Row="2">
+            <Button x:Name="b1" Content="{Binding VM_Name_b1}" HorizontalAlignment="Left" Margin="348,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="65" Width="100" Click="Button_Click"/>
+            
+        </StackPanel>-->
+    </Grid>
+</UserControl>
