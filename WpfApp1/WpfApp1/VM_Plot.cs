@@ -13,6 +13,7 @@ namespace WpfApp1
         public VM_Plot(IFlightModel model)
         {
             _model = model;
+            //add property for viewmodel to observe
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -23,9 +24,11 @@ namespace WpfApp1
         {
             if (this.PropertyChanged != null)
             {
+                //notify if property changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        //properties
         public List<string> AnomalyReportList
         {
             get
@@ -118,7 +121,7 @@ namespace WpfApp1
                 _model.RegressionPoints = value;
             }
         }
-        
+        //current selected anomaly
         public string VM_InvestigatedAnomaly
         {
             get
@@ -132,6 +135,7 @@ namespace WpfApp1
                 _model.InvestigatedAnomaly = value;
             }
         }
+        //for the linear regression line
         public List<DataPoint> VM_AnomalyReportRegressionList
         {
             get
@@ -143,6 +147,7 @@ namespace WpfApp1
                 _model.AnomalyReportRegressionList = value;
             }
         }
+        //for the red points
         public List<DataPoint> VM_RegressionPoints_last_30
         {
             get
