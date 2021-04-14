@@ -1,4 +1,4 @@
-﻿using LiveCharts;//chart
+using LiveCharts;//chart
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +14,10 @@ using System.Text;
 
 namespace WpfApp1
 {
+    /*
+     * This class is here to save information about 2 Correlated_attribute.
+     * we can get and set there slope, intercept and correlated_points.
+     */
     public class Two_Correlated_attribute
     {
         float slope;
@@ -74,7 +78,6 @@ namespace WpfApp1
         // Object to hold the DLL instance with the relevant methods.
         string dllFullPath;
         private volatile List<string> anomalyReportList = new List<string> ();
-        //private volatile Dictionary<string, > anomalyReportList = new List<string>();
         private volatile List<Tuple<string, int>> TESTForTomsDLL = new List<Tuple<string, int>> { new Tuple<string, int>("A,B", 5), new Tuple<string, int>("C,D", 180), new Tuple<string, int>("G,F", 183) };
         public event PropertyChangedEventHandler PropertyChanged;
         private static Mutex mutex = new Mutex();
@@ -85,22 +88,17 @@ namespace WpfApp1
         private volatile int numOfLines;
         private volatile string playSpeed;
         private volatile int progressDirection;
-        /*private volatile int Num_of_Atributes = 42;*/
         private volatile int display_lines_temp = 0;
         private volatile string current_attribute = "aileron", no_attribute = "-";
         private volatile float slopeLineAnnotation = 0, interceptLineAnnotation = 0;
         private volatile string investigatedAnomaly;
-        //private volatile List<string> anomalyReportList = new List<string>();
-        //private MyTelnetClient tc_reader;
         private string[] get_msgs = new string[6] { "get /instrumentation/altimeter/indicated-altitude-ft", "get /velocities/airspeed-kt[0]", "get /orientation/heading-deg", "get /orientation/roll-deg", "get /orientation/pitch-deg", "get /orientation/side-slip-deg" };
         private volatile float altmeter = 0, airspeed = 0, registeredHeading_degrees = 0;
         private volatile float pitch = 0, roll = 0, yaw = 0;
         private volatile float aileron = 0, throttle0 = 0, rudder = 0, elevator = 0;
         private short atributes_index = 0;
         private volatile bool start_to_read = false, first = false, init = false;
-        /*private volatile bool atributes_are_ready = false;*/
         private volatile List<string> xmlNameList;
-        /*private volatile List<ListBoxItem> listBoxxmlNameList;*/
         public volatile List<DataPoint>[] atributes = new List<DataPoint>[42];
         public volatile Dictionary<String, List<DataPoint>> attribute = new Dictionary<string, List<DataPoint>>();
         public volatile Dictionary<String, String> attribute_correlated = new Dictionary<string, String>();
@@ -117,8 +115,6 @@ namespace WpfApp1
 
         //key - attribute(like ailrone) , value - tuple(first slope, second intersect)
         Dictionary<string, Tuple<float, float>> regression_dict = new Dictionary<string, Tuple<float, float>>();
-        /*Dictionary<string, Tuple<float, float, List<DataPoint>>> regression_and_points_dict = new Dictionary<string, Tuple<float, float, List<DataPoint>>>();*/
-        //Two_Correlated_attribute
         Dictionary<string, Two_Correlated_attribute> atributes_2_Two_Correlated_attribute_dict = new Dictionary<string, Two_Correlated_attribute>();
 
         volatile Dictionary<string, OxyPlot.Wpf.Annotation> ReturnValue2;
@@ -148,6 +144,14 @@ namespace WpfApp1
                 NotifyPropertyChanged("InterceptLineAnnotation");
             }
         }
+
+        /*Input: none
+         *Return value: void
+         *Required: 1)the xmlPath string must hold an path to an XML file.
+         *          2)xmlNameList is Initialized.
+         * this method add to xmlNameList the names in the XML file in the path XmlPath.
+         * if there is a repetion of a name the methode will add the char '1' to the second string in the list.
+         */
         private void buildNameListFromXML()
         {
             List<string> temp;
@@ -167,7 +171,21 @@ namespace WpfApp1
                 }
             }
         }
-      
+        /*get:
+         *Input: none
+         *Return value: string - current_attribute 
+         *Required: none.
+         * returns current_attribute.
+         * 
+         * set:
+         *Input: string - the new current_attribute
+         *Return value: 
+         *Required: none.
+         * this method change the current_attribute and that means that the user want to watch a difrent plot and his corelated attribute plot and
+         * there regression line so the method updates all the relevent propoerties.
+         * we use mutex because difrent threads use the fields we change here, we dont want that the list that stores te points of the current attribute
+         * will copy points of diffrent attribute in the middle of the datapoints copy so this is a critical section.
+         */
         public string Current_attribute
         {
             get
@@ -210,7 +228,7 @@ namespace WpfApp1
                 NotifyPropertyChanged("AnomalyReportRegressionList");
             }
         }
-        //regressionPoints_last_30
+
         public List<DataPoint> RegressionPoints_last_30
         {
             get
@@ -445,6 +463,21 @@ namespace WpfApp1
                 NotifyPropertyChanged("Investigated_Annotation");
             }
         }
+
+        /*get:
+         *Input: none
+         *Return value: string - investigatedAnomaly 
+         *Required: none.
+         * returns investigatedAnomaly.
+         * 
+         * set:
+         *Input: string - the new current_attribute
+         *Return value: 
+         *Required: none.
+         * this method change the InvestigatedAnomaly and that means that the user want to watch a difrent anomaly.
+         * we show a plot of the 2 attributes that takes part in the anomaly and the annotation (circle/regression line/any other annotaion
+         * from the dll that the user choose).
+         */
         public string InvestigatedAnomaly
         {
             get { return investigatedAnomaly; }
@@ -527,27 +560,17 @@ namespace WpfApp1
         }
         public MyFlightModel()
         {
-            
             tc = new MyTelnetClient();
-            //tc_reader = new MyTelnetClient();
             PlaySpeed = "1";
             CurrentLine = -1;
             NumOfLines = 1;
             ProgressDirection = 1;
             csvPath = "";
-            //listBoxxmlNameList = new List<ListBoxItem>();
             xmlNameList = new List<string>();
             attribute.Add(no_attribute, new List<DataPoint>());
-            //Current_attribute = current_attribute;
-
-            //Current_attribute
-            //attribute 
-            //atributes[0] = new ChartValues<float>();
-            //atributes[0].Add(0);
             var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
             DllFullPath = dllFile.FullName;
             NotifyPropertyChanged("Current_attribute");
-
         }
         public Boolean Play
         {
@@ -561,10 +584,16 @@ namespace WpfApp1
                 NotifyPropertyChanged("Play");
             }
         }
-
+        /*Input: Dictionary<string, Tuple<float, float>> - Dictionary of anomalys attributes names to tupel of floats
+         * that represents the slope and intersept of the attributes regresion line.
+         *Return value: void
+         *Required: init attribute_correlated,atributes_2_Two_Correlated_attribute_dict .
+         * this method takes the dictionery that we get from the method getUseCaseEight in the dll, and add info to the relevent dictioneries (attribute_correlated
+         * , atributes_2_Two_Correlated_attribute_dict).
+         */
         private void initDictionary(Dictionary<string, Tuple<float, float>> src_dict)
         {
-            string pair_delim = ",", input_delim = " ";
+            string pair_delim = ",";
             string[] splited_pair;
             foreach (KeyValuePair<string, Tuple<float, float>> entry in src_dict)
             {
@@ -572,14 +601,20 @@ namespace WpfApp1
                 if (splited_pair.Length == 2)
                 {
                     attribute_correlated.Add(splited_pair[0], splited_pair[1]);
-                    //regression_dict.Add(splited_pair[0], entry.Value);
-                    //regression_and_points_dict.Add(splited_pair[0], new Tuple<float, float, List<DataPoint>>(entry.Value.Item1, entry.Value.Item2, new List<DataPoint>()));
-                    //init atributes_2_Two_Correlated_attribute_dict 
                     atributes_2_Two_Correlated_attribute_dict.Add(splited_pair[0], new Two_Correlated_attribute(entry.Value.Item1, entry.Value.Item2));
                 }
             }
             Current_attribute = attribute_correlated.First().Key;
         }
+
+        /*set
+         * Input: string - the csvpath that hold the investegated flight info.
+         *Return value: void
+         *Required: SimpleAnomalyDLL.dll in the plugins folder.
+         *          trainFile.csv file in the folder csvs.
+         *  call the methode getUseCaseEight in the dll and call initDictionary. 
+         *  sets csvPath.
+         */
         public string CsvPath
         {
             get
@@ -589,11 +624,6 @@ namespace WpfApp1
             set
             {
                 csvPath = value;
-                /*atributes_are_ready = false;*/
-                //call tom and dani!!!!!!!!!!!!!!!!!!!!!!!!!!
-                /*Dictionary<string, Tuple<float, float>> deletme = new Dictionary<string, Tuple<float, float>>();
-                deletme.Add("aileron,elevator", new Tuple<float, float>(0.5F, 0.3F));
-                deletme.Add("throttle,latitude-deg", new Tuple<float, float>(0.5f, 1.23F));*/
                 var dllFile = new System.IO.FileInfo(@"plugins\SimpleAnomalyDLL.dll");
                 System.Reflection.Assembly myDllAssembly = System.Reflection.Assembly.LoadFile(dllFile.FullName);
                 Object MyDLLInstance = (Object)myDllAssembly.CreateInstance("AnomalyDLL.AnomalyDetector");
@@ -911,6 +941,15 @@ namespace WpfApp1
             sr.Close();
             sw.Close();
         }
+         /*
+        * Input: none
+        *Return value: void
+        *Required: DllFullPath have the Dll Full Path.
+        *          trainFile.csv file in the folder csvs.
+        *          init anomalyReportList.
+        *  call the methode getAnomalies int the dll the user choose/if he didnt choose it will be the simplenomalydetectore.
+        *  add to anomalyReportList,Anomaly_2_AnomalyInfo the info of the anomalys.
+        */
         private void fill_AnomalyRerpotList()
         {
             string min, sec;
