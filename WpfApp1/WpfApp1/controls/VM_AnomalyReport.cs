@@ -12,6 +12,7 @@ namespace WpfApp1.controls
         public VM_AnomalyReport(IFlightModel model)
         {
             _model = model;
+            //adding property to be observed by viewmodel
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if(e.PropertyName.Equals("AnomalyReportList"))
@@ -25,9 +26,11 @@ namespace WpfApp1.controls
         {
             if (this.PropertyChanged != null)
             {
+                //send notification if property changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        //properties
         public List<string> VM_AnomalyReportList
         {
             get
