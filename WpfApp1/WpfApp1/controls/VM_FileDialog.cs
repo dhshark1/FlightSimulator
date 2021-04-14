@@ -11,6 +11,7 @@ namespace WpfApp1.controls
         public VM_FileDialog(IFlightModel model)
         {
             _model = model;
+            //add property for the viewModel to observe
             _model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
@@ -21,9 +22,14 @@ namespace WpfApp1.controls
         {
             if (this.PropertyChanged != null)
             {
+                //notify is property has changed
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        
+        /*
+        properties
+        */
         public string VM_CsvPath
         {
             get
@@ -46,6 +52,9 @@ namespace WpfApp1.controls
                 _model.XmlPath = value;
             }
         }
+        // the start method, that is invoked when connect is successful
+        //xml and csv paths are sent to the appropriate viewmodel
+        //we then call model's start to start the simulation
         public bool start(string xmlP, string csvP)
         {
             if (_model.connect("127.0.0.1", 5400) == 1)
