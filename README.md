@@ -31,7 +31,7 @@ Downloading from GitHub:
 7. implement the following if you wish to import your own dll:
 ```cs
 List<Tuple<string, int>> getAnomalies(string trainFile, string testFile){}
-void getAttributeWithADAnnotations(string trainFile){}
+Dictionary<string, OxyPlot.Wpf.Annotation> getAttributeWithADAnnotations(string trainFile){}
 ```
 
 ## UMLs and Class Diagrams: 
